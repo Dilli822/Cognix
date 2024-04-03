@@ -28,12 +28,12 @@
         }
 
         span {
-            font-size: 34px!important;
+            font-size: 30px !important;
         }
 
         .bg-light,
         .bg-dark {
-            min-height: 90px;
+            min-height: 12vh;
             height: auto;
         }
 
@@ -53,7 +53,7 @@
 
             .bg-light,
             .bg-dark {
-                min-height: 60px;
+                min-height: 10vh;
                 height: auto;
 
             }
@@ -62,107 +62,109 @@
 </head>
 
 <body>
-
-
-
     <div class="container">
         <div id="loading" style="display: block;">
             <div class="spinner-border text-primary" role="status">
                 <span class="visually-hidden"></span>
             </div>
         </div>
-        <br><br>
 
-        <div class="chessboard-container" id="chessboardWrapper">
+        <div class="chessboard-container" id="chessboardWrapper" style="display: none;">
             <div class="chessboard">
                 <div class="row">
                     <div class="row">
 
                         <div class="row">
-                            <div class="col square bg-dark"><span id="ibr"></span></div>
-                            <div class="col square bg-dark"><span id="ibk"></span></div>
-                            <div class="col square bg-light"><span id="ibb"></span></div>
-                            <div class="col square bg-dark"><span id="ibq"></span></div>
-                            <div class="col square bg-light"><span id="ibking"></span></div>
-                            <div class="col square bg-dark"><span id="ibb2"></span></div>
-                            <div class="col square bg-light"><span id="ibk2"></span></div>
-                            <div class="col square bg-dark"><span id="ibr2"></span></div>
+                            <div class="col square bg-white" id="wbox1"><span id="ibr"></span></div>
+                            <div class="col square bg-dark" id="bbox1"><span id="ibk"></span></div>
+                            <div class="col square bg-light" id="wbox2"><span id="ibb"></span></div>
+                            <div class="col square bg-dark" id="bbox2"><span id="ibq"></span></div>
+                            <div class="col square bg-light" id="wbox3"><span id="ibking"></span></div>
+                            <div class="col square bg-dark" id="bbox3"><span id="ibb2"></span></div>
+                            <div class="col square bg-light" id="wbox4"><span id="ibk2"></span></div>
+                            <div class="col square bg-dark" id="bbox4"><span id="ibr2"></span></div>
                         </div>
 
                         <div class="row">
-                            <div class="col square bg-dark"><span id="black-pawn1">&#9823;</span></div>
-                            <div class="col square bg-light"><span id="black-pawn2">&#9823;</span></div>
-                            <div class="col square bg-dark"><span id="black-pawn3">&#9823;</span></div>
-                            <div class="col square bg-light"><span id="black-pawn4">&#9823;</span></div>
-                            <div class="col square bg-dark"><span id="black-pawn5">&#9823;</span></div>
-                            <div class="col square bg-light"><span id="black-pawn6">&#9823;</span></div>
-                            <div class="col square bg-dark"><span id="black-pawn7">&#9823;</span></div>
-                            <div class="col square bg-light"><span id="black-pawn8">&#9823;</span></div>
+                            <div class="col square bg-dark" id="bbox5"><span id="black-pawn1"></span></div>
+                            <div class="col square bg-light" id="wbox5"><span id="black-pawn2"></span></div>
+                            <div class="col square bg-dark" id="bbox6"><span id="black-pawn3"></span></div>
+                            <div class="col square bg-light" id="wbox6"><span id="black-pawn4"></span></div>
+                            <div class="col square bg-dark" id="bbox7"><span id="black-pawn5"></span></div>
+                            <div class="col square bg-light" id="wbox7"><span id="black-pawn6"></span></div>
+                            <div class="col square bg-dark" id="bbox8"><span id="black-pawn7"></span></div>
+                            <div class="col square bg-light" id="wbox8"><span id="black-pawn8"></span></div>
+
                         </div>
 
                         <div class="row">
-                            <div class="col square bg-light"><span id="w1"></span> </div>
-                            <div class="col square bg-dark"><span id="b1"></span></div>
-                            <div class="col square bg-light"><span id="w2"></span></div>
-                            <div class="col square bg-dark"><span id="b2"></span></div>
-                            <div class="col square bg-light"><span id="w3"></span></div>
-                            <div class="col square bg-dark"><span id="b3"></span></div>
-                            <div class="col square bg-light"><span id="w4"></span></div>
-                            <div class="col square bg-dark"><span id="b4"></span></div>
+                            <div class="col square bg-light" id="wbox9"><span id="w1"></span></div>
+                            <div class="col square bg-dark" id="bbox9"><span id="b1"></span></div>
+                            <div class="col square bg-light" id="wbox10"><span id="w2"></span></div>
+                            <div class="col square bg-dark" id="bbox10"><span id="b2"></span></div>
+                            <div class="col square bg-light" id="wbox11"><span id="w3"></span></div>
+                            <div class="col square bg-dark" id="bbox11"><span id="b3"></span></div>
+                            <div class="col square bg-light" id="wbox12"><span id="w4"></span></div>
+                            <div class="col square bg-dark" id="bbox12"><span id="b4"></span></div>
+
                         </div>
 
                         <div class="row border-bottom border-danger border-3">
-                            <div class="col square bg-dark"><span id="b5"></span></div>
-                            <div class="col square bg-light"><span id="w5"></span></div>
-                            <div class="col square bg-dark"><span id="b6"></span></div>
-                            <div class="col square bg-light"><span id="w6"></span></div>
-                            <div class="col square bg-dark"><span id="b7"></span></div>
-                            <div class="col square bg-light"><span id="w7"></span></div>
-                            <div class="col square bg-dark"><span id="b8"></span></div>
-                            <div class="col square bg-light"><span id="w8"></span></div>
+                            <div class="col square bg-dark" id="bbox13"><span id="b5"></span></div>
+                            <div class="col square bg-light" id="wbox13"><span id="w5"></span></div>
+                            <div class="col square bg-dark" id="bbox14"><span id="b6"></span></div>
+                            <div class="col square bg-light" id="wbox14"><span id="w6"></span></div>
+                            <div class="col square bg-dark" id="bbox15"><span id="b7"></span></div>
+                            <div class="col square bg-light" id="wbox15"><span id="w7"></span></div>
+                            <div class="col square bg-dark" id="bbox16"><span id="b8"></span></div>
+                            <div class="col square bg-light" id="wbox16"><span id="w8"></span></div>
+
                         </div>
 
                         <div class="row">
-                            <div class="col square bg-light"><span id="w9"></span></div>
-                            <div class="col square bg-dark"><span id="b9"></span></div>
-                            <div class="col square bg-light"><span id="w10"></span></div>
-                            <div class="col square bg-dark"><span id="b10"></span></div>
-                            <div class="col square bg-light"><span id="w11"></span></div>
-                            <div class="col square bg-dark"><span id="b11"></span></div>
-                            <div class="col square bg-light"><span id="w12"></span></div>
-                            <div class="col square bg-dark"><span id="b12"></span></div>
+                            <div class="col square bg-light" id="bbox17"><span id="b9"></span></div>
+                            <div class="col square bg-dark" id="wbox17"><span id="w9"></span></div>
+                            <div class="col square bg-light" id="bbox18"><span id="b10"></span></div>
+                            <div class="col square bg-dark" id="wbox18"><span id="w10"></span></div>
+                            <div class="col square bg-light" id="bbox19"><span id="b11"></span></div>
+                            <div class="col square bg-dark" id="wbox19"><span id="w11"></span></div>
+                            <div class="col square bg-light" id="bbox20"><span id="b12"></span></div>
+                            <div class="col square bg-dark" id="wbox20"><span id="w12"></span></div>
+
                         </div>
 
                         <div class="row">
-                            <div class="col square bg-dark"><span id="b13"></span></div>
-                            <div class="col square bg-light"><span id="w13"></span></div>
-                            <div class="col square bg-dark"><span id="b14"></span></div>
-                            <div class="col square bg-light"><span id="w14"></span></div>
-                            <div class="col square bg-dark"><span id="b15"></span></div>
-                            <div class="col square bg-light"><span id="w15"></span></div>
-                            <div class="col square bg-dark"><span id="b16"></span></div>
-                            <div class="col square bg-light"><span id="w16"></span></div>
+                            <div class="col square bg-dark" id="bbox21"><span id="b13"></span></div>
+                            <div class="col square bg-light" id="wbox21"><span id="w13"></span></div>
+                            <div class="col square bg-dark" id="bbox22"><span id="b14"></span></div>
+                            <div class="col square bg-light" id="wbox22"><span id="w14"></span></div>
+                            <div class="col square bg-dark" id="bbox23"><span id="b15"></span></div>
+                            <div class="col square bg-light" id="wbox23"><span id="w15"></span></div>
+                            <div class="col square bg-dark" id="bbox24"><span id="b16"></span></div>
+                            <div class="col square bg-light" id="wbox24"><span id="w16"></span></div>
+
                         </div>
 
                         <div class="row">
-                            <div class="col square bg-light"><span id="white-pawn1">&#9817;</span></div>
-                            <div class="col square bg-dark"><span id="white-pawn2">&#9817;</span></div>
-                            <div class="col square bg-light"><span id="white-pawn3">&#9817;</span></div>
-                            <div class="col square bg-dark"><span id="white-pawn4">&#9817;</span></div>
-                            <div class="col square bg-light"><span id="white-pawn5">&#9817;</span></div>
-                            <div class="col square bg-dark"><span id="white-pawn6">&#9817;</span></div>
-                            <div class="col square bg-light"><span id="white-pawn7">&#9817;</span></div>
-                            <div class="col square bg-dark"><span id="white-pawn8">&#9817;</span></div>
+                            <div class="col square bg-light" id="wbox25"><span id="white-pawn1"></span></div>
+                            <div class="col square bg-dark" id="bbox25"><span id="white-pawn2"></span></div>
+                            <div class="col square bg-light" id="wbox26"><span id="white-pawn3"></span></div>
+                            <div class="col square bg-dark" id="bbox26"><span id="white-pawn4"></span></div>
+                            <div class="col square bg-light" id="wbox27"><span id="white-pawn5"></span></div>
+                            <div class="col square bg-dark" id="bbox27"><span id="white-pawn6"></span></div>
+                            <div class="col square bg-light" id="wbox28"><span id="white-pawn7"></span></div>
+                            <div class="col square bg-dark" id="bbox28"><span id="white-pawn8"></span></div>
+
                         </div>
                         <div class="row">
-                            <div class="col square bg-dark"><span id="iwr"></span></div>
-                            <div class="col square bg-light"><span id="iwk"></span></div>
-                            <div class="col square bg-dark"><span id="iww"></span></div>
-                            <div class="col square bg-light"><span id="iwq"></span></div>
-                            <div class="col square bg-dark"><span id="iwking"></span></div>
-                            <div class="col square bg-light"><span id="iww2"></span></div>
-                            <div class="col square bg-dark"><span id="iwk2"></span></div>
-                            <div class="col square bg-light"><span id="iwr2"></span></div>
+                            <div class="col square bg-dark" id="bbox29"><span id="iwr"></span></div>
+                            <div class="col square bg-light" id="wbox29"><span id="iwk"></span></div>
+                            <div class="col square bg-dark" id="bbox30"><span id="iww"></span></div>
+                            <div class="col square bg-light" id="wbox30"><span id="iwq"></span></div>
+                            <div class="col square bg-dark" id="bbox31"><span id="iwking"></span></div>
+                            <div class="col square bg-light" id="wbox31"><span id="iww2"></span></div>
+                            <div class="col square bg-dark" id="bbox32"><span id="iwk2"></span></div>
+                            <div class="col square bg-light" id="wbox32"><span id="iwr2"></span></div>
 
                         </div>
 
@@ -175,7 +177,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-        <script src="./script.js"></script>
+    <script src="./script.js"></script>
+    <script src="./chess_Characters_Priority.js"></script>
+
+
 
 </body>
 

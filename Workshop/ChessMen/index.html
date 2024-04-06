@@ -58,14 +58,17 @@
 
             }
         }
-
+        .step1Highlight,
         .highlighted-box-step1 {
             background-color:  rgba(30, 0, 255, 0.687) !important;
         }
-
         .highlighted-box-step2 {
             background-color:  rgba(0, 216, 25, 0.681) !important;
         }
+        .highLightPawn {
+       background-color: rgba(0, 160, 120, 0.39)!important;
+       }
+
     </style>
 </head>
 
@@ -189,7 +192,7 @@
         document.getElementById("chessboardWrapper").style.display = "none";
         document.getElementById("loading").style.display = "block";
     </script>
-    <script src="./script.js"></script>
+    <script src="./final.js" type="module"></script>
     <script>
         // window.addEventListener('beforeunload', function(event) {
         // // Cancel the event
@@ -201,8 +204,7 @@
         // var confirmationMessage = 'All the game progress will be lost or deleted forever. Are you sure you want to reload?';
         // return confirmationMessage;
         // });
-    </script>
-    <script>
+   
         document.getElementById("loading").style.display = "none";
         document.getElementById("chessboardWrapper").style.display = "block";
     </script>

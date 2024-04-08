@@ -24,40 +24,25 @@ import {
     clickedWhitePawnId,
     printNodeValues,
     printSpanValues,
+    blackTurn
 } from "./script.js";
+
+
+
+
+
 
 document.addEventListener("DOMContentLoaded", async function () {
     // Initialize an empty 8x8 array
-    let containerValues = Array.from({ length: 8 }, () => Array(8).fill(0));
-    // Function to retrieve the values from spans inside container elements
-    async function retrieveContainerValues(containerIDs) {
-        await Promise.all(
-            containerIDs.map(async (rowIDs, rowIndex) => {
-                await Promise.all(
-                    rowIDs.map(async (id, colIndex) => {
-                        const node = document.getElementById(id);
-                        if (node) {
-                            const span = node.querySelector("span");
-                            if (span) {
-                                const spanContent = span.innerText.trim();
-                                // Assign the span content to the corresponding position in the array
-                                containerValues[rowIndex][colIndex] = spanContent;
-                            }
-                        }
-                    })
-                );
-            })
-        );
-    }
 
-    // Call the function to retrieve values initially
-    await retrieveContainerValues(containerIDs);
+    // Call the function to retrieve values init
+
+
     // Usage example
-    show_Step_For_Pawn_Initially(initial_White_Pawn_Position);
-    show_Step_For_Pawn_Initially(initial_Black_Pawn_Position);
+  
     // Call the function to add click event listeners to white pawns
-    first_white_pawn_clicking(iwhitePawns);
-    first_white_pawn_clicking(iblackPawns);
+    // first_white_pawn_clicking(iwhitePawns);
+    // first_white_pawn_clicking(iblackPawns);
     // Print the retrieved values initially
-    console.log("After Character Movement in a chess ", containerValues);
+    // console.log("After Character Movement in a chess ", containerValues);
 });

@@ -1,7 +1,6 @@
 import * as scriptContent from "./script.js";
 import {
   containerIDs,
-  show_Step_For_Pawn_Initially,
   first_white_pawn_clicking,
   initial_Black_Pawn_Position,
   idBlackCharPairs,
@@ -24,16 +23,8 @@ import {
   clickedWhitePawnId,
   printNodeValues,
   printSpanValues,
-  blackTurn,
+
 } from "./script.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
-  // Initialize an empty 8x8 array
-  // Call the function to retrieve values init
-  // Usage example
-  // Call the function to add click event listeners to white pawns
-  // first_white_pawn_clicking(iwhitePawns);
-  // first_white_pawn_clicking(iblackPawns);
-  // Print the retrieved values initially
-  // console.log("After Character Movement in a chess ", containerValues);
 });

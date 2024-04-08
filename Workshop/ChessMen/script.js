@@ -386,43 +386,43 @@ export function first_white_pawn_clicking(pawnIds) {
 export let clickedWhitePawn = false;
 export let clickedBlackPawn = false;
 export let blackTurn = false;
+
 // Function to add click event listeners to black pawns
 export function show_Step_For_Pawn_Initially(pawnIds) {
-    if (pawnIds === initial_White_Pawn_Position) {
-      alert("white one called");
-      pawnIds.forEach(function (pawnId) {
-        var pawnElement = document.getElementById(pawnId);
-        if (pawnElement) {
-          pawnElement.addEventListener("click", function () {
-            if (clickedWhitePawn) {
-              console.log("Another white pawn cannot be clicked");
-              return; // Exit the function if a white pawn has already been clicked
-            }
-            // Show alert when a white pawn is clicked
-            // alert("White pawn showing steps: " + pawnId);
-            let matchedValues;
-            if (initial_box_mapping_for_white_pawns.hasOwnProperty(pawnId)) {
-              matchedValues = initial_box_mapping_for_white_pawns[pawnId];
-              console.log("for white pawns steps1-->", matchedValues);
-              firstMove(matchedValues, pawnId, matchedValues);
-            } else {
-              // alert("No match found for pawn ID: " + pawnId);
-              return; // Exit the function if no match is found
-            }
-            clickedWhitePawn = true;
-            blackTurn = true; // Set blackTurn to true for black's turn
-          });
-        } else {
-          console.error("Pawn element not found with ID: " + pawnId);
-        }
-      });
-    } else if (pawnIds === initial_Black_Pawn_Position) {
-      alert("black one called");
-    } else {
-      console.error("Invalid pawnIds");
-    }
+  if (pawnIds === initial_White_Pawn_Position) {
+    alert("white one called");
+    pawnIds.forEach(function (pawnId) {
+      var pawnElement = document.getElementById(pawnId);
+      if (pawnElement) {
+        pawnElement.addEventListener("click", function () {
+          if (clickedWhitePawn) {
+            console.log("Another white pawn cannot be clicked");
+            return; // Exit the function if a white pawn has already been clicked
+          }
+          // Show alert when a white pawn is clicked
+          // alert("White pawn showing steps: " + pawnId);
+          let matchedValues;
+          if (initial_box_mapping_for_white_pawns.hasOwnProperty(pawnId)) {
+            matchedValues = initial_box_mapping_for_white_pawns[pawnId];
+            console.log("for white pawns steps1-->", matchedValues);
+            firstMove(matchedValues, pawnId, matchedValues);
+          } else {
+            // alert("No match found for pawn ID: " + pawnId);
+            return; // Exit the function if no match is found
+          }
+          clickedWhitePawn = true;
+          blackTurn = true; // Set blackTurn to true for black's turn
+        });
+      } else {
+        console.error("Pawn element not found with ID: " + pawnId);
+      }
+    });
+  } else if (pawnIds === initial_Black_Pawn_Position) {
+    alert("black one called");
+  } else {
+    console.error("Invalid pawnIds");
   }
-  
+}
 
 function firstMove(possibleMove, currentPawnPosition, stepsArray) {
   // Highlight the squares where the pawn can move
@@ -462,7 +462,7 @@ function firstMove(possibleMove, currentPawnPosition, stepsArray) {
             // Remove event listeners
             const clonedElement = element.cloneNode(true);
             element.parentNode.replaceChild(clonedElement, element);
-            console.log("White move is completed")
+            console.log("White move is completed");
           } else {
             console.error("Element not found with ID:", id);
           }
@@ -474,10 +474,9 @@ function firstMove(possibleMove, currentPawnPosition, stepsArray) {
   });
   clickedWhitePawn = true;
   blackTurn = true;
-
 }
-
 
 show_Step_For_Pawn_Initially(initial_White_Pawn_Position);
 
 
+  

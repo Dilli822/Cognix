@@ -108,6 +108,7 @@ export let containerIDs = [
     "wbox32",
   ],
 ];
+
 export let chessboard = [
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
@@ -268,110 +269,3 @@ export let initial_WhiteSide_TwoGapForPawns = [
   "bbox24",
   "wbox24",
 ];
-
-// Iterate over each object and set ID and value for black pieces
-idBlackCharPairs.forEach(function (pair) {
-  let element = document.getElementById(pair.id);
-  if (element) {
-    element.innerHTML = pair.value;
-  }
-});
-
-// Iterate over each object and set ID and value for white pieces
-idWhiteCharValuePairs.forEach(function (pair) {
-  let element = document.getElementById(pair.id);
-  if (element) {
-    element.innerHTML = pair.value;
-  }
-});
-
-// Iterate over each black pawn ID and set its innerHTML to "&#9823;"
-iblackPawns.forEach((pawnId) => {
-  document.getElementById(pawnId).innerHTML = "&#9823;";
-});
-
-iwhitePawns.forEach((pawnId) => {
-  document.getElementById(pawnId).innerHTML = "&#9817;";
-});
-
-export let clickedBlackPawnId; // Define a global variable to store the clicked ID
-
-initial_Black_Pawn_Position.forEach(function (id) {
-  let element = document.getElementById(id);
-  if (element) {
-    element.addEventListener("click", function () {
-      clickedBlackPawnId = id; // Update the value of clickedId with the clicked ID
-      // alert("ID " + clickedBlackPawnId + " is clicked!");
-    });
-  } else {
-    console.error("Element not found with ID: " + id);
-  }
-});
-
-export let clickedWhitePawnId; // Define a global variable to store the clicked ID
-
-initial_White_Pawn_Position.forEach(function (id) {
-  let element = document.getElementById(id);
-  if (element) {
-    element.addEventListener("click", function () {
-      clickedWhitePawnId = id; // Update the value of clickedId with the clicked ID
-      // alert("ID " + clickedWhitePawnId + " is clicked!");
-    });
-  } else {
-    console.error("Element not found with ID: " + id);
-  }
-});
-
-// Get the span element with the ID 'b9'
-export const spanElement = document.getElementById("white-pawn1");
-
-// Check if the span element has any text content
-if (spanElement.textContent.trim() !== "") {
-  // Trigger an alert if there is text content
-  console.log("There is a value inside the span element with ID ", spanElement);
-}
-
-// Function to print the values residing inside HTML nodes with given IDs
-export function printNodeValues(containerIDs) {
-  containerIDs.forEach((rowIDs) => {
-    rowIDs.forEach((id) => {
-      const node = document.getElementById(id);
-      if (node) {
-        // console.log(node.innerText);
-      }
-    });
-  });
-}
-
-// Call the function with the containerIDs array
-printNodeValues(containerIDs);
-
-// Chess Board Value Printer
-export function printSpanValues(containerIDs) {
-  containerIDs.forEach((rowIDs) => {
-    rowIDs.forEach((id) => {
-      const node = document.getElementById(id);
-      if (node) {
-        const span = node.querySelector("span");
-        if (span) {
-          // console.log(`Value inside ${id}: ${span.innerText}`);
-        }
-      }
-    });
-  });
-}
-
-// Checking pawns
-export function first_white_pawn_clicking(pawnIds) {
-  pawnIds.forEach(function (pawnId) {
-    var pawnElement = document.getElementById(pawnId);
-    if (pawnElement) {
-      pawnElement.addEventListener("click", function () {
-        // Show alert when the pawn is clicked
-        // alert("Pawn ID: " + pawnId);
-      });
-    } else {
-      console.error("Pawn element not found with ID: " + pawnId);
-    }
-  });
-}

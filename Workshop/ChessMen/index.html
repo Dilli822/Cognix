@@ -71,6 +71,11 @@
         .highLightPawn {
             background-color: rgba(0, 160, 120, 0.39) !important;
         }
+
+        #blackDied,
+        #whiteDied {
+            display: none;
+        }
     </style>
 </head>
 
@@ -186,6 +191,12 @@
             </div>
         </div>
     </div>
+
+    <h4 id="rival" style="display: none;">
+        You can select any one died character
+    </h4>
+    <div id="blackDied"></div>
+    <div id="whiteDied"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

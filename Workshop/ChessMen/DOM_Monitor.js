@@ -1,4 +1,3 @@
-
 import { chessboard } from "./script.js";
 
 let containerIDs = [
@@ -88,8 +87,8 @@ const observer = new MutationObserver((mutationsList, observer) => {
   // Log the updated chessboard array with the extracted values
   console.log("Extracted values from DOM:", chessboard);
   // Log both the old and new chessboard states
-  localStorage.setItem("previous_chessboard", oldChessboard)
-  localStorage.setItem("current_chessboard", chessboard)
+  localStorage.setItem("previous_chessboard", oldChessboard);
+  localStorage.setItem("current_chessboard", chessboard);
   console.log("Old chessboard state:", oldChessboard);
   console.log("New chessboard state:", chessboard);
 
@@ -129,7 +128,6 @@ for (let i = 0; i < chessboard.length; i++) {
     // console.log(`Index (${i}, ${j}): ${chessboard[i][j]}`);
   }
 }
-
 
 // Add the 'export' keyword to export the variables
 export { oldChessboard, chessboard };

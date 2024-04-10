@@ -118,8 +118,8 @@ export let chessboard = [
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
 ];
-console.log("initial zeros valued ", chessboard);
-console.log(typeof chessboard);
+// console.log("initial zeros valued ", chessboard);
+// console.log(typeof chessboard);
 
 export const blackPieces = [
   "&#9820;", // Black Rook
@@ -329,7 +329,7 @@ export const spanElement = document.getElementById("white-pawn1");
 // Check if the span element has any text content
 if (spanElement.textContent.trim() !== "") {
   // Trigger an alert if there is text content
-  console.log("There is a value inside the span element with ID ", spanElement);
+  // console.log("There is a value inside the span element with ID ", spanElement);
 }
 
 // Function to print the values residing inside HTML nodes with given IDs

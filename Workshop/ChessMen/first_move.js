@@ -25,7 +25,7 @@ export function show_Step_For_Pawn_Initially(pawnIds) {
           let matchedValues;
           if (initial_box_mapping_for_white_pawns.hasOwnProperty(pawnId)) {
             matchedValues = initial_box_mapping_for_white_pawns[pawnId];
-            console.log("for white pawns steps1-->", matchedValues);
+            // console.log("for white pawns steps1-->", matchedValues);
             firstMove(matchedValues, pawnId, matchedValues);
           } else {
             // alert("No match found for pawn ID: " + pawnId);
@@ -64,7 +64,7 @@ export function show_Step_For_PawnBlack_Initially(pawnIds) {
           let matchedValues;
           if (initial_box_mapping_for_black_pawns.hasOwnProperty(pawnId)) {
             matchedValues = initial_box_mapping_for_black_pawns[pawnId];
-            console.log("for black pawns steps1-->", matchedValues);
+            // console.log("for black pawns steps1-->", matchedValues);
             firstBlackMove(matchedValues, pawnId, matchedValues);
           } else {
             // alert("No match found for pawn ID: " + pawnId);
@@ -120,7 +120,7 @@ function firstMove(possibleMove, currentPawnPosition, stepsArray) {
             // Remove event listeners
             const clonedElement = element.cloneNode(true);
             element.parentNode.replaceChild(clonedElement, element);
-            console.log("White move is completed");
+            // console.log("White move is completed");
           } else {
             console.error("Element not found with ID:", id);
           }
@@ -165,7 +165,7 @@ function firstBlackMove(possibleMove, currentPawnPosition, stepsArray) {
             element.classList.remove("highLightPawn");
             const clonedElement = element.cloneNode(true);
             element.parentNode.replaceChild(clonedElement, element);
-            console.log("Black move is completed");
+            // console.log("Black move is completed");
           } else {
             console.error("Element not found with ID:", id);
           }
@@ -182,3 +182,5 @@ function firstBlackMove(possibleMove, currentPawnPosition, stepsArray) {
 // Call the function for initializing click event listeners for white and black pawns
 show_Step_For_Pawn_Initially(initial_White_Pawn_Position);
 show_Step_For_PawnBlack_Initially(initial_Black_Pawn_Position);
+
+

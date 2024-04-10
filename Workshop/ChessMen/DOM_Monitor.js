@@ -131,3 +131,6 @@ for (let i = 0; i < chessboard.length; i++) {
 
 // Add the 'export' keyword to export the variables
 export { oldChessboard, chessboard };
+
+// Define the chessboard layout
+

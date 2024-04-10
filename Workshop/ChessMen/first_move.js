@@ -1,4 +1,4 @@
-import { initial_Black_Pawn_Position, initial_White_Pawn_Position,initial_box_mapping_for_white_pawns ,initial_box_mapping_for_black_pawns} from "./script.js";
+import { initial_Black_Pawn_Position, initial_White_Pawn_Position,initial_box_mapping_for_white_pawns ,initial_box_mapping_for_black_pawns, } from "./script.js";
 
 export let clickedWhitePawn = false;
 export let clickedBlackPawn = false;

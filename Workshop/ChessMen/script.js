@@ -274,6 +274,7 @@ idBlackCharPairs.forEach(function (pair) {
   let element = document.getElementById(pair.id);
   if (element) {
     element.innerHTML = pair.value;
+    // alert(element.innerHTML)
   }
 });
 

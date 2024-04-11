@@ -1,48 +1,48 @@
 export const FLAG = false;
 
-export let idBlackCharPairs = [
-  { id: "ibr", value: "&#9820;" },
-  { id: "ibk", value: "&#9822;" },
-  { id: "ibb", value: "&#9821;" },
-  { id: "ibq", value: "&#9819;" },
-  { id: "ibking", value: "&#9818;" },
-  { id: "ibb2", value: "&#9821;" },
-  { id: "ibk2", value: "&#9822;" },
-  { id: "ibr2", value: "&#9820;" },
-];
+// export let idBlackCharPairs = [
+//   { id: "ibr", value: "&#9820;" },
+//   { id: "ibk", value: "&#9822;" },
+//   { id: "ibb", value: "&#9821;" },
+//   { id: "ibq", value: "&#9819;" },
+//   { id: "ibking", value: "&#9818;" },
+//   { id: "ibb2", value: "&#9821;" },
+//   { id: "ibk2", value: "&#9822;" },
+//   { id: "ibr2", value: "&#9820;" },
+// ];
 
-export let idWhiteCharValuePairs = [
-  { id: "iwr", value: "&#9814;" },
-  { id: "iwk", value: "&#9816;" },
-  { id: "iww", value: "&#9815;" },
-  { id: "iwq", value: "&#9813;" },
-  { id: "iwking", value: "&#9812;" },
-  { id: "iww2", value: "&#9815;" },
-  { id: "iwk2", value: "&#9816;" },
-  { id: "iwr2", value: "&#9814;" },
-];
+// export let idWhiteCharValuePairs = [
+//   { id: "iwr", value: "&#9814;" },
+//   { id: "iwk", value: "&#9816;" },
+//   { id: "iww", value: "&#9815;" },
+//   { id: "iwq", value: "&#9813;" },
+//   { id: "iwking", value: "&#9812;" },
+//   { id: "iww2", value: "&#9815;" },
+//   { id: "iwk2", value: "&#9816;" },
+//   { id: "iwr2", value: "&#9814;" },
+// ];
 
 // Define an array of black pawn IDs
-export let iblackPawns = [
-  "black-pawn1",
-  "black-pawn2",
-  "black-pawn3",
-  "black-pawn4",
-  "black-pawn5",
-  "black-pawn6",
-  "black-pawn7",
-  "black-pawn8",
-];
-export let iwhitePawns = [
-  "white-pawn1",
-  "white-pawn2",
-  "white-pawn3",
-  "white-pawn4",
-  "white-pawn5",
-  "white-pawn6",
-  "white-pawn7",
-  "white-pawn8",
-];
+// export let iblackPawns = [
+//   "black-pawn1",
+//   "black-pawn2",
+//   "black-pawn3",
+//   "black-pawn4",
+//   "black-pawn5",
+//   "black-pawn6",
+//   "black-pawn7",
+//   "black-pawn8",
+// ];
+// export let iwhitePawns = [
+//   "white-pawn1",
+//   "white-pawn2",
+//   "white-pawn3",
+//   "white-pawn4",
+//   "white-pawn5",
+//   "white-pawn6",
+//   "white-pawn7",
+//   "white-pawn8",
+// ];
 
 export let containerIDs = [
   ["wbox1", "bbox1", "wbox2", "bbox2", "wbox3", "bbox3", "wbox4", "bbox4"],
@@ -108,6 +108,7 @@ export let containerIDs = [
     "wbox32",
   ],
 ];
+
 export let chessboard = [
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],

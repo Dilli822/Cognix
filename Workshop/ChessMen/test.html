@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> TEST </title>
+</head>
+<body>
+    
+
+    <script>
+// // Setting initial values in localStorage
+// localStorage.setItem("white_flag", true);
+// localStorage.setItem("black_flag", false);
+
+// // Retrieving flags from localStorage
+// var white_flag = localStorage.getItem("white_flag") === "true";
+// var black_flag = localStorage.getItem("black_flag") === "true";
+
+// function white() {
+//     if (white_flag === false) {
+//         return;
+//     }
+
+//     console.log("hello, I am executing from white");
+//     white_flag = false;
+//     black_flag = true;
+
+//     // Updating localStorage
+//     localStorage.setItem("white_flag", white_flag);
+//     localStorage.setItem("black_flag", black_flag);
+// }
+
+// function black() {
+//     if (black_flag === false) {
+//         return;
+//     }
+    
+//     console.log("black is executing");
+//     white_flag = true;
+//     black_flag = false;
+
+//     // Updating localStorage
+//     localStorage.setItem("white_flag", white_flag);
+//     localStorage.setItem("black_flag", black_flag);
+// }
+
+// // Initial call
+// white();
+
+// // Continuous looping
+// setInterval(function() {
+//     if (white_flag) {
+//         white();
+//     } else {
+//         black();
+//     }
+// }, 2000); // Adjust the delay (in milliseconds) as needed
+
+// Setting initial values in localStorage
+localStorage.setItem("white_flag", true);
+localStorage.setItem("black_flag", false);
+
+// Function to execute white flag
+function white() {
+    // Retrieving white flag from localStorage
+    var white_flag = localStorage.getItem("white_flag") === "true";
+
+    if (!white_flag) {
+        return; // Exit if white_flag is false
+    }
+
+    console.log("hello, I am executing from white");
+
+    // Updating black_flag in localStorage
+    localStorage.setItem("black_flag", true);
+
+    // Setting a delay before calling black() function
+    setTimeout(black, 2000); // Adjust the delay (in milliseconds) as needed
+}
+
+// Function to execute black flag
+function black() {
+    // Retrieving black flag from localStorage
+    var black_flag = localStorage.getItem("black_flag") === "true";
+
+    if (!black_flag) {
+        return; // Exit if black_flag is false
+    }
+
+    console.log("black is executing");
+
+    // Updating white_flag in localStorage
+    localStorage.setItem("white_flag", true);
+
+    // Setting a delay before calling white() function
+    setTimeout(white, 2000); // Adjust the delay (in milliseconds) as needed
+}
+
+// Start the loop
+white(); // Start with white() function
+
+    </script>
+</body>
+</html>

@@ -75,15 +75,6 @@ for (let i = 0; i < chessboardLayout.length; i++) {
 // PAWN POSSIBLE MOVING POSITIONS
 // Function to calculate the destination box for a white pawn
 function calculateDestinationBox(currentBoxId) {
-
-
-  // Check if the current box is a black box
-  // const isBlackBox = currentBoxId.startsWith("bbox");
-  if (typeof currentBoxId !== "string") {
-    console.error("Invalid currentBoxId:", currentBoxId);
-    return;
-}
-
 // Check if the current box is a black box
 const isBlackBox = currentBoxId.startsWith("bbox");
 
@@ -92,9 +83,11 @@ const isBlackBox = currentBoxId.startsWith("bbox");
       const currentBoxNumber = parseInt(currentBoxId.slice(4));
       const possibleStep = currentBoxNumber + 4;
       const destinationBoxId = `wbox${possibleStep}`;
+    
       const destinationBoxContent = document.getElementById(destinationBoxId).textContent.trim();
       if (destinationBoxContent === "") {
           console.log("Yes, Black pawn can move");
+          alert(destinationBoxId)
       } else {
           console.log("Destination box is occupied");
       }
@@ -183,7 +176,9 @@ const observer = new MutationObserver((mutationsList, observer) => {
     console.log("White Box IDs:", whiteBoxIds);
 
     const destinationBox0 = calculateDestinationBox(latestId);
+
     console.log("Next Destination for pawn:" + latestId+ " is "+ destinationBox0);
+    localStorage.setItem("pawnmoved", destinationBox0)
 
 });
 

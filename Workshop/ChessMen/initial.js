@@ -219,14 +219,14 @@ let initial_box_mapping_for_black_pawns = {
 };
 
 let initial_box_mapping_for_white_pawns = {
-  wbox25: ["bbox21", "bbox17"],
-  bbox25: ["wbox21", "wbox17"],
-  wbox26: ["bbox22", "bbox18"],
-  bbox26: ["wbox22", "wbox18"],
-  wbox27: ["bbox23", "bbox19"],
-  bbox27: ["wbox23", "wbox19"],
-  wbox28: ["bbox24", "bbox20"],
-  bbox28: ["wbox24", "wbox20"],
+  wbox25: ["bbox21", "wbox17"],
+  bbox25: ["wbox21", "bbox17"],
+  wbox26: ["bbox22", "wbox18"],
+  bbox26: ["wbox22", "bbox18"],
+  wbox27: ["bbox23", "wbox19"],
+  bbox27: ["wbox23", "bbox19"],
+  wbox28: ["bbox24", "wbox20"],
+  bbox28: ["wbox24", "bbox20"],
 };
 
 let black_flag = false;
@@ -266,7 +266,6 @@ function handlePawnPositionClick(event) {
     // Call handleHighlightedPositionClick with the updated mapping and element
     handleHighWhitelightedPositionClick(mapping, clicked);
   } else if (!white_flag && !black_flag) {
-   
     return;
   }
 
@@ -290,6 +289,7 @@ function handlePawnPositionClick(event) {
 }
 
 // Function to handle highlighted position click
+// Function to handle highlighted position click
 function handleHigBlacklightedPositionClick(ids, clicked_id) {
   // Add click event listeners to each corresponding ID
   console.log(clicked_id);
@@ -305,8 +305,12 @@ function handleHigBlacklightedPositionClick(ids, clicked_id) {
         document.querySelectorAll(".active").forEach((el) => {
           el.classList.remove("active");
         });
+        // Store the ID of the recently moved pawn in localStorage
+        localStorage.setItem("recently_moved_black_pawn", id);
+        // Disable event listener for the recently moved pawn
+        element.removeEventListener("click", handlePawnPositionClick);
         // Call the function to disable event listeners for white pawns
-        disableBlackPawnsEventListeners();
+        disableBlackPawnsEventListeners(id);
       });
     }
   });
@@ -351,19 +355,77 @@ for (let j = 0; j < pawnPositions.length; j++) {
 }
 
 // Function to remove event listeners from white pawns
-function disableWhitePawnsEventListeners() {
+function disableWhitePawnsEventListeners(id) {
   // Iterate through each cell in the chessboard layout
+
   chessboardLayout.forEach((row) => {
     row.forEach((cellId) => {
       // Find the element with the cellId
       const element = document.getElementById(cellId);
+
       // If the element contains the content "♙", remove event listeners
       if (element.innerHTML.trim() === "♙") {
         element.removeEventListener("click", handlePawnPositionClick);
+        element.removeEventListener(
+          "click",
+          handleHighWhitelightedPositionClick
+        );
+        console.log("removed event listerner for whitepawn");
       }
+      const allIds = [
+        [
+          "wbox17",
+          "bbox17",
+          "wbox18",
+          "bbox18",
+          "wbox19",
+          "bbox19",
+          "wbox20",
+          "bbox20",
+        ],
+        [
+          "bbox21",
+          "wbox21",
+          "bbox22",
+          "wbox22",
+          "bbox23",
+          "wbox23",
+          "bbox24",
+          "wbox24",
+        ],
+        [
+          "wbox25",
+          "bbox25",
+          "wbox26",
+          "bbox26",
+          "wbox27",
+          "bbox27",
+          "wbox28",
+          "bbox28",
+        ],
+        [
+          "bbox29",
+          "wbox29",
+          "bbox30",
+          "wbox30",
+          "bbox31",
+          "wbox31",
+          "bbox32",
+          "wbox32",
+        ],
+      ];
+
+      allIds.forEach((idSet) => {
+        idSet.forEach((id) => {
+          const element = document.getElementById(id);
+          if (element) {
+            // Remove all event listeners from the element
+            element.outerHTML = element.outerHTML;
+          }
+        });
+      });
     });
   });
-
 
   black_flag = true;
   white_flag = false;
@@ -381,6 +443,16 @@ function disableBlackPawnsEventListeners() {
       if (element.innerHTML.trim() === "♟") {
         element.removeEventListener("click", handlePawnPositionClick);
       }
+
+      chessboardLayout.forEach((idSet) => {
+        idSet.forEach((id) => {
+          const element = document.getElementById(id);
+          if (element) {
+            // Remove all event listeners from the element
+            element.outerHTML = element.outerHTML;
+          }
+        });
+      });
     });
   });
 
@@ -389,16 +461,10 @@ function disableBlackPawnsEventListeners() {
   localStorage.setItem("initial_black_flag", false);
   localStorage.setItem("initial_white_flag", false);
 
-    // Load the second script after a 5-second delay
-    setTimeout(function() {
-      const script = document.createElement('script');
-      script.src = './pawn_agents_moves.js';
-      document.body.appendChild(script);
-    }, 100); // 5000 milliseconds = 5 seconds
+  // Load the second script after a 5-second delay
+  setTimeout(function () {
+    const script = document.createElement("script");
+    script.src = "./pawn_agents_moves.js";
+    document.body.appendChild(script);
+  }, 100); // 5000 milliseconds = 5 seconds
 }
-
-
-
-
-
-

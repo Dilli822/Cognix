@@ -1,26 +1,28 @@
-
 function enableAllPawns() {
-    // Iterate through each cell in the chessboard layout
-    chessboardLayout.forEach((row) => {
-      row.forEach((cellId) => {
-        // Find the element with the cellId
-        const element = document.getElementById(cellId);
-        // If the element contains the content "♙", add event listeners
-        if (element.innerHTML.trim() === "♙" || element.innerHTML.trim() === "♟" ) {
-          element.addEventListener("click", handlePawnPositionClick);
-        }
-      });
+  // Iterate through each cell in the chessboard layout
+  chessboardLayout.forEach((row) => {
+    row.forEach((cellId) => {
+      // Find the element with the cellId
+      const element = document.getElementById(cellId);
+      // If the element contains the content "♙", add event listeners
+      if (
+        element.innerHTML.trim() === "♙" ||
+        element.innerHTML.trim() === "♟"
+      ) {
+        element.addEventListener("click", handlePawnPositionClick);
+      }
     });
-  }
-
+  });
+}
+enableAllPawns();
 // Function to handle clicks on chessboard squares
- function handleClick(event) {
-    enableAllPawns();
+function handleClick(event) {
+
   // Extract the ID of the clicked square
   const squareId = event.target.id;
   const squareContent = event.target.textContent.trim();
   localStorage.setItem("clicked_box", squareId); // Save clicked box ID to local storage
-  console.log(squareId);
+  console.log("current position is: " + squareId);
 
   const isBlackBox = squareId.startsWith("bbox");
   const isWhiteBox = squareId.startsWith("wbox");
@@ -41,9 +43,10 @@ function enableAllPawns() {
       .getElementById(destinationBoxId)
       .textContent.trim();
     if (destinationBoxContent === "") {
-      console.log("Yes, Black pawn can move" + destinationBoxId);
+      console.log("Yes, Black pawn can move");
       localStorage.setItem("destination", destinationBoxId);
-      const destinationBox = localStorage.getItem("destination");
+      const destinationBox = destinationBoxId;
+      console.log("destination black pawn is "+ destinationBoxId);
       // Remove the active class from the previously clicked box
       const activeBox = document.querySelector(".active");
       if (activeBox) {
@@ -52,8 +55,33 @@ function enableAllPawns() {
 
       // Add the active class to the new box
       document.getElementById(destinationBox).classList.add("active");
-    } else {
-      console.log("Destination box is occupied");
+    }      else if (
+      destinationBoxContent === "♟" ||
+      destinationBoxContent === "♜" ||
+      destinationBoxContent === "♞" ||
+      destinationBoxContent === "♝" ||
+      destinationBoxContent === "♛" ||
+      destinationBoxContent === "♚" ||
+      destinationBoxContent === "♝" ||
+      destinationBoxContent === "♞" ||
+      destinationBoxContent === "♜"
+    ) {
+      console.log("from black part to white side Destination box is occupied and it is enemy");
+    }
+
+    
+    else if (
+      destinationBoxContent === "♙"||
+      destinationBoxContent ===  "♖"||
+      destinationBoxContent ===  "♘"||
+      destinationBoxContent ===  "♗"||
+      destinationBoxContent ===  "♕"||
+      destinationBoxContent ===  "♔"||
+      destinationBoxContent === "♗"||
+      destinationBoxContent === "♘"||
+      destinationBoxContent ===  "♖"
+    ){
+      console.log("from black part to white side Destination box is occupied and it is friend" );
     }
   }
 
@@ -73,20 +101,47 @@ function enableAllPawns() {
       .getElementById(destinationBoxId)
       .textContent.trim();
     if (destinationBoxContent === "") {
-      console.log("Yes, White pawn can move" + destinationBoxId);
+      console.log("Yes, White pawn can move");
       localStorage.setItem("destination", destinationBoxId);
-      const destinationBox = localStorage.getItem("destination");
+      console.log("destination for white pawn is "+ destinationBoxId);
+      const destinationBox = destinationBoxId;
       // Remove the active class from the previously clicked box
       const activeBox = document.querySelector(".active");
       if (activeBox) {
         activeBox.classList.remove("active");
       }
-
       // Add the active class to the new box
       document.getElementById(destinationBox).classList.add("active");
-    } else {
-      console.log("Destination box is occupied");
+    } 
+    else if (
+      destinationBoxContent === "♟" ||
+      destinationBoxContent === "♜" ||
+      destinationBoxContent === "♞" ||
+      destinationBoxContent === "♝" ||
+      destinationBoxContent === "♛" ||
+      destinationBoxContent === "♚" ||
+      destinationBoxContent === "♝" ||
+      destinationBoxContent === "♞" ||
+      destinationBoxContent === "♜"
+    ) {
+      console.log("from black part to white side Destination box is occupied and it is friend");
     }
+
+    
+    else if (
+      destinationBoxContent === "♙"||
+      destinationBoxContent ===  "♖"||
+      destinationBoxContent ===  "♘"||
+      destinationBoxContent ===  "♗"||
+      destinationBoxContent ===  "♕"||
+      destinationBoxContent ===  "♔"||
+      destinationBoxContent === "♗"||
+      destinationBoxContent === "♘"||
+      destinationBoxContent ===  "♖"
+    ){
+      console.log("from black part to white side Destination box is occupied and it is enemy" );
+    }
+
   }
 }
 

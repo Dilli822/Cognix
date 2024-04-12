@@ -1,0 +1,490 @@
+// const chessboardLayoutForHorse = [
+//   ["wbox1", "bbox1", "wbox2", "bbox2", "wbox3", "bbox3", "wbox4", "bbox4"],
+//   ["bbox5", "wbox5", "bbox6", "wbox6", "bbox7", "wbox7", "bbox8", "wbox8"],
+//   ["wbox9", "bbox9", "wbox10", "bbox10", "wbox11", "bbox11", "wbox12", "bbox12"],
+//   ["bbox13", "wbox13", "bbox14", "wbox14", "bbox15", "wbox15", "bbox16", "wbox16"],
+//   ["wbox17", "bbox17", "wbox18", "bbox18", "wbox19", "bbox19", "wbox20", "bbox20"],
+//   ["bbox21", "wbox21", "bbox22", "wbox22", "bbox23", "wbox23", "bbox24", "wbox24"],
+//   ["wbox25", "bbox25", "wbox26", "bbox26", "wbox27", "bbox27", "wbox28", "bbox28"],
+//   ["bbox29", "wbox29", "bbox30", "wbox30", "bbox31", "wbox31", "bbox32", "wbox32"],
+// ];
+
+// let current_HorsePlace_Numeric;
+// let eight_steps_forward_horsePlace;
+
+// // Function to handle clicks on chessboard squares
+// function handleClick(event) {
+//   // Extract the content and ID of the clicked square
+//   const squareContent = event.target.textContent.trim();
+//   console.log("square content " + squareContent);
+//   const squareId = event.target.id;
+
+//   console.log("current horse position is: " + squareId);
+
+//   // Extract only the numerical part from the square ID
+//   // Extract the alphabetic and numeric parts from the square ID
+//   const [, squareString, squareNumber] = squareId.match(/([a-zA-Z]+)(\d+)/);
+//   // Convert the square number to an integer
+//   const squarePosition = parseInt(squareNumber);
+//   current_HorsePlace_Numeric = squarePosition;
+
+//   // Check if the content is a horse and its color
+//   if (
+//     (squareContent === "♞" && squareId.startsWith("b")) ||
+//     (squareContent === "♞" && squareId.startsWith("w"))
+//   ) {
+//     // If a black horse is found, alert the user
+//     console.log("You clicked a black horse!");
+//   } else if (
+//     (squareContent === "♘" && squareId.startsWith("w")) ||
+//     (squareContent === "♘" && squareId.startsWith("b"))
+//   ) {
+//     // If a white horse is found, alert the user
+//     console.log("You clicked a white horse!");
+//   }
+
+//   calculateHorse_Move(current_HorsePlace_Numeric, squareString, squareContent);
+// }
+
+// function calculateHorse_Move(
+//   current_HorsePlace_Numeric,
+//   current_HorsePlace_String,
+//   horseType
+// ) {
+//   let eight_step_horse_forward_right;
+//   let eight_step_horse_forward_left;
+
+//   let eight_step_horse_backward_right;
+//   let eight_step_horse_backward_left;
+
+//   // Convert the square string to the opposite color (bbox to wbox or vice versa)
+//   const oppositeSquareString = current_HorsePlace_String.startsWith("b")
+//     ? current_HorsePlace_String.replace("b", "w")
+//     : current_HorsePlace_String.replace("w", "b");
+
+//   if (horseType === "♞") {
+//     eight_step_horse_forward_right = current_HorsePlace_Numeric + 8;
+//     eight_step_horse_forward_left = current_HorsePlace_Numeric + 7;
+//   } else {
+//     eight_step_horse_forward_right = current_HorsePlace_Numeric - 8;
+//     eight_step_horse_forward_left = current_HorsePlace_Numeric - 7;
+//   }
+
+//   const final_forward_left_move =
+//     oppositeSquareString + eight_step_horse_forward_left;
+//   const final_forward_right_move =
+//     oppositeSquareString + eight_step_horse_forward_right;
+
+//   // Log the moves
+//   console.log("Forward Left move: " + final_forward_left_move);
+//   console.log("Forward Right move: " + final_forward_right_move);
+
+//   if (final_forward_right_move === "") {
+//     console.log("Yes,Horse Forward right " + final_forward_left_move);
+//   } else if (final_forward_left_move === "") {
+//     console.log("Yes, Horse Forward left " + final_forward_right_move);
+//   }
+// }
+
+// // Iterate over the chessboard layout and add event listeners to each square
+// for (let i = 0; i < chessboardLayoutForHorse.length; i++) {
+//   for (let j = 0; j < chessboardLayoutForHorse[i].length; j++) {
+//     const squareId = chessboardLayoutForHorse[i][j];
+//     const squareElement = document.getElementById(squareId);
+//     // Add event listener to the square
+//     squareElement.addEventListener("click", handleClick);
+//   }
+// }
+
+
+const chessboardLayoutForHorse = [
+  ["wbox1", "bbox1", "wbox2", "bbox2", "wbox3", "bbox3", "wbox4", "bbox4"],
+  ["bbox5", "wbox5", "bbox6", "wbox6", "bbox7", "wbox7", "bbox8", "wbox8"],
+  ["wbox9", "bbox9", "wbox10", "bbox10", "wbox11", "bbox11", "wbox12", "bbox12"],
+  ["bbox13", "wbox13", "bbox14", "wbox14", "bbox15", "wbox15", "bbox16", "wbox16"],
+  ["wbox17", "bbox17", "wbox18", "bbox18", "wbox19", "bbox19", "wbox20", "bbox20"],
+  ["bbox21", "wbox21", "bbox22", "wbox22", "bbox23", "wbox23", "bbox24", "wbox24"],
+  ["wbox25", "bbox25", "wbox26", "bbox26", "wbox27", "bbox27", "wbox28", "bbox28"],
+  ["bbox29", "wbox29", "bbox30", "wbox30", "bbox31", "wbox31", "bbox32", "wbox32"],
+];
+
+// these are not straight minus -8 backward only it cannot go back more than -2
+const HorseEnd =    [ "wbox1", "bbox1", "wbox2", "bbox2", "wbox3", "bbox3", "wbox4", "bbox4",
+"bbox5", "wbox5", "bbox6", "wbox6", "bbox7", "wbox7", "bbox8", "wbox8",
+  "wbox25", "bbox25", "wbox26", "bbox26", "wbox27", "bbox27", "wbox28", "bbox28",
+                     "bbox29", "wbox29", "bbox30", "wbox30", "bbox31", "wbox31", "bbox32", "wbox32"];
+
+// "bbox4" and wbox32 doesnot move forward right and wbox1 
+// and bbox29doesnot doesnot move forward left
+// it also cannot go back -4 
+
+const horseEndCornerLeft =  ["wbox1","bbox29"];
+const horseEndCornerRight = ["bbox4","wbox32"];
+
+let horseEndPosition;
+
+
+    let next8StepBackward;
+    let next4StepBackward;
+
+    let next4StepBackwardLeft;
+    let next4StepBackwardLeftLeft;
+    let next4StepBackwardRightRight;
+
+    let next8StepBackwardLeft;
+    let next8StepBackwardRight;
+
+// // Function to handle clicks on chessboard squares
+// function handleClick(event) {
+//   // Extract the content and ID of the clicked square
+//   const squareContent = event.target.textContent.trim();
+//   console.log("square content " + squareContent);
+//   const squareId = event.target.id;
+//   horseEndPosition = squareId;
+//   alert(squareId)
+
+//   console.log("current horse position is: " + squareId);
+//     // Check if the content is a horse and its color
+//     if (
+//       (squareContent === "♞" && squareId.startsWith("b")) ||
+//       (squareContent === "♞" && squareId.startsWith("w"))
+//     ) {
+//       // If a black horse is found, alert the user
+//       console.log("You clicked a black horse!");
+//     } else if (
+//       (squareContent === "♘" && squareId.startsWith("w")) ||
+//       (squareContent === "♘" && squareId.startsWith("b"))
+//     ) {
+//       // If a white horse is found, alert the user
+//       console.log("You clicked a white horse!");
+//     }
+ 
+  
+//   // Extract only the numerical part from the square ID
+//   // Extract the alphabetic and numeric parts from the square ID
+//   const [, squareString, squareNumber] = squareId.match(/([a-zA-Z]+)(\d+)/);
+//   localStorage.setItem("horse_initial_step", squareNumber)
+//   let horse_initial_step = localStorage.getItem("horse_initial_step")
+
+//   alert(squareNumber)
+//   alert(squareString)
+
+//   let  next4stepForward = 4 + parseInt(squareNumber);
+//   let next8StepForward = 4 + parseInt(next4stepForward);
+
+
+//   let next8StepForwardLeft = 7 +  parseInt(squareNumber);
+//   let next8StepForwardRight = 4 + parseInt(next4stepForward);
+
+//   if (horseEndCornerLeft.includes(horseEndPosition)) {
+//      next8StepForwardLeft = 0 +  parseInt(squareNumber);
+//      next8StepForwardRight = 4 + parseInt(next4stepForward);
+//     alert("Horse end position reached!");
+//   }
+//   else if(horseEndCornerRight.includes(horseEndPosition)){
+//     next8StepForwardLeft = 7 +  parseInt(squareNumber);
+//     next8StepForwardRight = 0 + parseInt(next4stepForward);
+//   }
+  
+//   // horse is not at left or right end
+//   else{
+//     let next8StepBackward = 4 - parseInt(next4stepBackward);
+//     let next8StepBackwardLeft = 7 -  parseInt(horse_initial_step);
+//     let next8StepBackwardRight = 4 - parseInt(next4stepBackward);
+  
+  
+//     let  next4stepBackward = 4 - parseInt(horse_initial_step);
+//     alert("next backward 4 is " + next4stepBackward)
+
+//   if(next4stepBackward > 0 ){
+//     next8StepBackward = 4 - parseInt(next4stepBackward);
+//     next8StepBackwardLeft = 7 -  parseInt(horse_initial_step);
+//     next8StepBackwardRight = 4 - parseInt(next4stepBackward);
+//  }
+ 
+//  else{
+
+//     next8StepBackward = 0;
+//     next8StepBackwardLeft = 0;
+//     next8StepBackwardRight = 0;
+//  }
+
+
+//   }
+
+
+
+
+
+
+
+//   // alert("left forward " + next8StepForwardLeft)
+//   // alert("right forward " + next8StepForwardRight)
+
+//     const oppositeSquareString = squareString.startsWith("b")
+//     ? squareString.replace("b", "w")
+//     : squareString.replace("w", "b");
+
+//     // alert(oppositeSquareString)
+
+//     let nextPosition4Forward = oppositeSquareString + next4stepForward;
+//     let nextPosition8Forward = oppositeSquareString + next8StepForward;
+
+//     let nextPositionLeftForward = oppositeSquareString + next8StepForwardLeft;
+//     let nextPositionRightForward = oppositeSquareString + next8StepForwardRight;
+   
+
+//     let nextPosition4BackWard = oppositeSquareString + next8StepBackward;
+//     let nextPosition8BackWard = oppositeSquareString + next8StepBackward;
+
+//     let nextPositionLeftBackward = oppositeSquareString + next8StepBackwardLeft;
+//     let nextPositionRightBackward = oppositeSquareString + next8StepBackwardRight;
+   
+
+
+//     // alert("Next " + nextPosition4Forward)
+//     // alert("Next Forward 8 " + nextPosition8Forward)
+//     // alert("Next Forwardleft   " + nextPositionLeftForward)
+//     // alert("Next Forwardright " + nextPositionRightForward)
+
+
+//     // alert("Next Backward is " + next4stepBackward)
+//     // alert("Next Backward 8 is " + nextPosition8BackWard)
+//     // alert("Next Backwardleft is " + nextPositionLeftBackward)
+//     // alert("Next BackwardRight is " + nextPositionRightBackward)
+
+//     console.log("Next Backward is " + next4stepBackward)
+//     console.log("Next Backward 8 is " + nextPosition8BackWard)
+//     console.log("Next Backwardleft is " + nextPositionLeftBackward)
+//     console.log("Next BackwardRight is " + nextPositionRightBackward)
+    
+  
+//     // Check if the next position is valid
+//     isValidPositionForward(squareId,nextPosition4Forward,nextPosition8Forward );
+//     isValidPositionBackWard(squareId, nextPosition4BackWard, nextPosition8BackWard)
+    
+// }
+
+// function isValidPositionForward(squareId, nextPosition4Forward, nextPosition8Forward){
+//   if (isValidPosition(nextPosition4Forward)) {
+//     console.log("Move from Forward", squareId, "to", nextPosition4Forward, "is valid.");
+    
+//     // Check if the next position after moving forward by 4 steps is valid
+//     const isValidNextMove = isValidPosition(nextPosition8Forward);
+    
+//     if (isValidNextMove) {
+//       console.log("Moving Forward from ",nextPosition4Forward , "to", nextPosition8Forward, "is valid.");
+//     } else {
+//       console.log("Next position Forward", nextPosition8Forward, "is not valid. Horse stopped moving forward.");
+//     }
+//   }
+//   else{
+//     console.log("Next position Forward", nextPosition4Forward, "is not valid. Horse stopped moving forward.");
+//   }
+// }
+
+
+// function isValidPositionBackWard(squareId, nextPosition4BackWard, nextPosition8BackWard){
+//   if (isValidPosition(nextPosition4BackWard)) {
+//     console.log("Move Backward from", squareId, "to", nextPosition4BackWard, "is valid.");
+
+//     // Check if the next position after moving forward by 4 steps is valid
+//     const isValidNextMove = isValidPosition(nextPosition8BackWard);
+    
+//     if (isValidNextMove) {
+//       console.log("Moving Backward from ",nextPosition4BackWard , "to", nextPosition8BackWard, "is valid.");
+//     } else {
+//       console.log("Next position Backward", nextPosition8BackWard, "is not valid. Horse stopped moving Backward.");
+//     }
+//   }
+//   else{
+//     console.log("Next position Backward", nextPosition8BackWard, "is not valid. Horse stopped moving Backward.");
+//   }
+// }
+
+
+// // Function to check if a position is valid
+// function isValidPosition(position) {
+//   for (let i = 0; i < chessboardLayoutForHorse.length; i++) {
+//     if (chessboardLayoutForHorse[i].includes(position)) {
+//       return true;
+//     }
+//   }
+//   return false;
+// }
+
+
+// function HorseEndLeftRight(horseEndPosition) {
+
+// }
+
+
+
+// Function to handle clicks on chessboard squares
+function handleClick(event) {
+  // Extract the content and ID of the clicked square
+  const squareContent = event.target.textContent.trim();
+  console.log("square content " + squareContent);
+  const squareId = event.target.id;
+  horseEndPosition = squareId;
+  alert(squareId)
+
+  console.log("current horse position is: " + squareId);
+    // Check if the content is a horse and its color
+    if (
+      (squareContent === "♞" && squareId.startsWith("b")) ||
+      (squareContent === "♞" && squareId.startsWith("w"))
+    ) {
+      // If a black horse is found, alert the user
+      console.log("You clicked a black horse!");
+    } else if (
+      (squareContent === "♘" && squareId.startsWith("w")) ||
+      (squareContent === "♘" && squareId.startsWith("b"))
+    ) {
+      // If a white horse is found, alert the user
+      console.log("You clicked a white horse!");
+    }
+ 
+  
+  // Extract only the numerical part from the square ID
+  // Extract the alphabetic and numeric parts from the square ID
+  const [, squareString, squareNumber] = squareId.match(/([a-zA-Z]+)(\d+)/);
+  localStorage.setItem("horse_initial_step", squareNumber)
+  let horse_initial_step = localStorage.getItem("horse_initial_step")
+
+//   alert(squareNumber)
+//   alert(squareString)
+
+//   let  next4stepForward = 4 + parseInt(squareNumber);
+//   let next8StepForward = 4 + parseInt(next4stepForward);
+
+
+//   let next8StepForwardLeft = 7 +  parseInt(squareNumber);
+//   let next8StepForwardRight = 4 + parseInt(next4stepForward);
+
+//   if (horseEndCornerLeft.includes(horseEndPosition)) {
+//      next8StepForwardLeft = 0 +  parseInt(squareNumber);
+//      next8StepForwardRight = 4 + parseInt(next4stepForward);
+//     alert("Horse end position reached!");
+//   }
+//   else if(horseEndCornerRight.includes(horseEndPosition)){
+//     next8StepForwardLeft = 7 +  parseInt(squareNumber);
+//     next8StepForwardRight = 0 + parseInt(next4stepForward);
+//   }
+  
+//   // horse is not at left or right end
+//   else{
+//     let next8StepBackward = 4 - parseInt(next4stepBackward);
+//     let next8StepBackwardLeft = 7 -  parseInt(horse_initial_step);
+//     let next8StepBackwardRight = 4 - parseInt(next4stepBackward);
+  
+  
+//     let  next4stepBackward = 4 - parseInt(horse_initial_step);
+//     alert("next backward 4 is " + next4stepBackward)
+
+//   if(next4stepBackward > 0 ){
+//     next8StepBackward = 4 - parseInt(next4stepBackward);
+//     next8StepBackwardLeft = 7 -  parseInt(horse_initial_step);
+//     next8StepBackwardRight = 4 - parseInt(next4stepBackward);
+//  }
+ 
+//  else{
+
+//     next8StepBackward = 0;
+//     next8StepBackwardLeft = 0;
+//     next8StepBackwardRight = 0;
+//  }
+
+
+//   }
+
+
+  // alert("left forward " + next8StepForwardLeft)
+  // alert("right forward " + next8StepForwardRight)
+
+    const oppositeSquareString = squareString.startsWith("b")
+    ? squareString.replace("b", "w")
+    : squareString.replace("w", "b");
+
+    // alert(oppositeSquareString)
+
+    // let nextPosition4Forward = oppositeSquareString + next4stepForward;
+    // let nextPosition8Forward = oppositeSquareString + next8StepForward;
+
+    // let nextPositionLeftForward = oppositeSquareString + next8StepForwardLeft;
+    // let nextPositionRightForward = oppositeSquareString + next8StepForwardRight;
+   
+
+    // let nextPosition4BackWard = oppositeSquareString + next8StepBackward;
+    // let nextPosition8BackWard = oppositeSquareString + next8StepBackward;
+
+    // let nextPositionLeftBackward = oppositeSquareString + next8StepBackwardLeft;
+    // let nextPositionRightBackward = oppositeSquareString + next8StepBackwardRight;
+   
+
+
+    // alert("Next " + nextPosition4Forward)
+    // alert("Next Forward 8 " + nextPosition8Forward)
+    // alert("Next Forwardleft   " + nextPositionLeftForward)
+    // alert("Next Forwardright " + nextPositionRightForward)
+
+
+    // alert("Next Backward is " + next4stepBackward)
+    // alert("Next Backward 8 is " + nextPosition8BackWard)
+    // alert("Next Backwardleft is " + nextPositionLeftBackward)
+    // alert("Next BackwardRight is " + nextPositionRightBackward)
+
+    // console.log("Next Backward is " + next4stepBackward)
+    // console.log("Next Backward 8 is " + nextPosition8BackWard)
+    // console.log("Next Backwardleft is " + nextPositionLeftBackward)
+    // console.log("Next BackwardRight is " + nextPositionRightBackward)
+    
+  
+    // // Check if the next position is valid
+    // isValidPositionForward(squareId,nextPosition4Forward,nextPosition8Forward );
+    // isValidPositionBackWard(squareId, nextPosition4BackWard, nextPosition8BackWard)
+    validHorseLeftEnd(horseEndPosition)
+}
+
+function isValidPositionForward(squareId, nextPosition4Forward, nextPosition8Forward){
+  if (isValidPosition(nextPosition4Forward)) {
+    console.log("Move from Forward", squareId, "to", nextPosition4Forward, "is valid.");
+    
+    // Check if the next position after moving forward by 4 steps is valid
+    const isValidNextMove = isValidPosition(nextPosition8Forward);
+    
+    if (isValidNextMove) {
+      console.log("Moving Forward from ",nextPosition4Forward , "to", nextPosition8Forward, "is valid.");
+    } else {
+      console.log("Next position Forward", nextPosition8Forward, "is not valid. Horse stopped moving forward.");
+    }
+  }
+  else{
+    console.log("Next position Forward", nextPosition4Forward, "is not valid. Horse stopped moving forward.");
+  }
+}
+
+
+function validHorseLeftEnd(horseEndPosition){
+  if(horseEndCornerLeft.includes(horseEndPosition)){
+    
+  }
+  alert("Left Side cannot be determined")
+
+}
+
+
+
+function validHorseLeftEnd(){
+  
+}
+
+// Iterate over the chessboard layout and add event listeners to each square
+for (let i = 0; i < chessboardLayoutForHorse.length; i++) {
+  for (let j = 0; j < chessboardLayoutForHorse[i].length; j++) {
+    const squareId = chessboardLayoutForHorse[i][j];
+    const squareElement = document.getElementById(squareId);
+    // Add event listener to the square
+    squareElement.addEventListener("click", handleClick);
+  }
+}

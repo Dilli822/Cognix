@@ -71,7 +71,6 @@ for (let i = 0; i < chessboardLayout.length; i++) {
   }
 }
 
-
 // PAWN POSSIBLE MOVING POSITIONS
 // Function to calculate the destination box for a white pawn
 function calculateDestinationBox(currentBoxId) {

@@ -12,29 +12,33 @@ const chessboardLayoutForHorse = [
 
 let currentHorsePosition;
 let currentHorseType;
-let squareString = "";
-let squareNumber = 0;
+let squareString;
+let squareNumber;
+let squareId;
+let squareNum;
 
 let horseLeftForwardDeadEnd = ["wbox1", "bbox29"];
 let horseRightForwardDeadEnd = ["bbox4", "wbox32"];
+
+let horseInitialForwardCase = ["bbox1","wbox4" ];
 
 // Function to handle clicks on chessboard squares
 function handleClick(event) {
   // Extract the content and ID of the clicked square
   const squareContent = event.target.textContent.trim();
-  const squareId = event.target.id;
+  squareId = event.target.id;
 
   currentHorsePosition = squareId;
   currentHorseType = squareContent;
 
   [, squareString, squareNumber] = squareId.match(/([a-zA-Z]+)(\d+)/);
-  
+  squareNum = squareNumber;
+
   console.log(squareNumber);
   console.log(squareString);
-
   // Check if the content is a horse and its color
   if ((squareContent === "♞" && squareId.startsWith("b")) || (squareContent === "♞" && squareId.startsWith("w"))) {
-    moveForward4Step(squareString, squareNumber);
+   
     // If a black horse is found, update the dead-end arrays
     if (squareId === "wbox1" || squareId === "bbox29") {
       restrictForwardLeftMove(squareId);
@@ -42,7 +46,7 @@ function handleClick(event) {
       restrictForwardRightMove(squareId);
     }
   } else if ((squareContent === "♘" && squareId.startsWith("w")) || (squareContent === "♘" && squareId.startsWith("b"))) {
-    moveForward4Step(squareString, squareNumber);
+   
     // If a white horse is found, update the dead-end arrays
     if (squareId === "wbox1" || squareId === "bbox29") {
       restrictForwardLeftMove(squareId);
@@ -51,117 +55,196 @@ function handleClick(event) {
     }
     console.log("You clicked a white horse!");
   }
-}
 
-function moveForward4Step(squareString, squareNumber) {
-  const horseForward4step = 4 + parseInt(squareNumber);
-  const oppositeSquareString = squareString.startsWith("b") ? squareString.replace("b", "w") : squareString.replace("w", "b");
-  const moveForward4Step = oppositeSquareString + horseForward4step;
-  console.log("Forward 4 step: " + moveForward4Step);
-  
-  // Flatten the chessboardLayoutForHorse array
-  const flatChessboardLayout = chessboardLayoutForHorse.flat();
-  
-  if (flatChessboardLayout.includes(moveForward4Step)) {
-    console.log("Yes, Horse can move 4 steps ahead");
-    moveForward8Step(horseForward4step)
-    moveForward8StepLeft(horseForward4step)
-    moveForward8StepRight(horseForward4step)
-  } else {
-    console.log("No, Horse cannot move 4 steps ahead");
+  if ((squareContent === "♞" && squareId.startsWith("b")) || (squareContent === "♞" && squareId.startsWith("w"))) {
+   
+    // If a black horse is found, update the dead-end arrays
+    if (squareId === "wbox1"){
+      moveForward4StepForFirst(squareId)
+    }else if( squareId === "wbox4" && squareId !== "wbox1" && squareId !== "bbox1" && squareId !== "wbox2"&& squareId !== "bbox2" && squareId !== "wbox3"&& squareId !== "bbox3"
+    && squareId !== "bbox4")
+   {
+    moveForward4wBOX4Step(squareId)
+    } 
+
+    else if (squareId == "wbox2" || squareId == "bbox2"){
+      moveForwardWhite4Step(squareId);
+    }
+    
+    else {
+      moveForward4Step(squareId)
+    }
+    
   }
 }
 
-function moveForward8Step(id){
-  const horseForward8step= 4 + parseInt(id);
-  let oppositeSquareString = squareString.startsWith("b")
-  ? squareString.replace("b", "b")
-  : squareString.replace("w", "w");
-  let finalStep = oppositeSquareString + horseForward8step;
-  console.log("Yes, Horse can move 8 steps ahead ");
-  console.log("forward 8 step" + oppositeSquareString + horseForward8step)
-  // document.getElementById(oppositeSquareString).classList.add("LeftHorse");
+function moveForward4StepForFirst(squareId){
+  // Separate string and number
+const stringPart = squareId.match(/[a-zA-Z]+/)[0]; // Extracts alphabetic characters
+const numberPart = parseInt(squareId.match(/\d+/)[0]); // Extracts numeric characters
 
+console.log("String part: " + stringPart);
+console.log("Number part: " + numberPart);
+
+// Calculate forward 8 position
+const forward8 = numberPart + 8;
+// alert("forward step is: " + forward8)
+
+// Determine the opposite color of the string part
+const forward8str = stringPart === "wbox" ? "wbox" : "bbox";
+// alert("forward str middle is: " + forward8str)
+
+// Calculate the left forward position
+const finalforward8str = stringPart === "wbox" ? "bbox" : "wbox";
+
+
+
+const rightForward8int = forward8 + 1;
+const leftForward8int = forward8 + 1;
+const leftForward8final = finalforward8str + leftForward8int;
+const rightForward8final = finalforward8str + rightForward8int;
+
+
+// alert("final left is : " + leftForward8final);
+// alert("final right is : " + rightForward8final);
+document.getElementById(rightForward8final).classList.add("LeftHorse")
+
+document.getElementById(leftForward8final).classList.add("RightHorse")
 
 }
 
 
+
+function moveForward4Step(squareId){
+  // Separate string and number
+const stringPart = squareId.match(/[a-zA-Z]+/)[0]; // Extracts alphabetic characters
+const numberPart = parseInt(squareId.match(/\d+/)[0]); // Extracts numeric characters
+
+console.log("String part: " + stringPart);
+console.log("Number part: " + numberPart);
+
+// Calculate forward 8 position
+const forward8 = numberPart + 8;
+alert("forward step is: " + forward8)
+
+// Determine the opposite color of the string part
+const forward8str = stringPart === "wbox" ? "wbox" : "bbox";
+alert("forward str middle is: " + forward8str)
+
+// Calculate the left forward position
+const finalforward8str = stringPart === "wbox" ? "bbox" : "wbox";
+
+
+
+const rightForward8int = forward8 + 1;
+const leftForward8final = finalforward8str + forward8;
+const rightForward8final = finalforward8str + rightForward8int;
+document.getElementById(rightForward8final).classList.add("LeftHorse")
+
+document.getElementById(leftForward8final).classList.add("RightHorse")
+
+alert("final left is : " + leftForward8final);
+alert("final right is : " + rightForward8final);
+}
+
+
+
+function moveForwardWhite4Step(squareId){
+  // Separate string and number
+const stringPart = squareId.match(/[a-zA-Z]+/)[0]; // Extracts alphabetic characters
+const numberPart = parseInt(squareId.match(/\d+/)[0]); // Extracts numeric characters
+
+console.log("String part: " + stringPart);
+console.log("Number part: " + numberPart);
+
+// Calculate forward 8 position
+const forward8 = numberPart + 8;
+alert("forward step is: " + forward8)
+
+// Determine the opposite color of the string part
+const forward8str = stringPart === "wbox" ? "wbox" : "bbox";
+alert("forward str middle is: " + forward8str)
+
+// Calculate the left forward position
+const finalforward8str = stringPart === "wbox" ? "bbox" : "wbox";
+
+
+
+const rightForward8int = forward8 - 1;
+const leftForward8final = finalforward8str + forward8;
+const rightForward8final = finalforward8str + rightForward8int;
+
+document.getElementById(rightForward8final).classList.add("LeftHorse")
+
+document.getElementById(leftForward8final).classList.add("RightHorse")
+
+alert("final left is : " + leftForward8final);
+alert("final right is : " + rightForward8final);
+}
+
+
+function  moveForward4wBOX4Step(squareId){
+  // Separate string and number
+const stringPart = squareId.match(/[a-zA-Z]+/)[0]; // Extracts alphabetic characters
+const numberPart = parseInt(squareId.match(/\d+/)[0]); // Extracts numeric characters
+
+console.log("String part: " + stringPart);
+console.log("Number part: " + numberPart);
+
+// Calculate forward 8 position
+const forward8 = numberPart + 8;
+alert("forward step is: " + forward8)
+
+// Determine the opposite color of the string part
+const forward8str = stringPart === "wbox" ? "wbox" : "bbox";
+alert("forward str middle is: " + forward8str)
+
+// Calculate the left forward position
+const finalforward8str = stringPart === "wbox" ? "bbox" : "wbox";
+
+
+
+const rightForward8int = forward8;
+const lefForward8int = forward8 - 1;
+const leftForward8final = finalforward8str + lefForward8int;
+const rightForward8final = finalforward8str + rightForward8int;
+document.getElementById(rightForward8final).classList.add("LeftHorse")
+
+document.getElementById(leftForward8final).classList.add("RightHorse")
+
+alert("final left is : " + leftForward8final);
+alert("final right is : " + rightForward8final);
+}
 
 function moveForward8StepLeft(id){
-  const horseForward8step= 4 + parseInt(id);
-  let oppositeSquareString = squareString.startsWith("b")
-  ? squareString.replace("b", "b")
-  : squareString.replace("w", "w");
-  let finalStep = oppositeSquareString + horseForward8step;
-  console.log("Yes, Horse can move 8 steps ahead and take 1 left");
-  console.log("forward 8 step and taking left " + oppositeSquareString + horseForward8step)
-  // document.getElementById(oppositeSquareString).classList.add("LeftHorse");
-
-
 }
-
-
-function restrictForwardLeftMove(squareId) {
-  // Implement logic to restrict left forward moves
-  if (horseLeftForwardDeadEnd.includes(squareId)) {
-    console.log("Restricting left forward move for horse at " + squareId);
-    moveForward8StepRight(id)
-  }
-}
-
 
 function moveForward8StepRight(id){
-  const horseForward8step= 5 + parseInt(id);
-  let oppositeSquareString = squareString.startsWith("b")
-  ? squareString.replace("b", "w")
-  : squareString.replace("w", "b");
-  let finalStep = oppositeSquareString + horseForward8step;
-
-  console.log("Yes, Horse can move 8 steps ahead and take 1 right");
-  console.log("forward 8 step and taking right " + oppositeSquareString + horseForward8step)
-  // document.getElementById(finalStep).classList.add("RightHorse");
-
-
 }
 
-
-
-
-
-function restrictForwardRightMove(squareId) {
-  // Implement logic to restrict right forward moves
-  if (horseRightForwardDeadEnd.includes(squareId)) {
-    console.log("Restricting right forward move for horse at " + squareId);
-    moveForward8StepLeft(id)
+function restrictForwardLeftMove(id) {
+  // Implement logic to restrict left forward moves
+  if (horseLeftForwardDeadEnd.includes(id)) {
+    console.log("Restricting left forward move for horse at " + id);
+    moveForward8StepRight(id);
   }
 }
 
+function restrictForwardRightMove(id) {
+  // Implement logic to restrict right forward moves
+  if (horseRightForwardDeadEnd.includes(id)) {
+    console.log("Restricting right forward move for horse at " + id);
+    moveForward8StepLeft(id);
+  }
+}
 
-
-
-function restrictForwardLeftMove(id){
+function restrictForwardLeftMove(id) {
   alert("horse cannot move left");
 }
 
-
-function restrictForwardRightMove(id){
+function restrictForwardRightMove(id) {
   alert("horse cannot move right");
 }
-
-
-// function horseLeft_ForwardDeadEnd(currentHorsePosition){
-//   console.log("currentHorsePosition in horseleftdeadend ", currentHorsePosition)
-
-// }
-
-// function horseRight_ForwardDeadEnd(currentHorsePosition){
-//   console.log("currentHorsePosition in horsrightdeadend ", currentHorsePosition)
-//   console.log(currentHorsePosition)
-//   if(horseRightForwardDeadEnd.includes(currentHorsePosition)){
-//     alert("Horse Cannot go move forward Right")
-//   }
-// }
-
 
 // Iterate over the chessboard layout and add event listeners to each square
 for (let i = 0; i < chessboardLayoutForHorse.length; i++) {

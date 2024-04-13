@@ -36,14 +36,22 @@
         }
 
         .horse {
-            background-color: red;
+            background-color: rgba(255, 0, 0, 0);
         }
 
-        .Lefthorse{
+        .Lefthorse {
             background-color: aqua;
         }
-        .Righthorse{
+
+        .Righthorse {
             background-color: chartreuse;
+        }
+
+        .horse8step{
+        }
+        .forwardLeftLefthorse{
+
+            background-color: rgb(0, 145, 255);
         }
     </style>
 </head>
@@ -52,142 +60,9 @@
     <div class="container" id="chessboard">
         <!-- Generate 64 squares -->
     </div>
-    <script>
-        // Function to generate a square with a piece
-        function generateSquare(id, isDark, piece) {
-            const squareClass = isDark ? 'bg-dark' : 'bg-white';
-            const square = document.createElement('div');
-            square.className = `square ${squareClass}`;
-            square.id = id;
-            square.textContent = piece;
-            document.getElementById('chessboard').appendChild(square);
-        }
-
-        // Generate 64 squares with pieces
-        const pieces = [
-            "♞", "♞", "♞", "♞", "♞", "♞", "♞", "♞",
-        
-            "♞", "♞", "♞", "♞", "♞", "♞", "♞", "♞",
-            "♞", "♞", "♞", "♞", "♞", "♞", "♞", "♞",
-            "♞", "♞", "♞", "♞", "♞", "♞", "♞", "♞",
-            "♞", "♞", "♞", "♞", "♞", "♞", "♞", "♞",
-            "♞", "♞", "♞", "♞", "♞", "♞", "♞", "♞",
-            "♖", "♘", "♗", "♕", "♔", "♗", "♘", "♖"
-        ];
-
-        for (let row = 0; row < 8; row++) {
-            for (let col = 0; col < 8; col++) {
-                const id = row * 8 + col + 1;
-                const isDark = (row + col) % 2 === 1;
-                const piece = pieces[id - 1];
-                generateSquare(id, isDark, piece);
-            }
-        }
-
-        // Function to handle click events
-        function handleClick(event) {
-
-            document.querySelectorAll('.horse, .Lefthorse, .Righthorse').forEach(square => {
-        square.classList.remove('horse', 'Lefthorse', 'Righthorse');
-    });
-
-            const clickedSquare = event.target;
-            const piece = clickedSquare.textContent;
-            const clickedSquareId = parseInt(clickedSquare.id);
-
-
-
-            // Check if the piece is a white or black horse
-            (piece === "♞") ? console.log("Dark Horse clicked!") : console.log("White Horse clicked!");
-
-            if(clickedSquareId === 8 || clickedSquareId === 64){
-                HorseForwardRightEnd(clickedSquareId);
-            }
-            else if(clickedSquareId === 1 || clickedSquareId === 57 ){
-                HorseForwardLeftEnd(clickedSquareId);
-            }
-
-
-            else if(clickedSquareId !== 8 || clickedSquareId !== 1){
-                HorseForward(clickedSquareId);
-            }
-
-
-        }
-
-    function HorseForward(clickedSquareId) {
-        const forward16Step = clickedSquareId + 16;
-
-        const forward15StepLeft = clickedSquareId + 15;
-        const backwar17StepRight = clickedSquareId + 17;
-
-        // Check if the forward and backward steps are valid IDs in the DOM
-        const forwardStepExists = document.getElementById(forward16Step.toString()) !== null;
-
-
-        // If either forward or backward steps exist, trigger an alert
-        if (forwardStepExists) {
-            console.log("Forward  step exists!");
-            console.log(typeof (forward16Step))
-            document.getElementById(forward16Step.toString()).classList.add("horse")
-            document.getElementById(forward15StepLeft.toString()).classList.add("Lefthorse")
-            document.getElementById(backwar17StepRight.toString()).classList.add("Righthorse")
-        }
-    }
-
-        function HorseBackward(clickedSquareId) {
-            const backward16Step = clickedSquareId - 16;
-            const backwardStepExists = document.getElementById(backward16Step.toString()) !== null;
-
-            if (backwardStepExists < 0 || backwardStepExists > 64) {
-
-                console.log("Backward Step Does Not Exist!");
-
-            } else {
-                console.log("Backward Step Does Exist")
-            }
-        }
-
-        function HorseForwardRightEnd(clickedSquareId) {
-            const forward16Step = clickedSquareId + 16;
-            const forward15StepLeft = clickedSquareId + 15;
-            const backwar17StepRight = clickedSquareId + 0;
-
-            if (clickedSquareId === 8 || clickedSquareId === 64) {
-                console.log("Right side cannot be calculated");
-                document.getElementById(forward16Step.toString()).classList.add("horse")
-                document.getElementById(forward15StepLeft.toString()).classList.add("Lefthorse")
-                document.getElementById(backwar17StepRight.toString()).classList.add("")
-
-            }
-
-        }
-
-
-
-        function HorseForwardLeftEnd(clickedSquareId) {
-
-            if (clickedSquareId === 1 || clickedSquareId === 57) {
-                console.log("Left side cannot be calculated");
-                const forward16Step = clickedSquareId + 16;
-                const backwar17StepRight = clickedSquareId + 17;
-                const forward15StepLeft = clickedSquareId + 0;
-
-
-                document.getElementById(forward16Step.toString()).classList.add("horse")
-                document.getElementById(backwar17StepRight.toString()).classList.add("Righthorse")
-                document.getElementById(forward15StepLeft.toString()).classList.add("")
-
-            }
-
-        }
-
-        // Add event listener to each square
-        const squares = document.querySelectorAll('.square');
-        squares.forEach(square => {
-            square.addEventListener('click', handleClick);
-        });
-    </script>
+    <script src="./chess.js" type="module"></script>
+    <script src="./horse_forward.js" type="module"></script>
+    <script src="./horse_backward.js" type="module"></script>
 </body>
 
 </html>

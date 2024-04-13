@@ -2,7 +2,7 @@
 
 let pawnPositions = [
   // BLACK SIDE PAWNS COLLECTIONS
-  ["bbox5", "wbox5", "bbox6", "wbox6", "bbox7", "wbox7", "bbox8", "wbox8"],
+  ["5", "6", "bbox6", "wbox6", "bbox7", "wbox7", "bbox8", "wbox8"],
   // WHITE SIDE PAWNS COLLECTIONS
   [
     "wbox25",

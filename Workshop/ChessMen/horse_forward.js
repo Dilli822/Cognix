@@ -1,6 +1,3 @@
-
-
-
 export function HorseForward(clickedSquareId) {
   const forward16Step = clickedSquareId + 16;
 
@@ -66,11 +63,16 @@ export function HorseForwardLeftEnd(clickedSquareId, miscellaneous) {
     const forward15StepLeft = clickedSquareId + 0;
 
     const forward8Step = clickedSquareId + 8;
-    const forward8int = parseInt(forward8Step.toString().match(/\d+/)?.[0], 10) || null;
+    const forward8int =
+      parseInt(forward8Step.toString().match(/\d+/)?.[0], 10) || null;
     let backwar8StepLeftLeft;
     backwar8StepLeftLeft = forward8int + 2;
-    document.getElementById(forward8Step.toString()).classList.add("horse8step");
-    document.getElementById(backwar8StepLeftLeft.toString()).classList.add("forwardLeftLefthorse");
+    document
+      .getElementById(forward8Step.toString())
+      .classList.add("horse8step");
+    document
+      .getElementById(backwar8StepLeftLeft.toString())
+      .classList.add("forwardLeftLefthorse");
 
     document.getElementById(forward16Step.toString()).classList.add("horse");
     document
@@ -80,25 +82,63 @@ export function HorseForwardLeftEnd(clickedSquareId, miscellaneous) {
   }
 }
 
-export function forward8StepLeftLeft(clickedSquareId){
-    const forward8Step = clickedSquareId + 8;
-    const forward8int = parseInt(forward8Step.toString().match(/\d+/)?.[0], 10) || null;
-    let backwar8StepLeftLeft;
-    if (
+export function forward8StepLeftLeft(clickedSquareId) {
+  const forward8Step = clickedSquareId + 8;
+  const forward8int =
+    parseInt(forward8Step.toString().match(/\d+/)?.[0], 10) || null;
+  let backwar8StepLeftLeft;
+  if (
+    clickedSquareId === 7 ||
+    clickedSquareId === 8 ||
+    clickedSquareId === 15 ||
+    clickedSquareId === 23 ||
+    clickedSquareId === 31 ||
+    clickedSquareId === 39 ||
+    clickedSquareId === 47
+  ) {
+    backwar8StepLeftLeft = forward8int + 0;
+  } else {
+    backwar8StepLeftLeft = forward8int + 2;
+    document
+      .getElementById(forward8Step.toString())
+      .classList.add("horse8step");
+    document
+      .getElementById(backwar8StepLeftLeft.toString())
+      .classList.add("forwardLeftLefthorse");
+  }
+}
 
-        clickedSquareId === 7 ||
-        clickedSquareId === 8  ||
-        clickedSquareId === 15 || 
-        clickedSquareId === 23 ||
-        clickedSquareId === 31 || 
-        clickedSquareId === 39 || 
-        clickedSquareId === 47
-      ) {
-        backwar8StepLeftLeft = forward8int + 0;
-      }else{
-        backwar8StepLeftLeft = forward8int + 2;
-        document.getElementById(forward8Step.toString()).classList.add("horse8step");
-        document.getElementById(backwar8StepLeftLeft.toString()).classList.add("forwardLeftLefthorse");
-      }
-
+export function forward8StepRightRight(clickedSquareId) {
+  const forward8Step = clickedSquareId + 8;
+  const forward8int =
+    parseInt(forward8Step.toString().match(/\d+/)?.[0], 10) || null;
+  let backwar8StepRightRight;
+  if (
+    clickedSquareId === 1 ||
+    clickedSquareId === 2 ||
+    clickedSquareId === 7 ||
+    clickedSquareId === 8 ||
+    clickedSquareId === 10 ||
+    clickedSquareId === 18 ||
+    clickedSquareId === 26 ||
+    clickedSquareId === 34 ||
+    clickedSquareId === 38 ||
+    clickedSquareId === 42 ||
+    clickedSquareId === 15 ||
+    clickedSquareId === 23 ||
+    clickedSquareId === 31 ||
+    clickedSquareId === 39 ||
+    clickedSquareId === 50 ||
+    clickedSquareId === 47
+  ) {
+    backwar8StepRightRight = forward8int + 0;
+  } else {
+    backwar8StepRightRight = forward8int - 2;
+    document
+      .getElementById(forward8Step.toString())
+      .classList.add("horse8step");
+    document
+      .getElementById(backwar8StepRightRight.toString())
+      .classList.add("forwardRightRighthorse");
+  }
 }

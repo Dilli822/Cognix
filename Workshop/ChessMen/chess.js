@@ -8,6 +8,7 @@ import {
   HorseForwardLeftEnd,
   HorseForwardRightEnd,
   forward8StepLeftLeft,
+  forward8StepRightRight,
 } from "./horse_forward.js";
 // Function to generate a square with a piece
 function generateSquare(id, isDark, piece) {
@@ -115,6 +116,12 @@ function handleClick(event) {
     square.classList.remove("forwardLeftLefthorse");
   });
 
+  document.querySelectorAll(".forwardRightRighthorse").forEach((square) => {
+    square.style.border = "";
+    square.classList.remove("forwardRightRighthorse");
+  });
+
+
   const clickedSquare = event.target;
   const piece = clickedSquare.textContent;
   const clickedSquareId = parseInt(clickedSquare.id);
@@ -217,6 +224,10 @@ function handleClick(event) {
 
   if(  (clickedSquareId >= 1 && clickedSquareId <= 64)){
     forward8StepLeftLeft(clickedSquareId);
+  }
+
+  if(clickedSquareId >= 1 && clickedSquareId <= 64){
+    forward8StepRightRight(clickedSquareId);
   }
 }
 

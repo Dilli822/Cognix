@@ -24,9 +24,6 @@ if(clickedSquareId !== null){
   }
   
 
-
-
-
 export function RestrictHorseBackward8step(clickedSquareId){
     if(
         clickedSquareId === 1 ||
@@ -50,6 +47,8 @@ export function RestrictHorseBackward8step(clickedSquareId){
 
         console.log("Horse Cannot go 8 step back!")
 
+    }else{
+        console.log("Horse Can go 8 step back!")
     }
 
 }
@@ -67,11 +66,13 @@ export function RestrictHorseBackward16step(clickedSquareId){
         clickedSquareId === 54 ||  clickedSquareId === 53 ||
         clickedSquareId === 52 ||  clickedSquareId === 51 ||
         clickedSquareId === 50 ||  clickedSquareId === 49 
-
        
     ){
 
         console.log("Horse Cannot go straight 16 step back! bUT CAN GO BACK 4 STEP")
+
+    }else{
+        console.log("Horse cam go straight 16 step back!")
 
     }
 

@@ -122,6 +122,43 @@ function handleClick(event) {
   });
 
 
+  document.querySelectorAll(".rightEndLeftLeft").forEach((square) => {
+    square.style.border = "";
+    square.classList.remove("rightEndLeftLeft");
+
+
+  });
+
+  document.querySelectorAll(".backward8LeftLeft").forEach((square) => {
+    square.style.border = "";
+    square.classList.remove("backward8LeftLeft");
+
+
+  });
+  document.querySelectorAll(".finalBackWar16LeftLeft").forEach((square) => {
+    square.style.border = "";
+    square.classList.remove("finalBackWar16LeftLeft");
+
+
+  });
+
+
+  document.querySelectorAll(".backward8RightRight").forEach((square) => {
+    square.style.border = "";
+    square.classList.remove("backward8RightRight");
+
+
+  });
+
+
+
+  document.querySelectorAll(".backward16RightRight").forEach((square) => {
+    square.style.border = "";
+    square.classList.remove("backward16RightRight");
+
+
+  });
+
   const clickedSquare = event.target;
   const piece = clickedSquare.textContent;
   const clickedSquareId = parseInt(clickedSquare.id);
@@ -134,26 +171,26 @@ function handleClick(event) {
   piece === "♞"
     ? console.log("Dark Horse clicked!")
     : console.log("White Horse clicked!");
-  if (
-    clickedSquareId === 1 ||
-    clickedSquareId === 2 ||
-    clickedSquareId === 3 ||
-    clickedSquareId === 4 ||
-    clickedSquareId === 5 ||
-    clickedSquareId === 6 ||
-    clickedSquareId === 7 ||
-    clickedSquareId === 8 ||
-    clickedSquareId === 57 ||
-    clickedSquareId === 58 ||
-    clickedSquareId === 59 ||
-    clickedSquareId === 60 ||
-    clickedSquareId === 61 ||
-    clickedSquareId === 62 ||
-    clickedSquareId === 63 ||
-    clickedSquareId === 64
-  ) {
-    RestrictHorseBackward8step(clickedSquareId);
-  }
+  // if (
+  //   clickedSquareId === 1 ||
+  //   clickedSquareId === 2 ||
+  //   clickedSquareId === 3 ||
+  //   clickedSquareId === 4 ||
+  //   clickedSquareId === 5 ||
+  //   clickedSquareId === 6 ||
+  //   clickedSquareId === 7 ||
+  //   clickedSquareId === 8 ||
+  //   clickedSquareId === 57 ||
+  //   clickedSquareId === 58 ||
+  //   clickedSquareId === 59 ||
+  //   clickedSquareId === 60 ||
+  //   clickedSquareId === 61 ||
+  //   clickedSquareId === 62 ||
+  //   clickedSquareId === 63 ||
+  //   clickedSquareId === 64
+  // ) {
+  //   RestrictHorseBackward8step(clickedSquareId);
+  // }
   if (
     clickedSquareId === 8 ||
     clickedSquareId === 16 ||
@@ -179,56 +216,56 @@ function handleClick(event) {
   ) {
     HorseForwardLeftEnd(clickedSquareId);
   }
-  if (
-    clickedSquareId === 1 ||
-    clickedSquareId !== 9 ||
-    clickedSquareId !== 17 ||
-    clickedSquareId !== 25 ||
-    clickedSquareId !== 33 ||
-    clickedSquareId !== 41 ||
-    clickedSquareId !== 49 ||
-    clickedSquareId !== 57 ||
-    clickedSquareId !== 1 ||
-    clickedSquareId !== 9 ||
-    clickedSquareId !== 17 ||
-    clickedSquareId !== 25 ||
-    clickedSquareId !== 33 ||
-    clickedSquareId !== 41 ||
-    clickedSquareId !== 49 ||
-    clickedSquareId !== 57
-  ) {
-    HorseForward(clickedSquareId);
-  }
+  // if (
+  //   clickedSquareId === 1 ||
+  //   clickedSquareId !== 9 ||
+  //   clickedSquareId !== 17 ||
+  //   clickedSquareId !== 25 ||
+  //   clickedSquareId !== 33 ||
+  //   clickedSquareId !== 41 ||
+  //   clickedSquareId !== 49 ||
+  //   clickedSquareId !== 57 ||
+  //   clickedSquareId !== 1 ||
+  //   clickedSquareId !== 9 ||
+  //   clickedSquareId !== 17 ||
+  //   clickedSquareId !== 25 ||
+  //   clickedSquareId !== 33 ||
+  //   clickedSquareId !== 41 ||
+  //   clickedSquareId !== 49 ||
+  //   clickedSquareId !== 57
+  // ) {
+  //   HorseForward(clickedSquareId);
+  // }
 
-  if (
-    clickedSquareId === 9 ||
-    clickedSquareId === 10 ||
-    clickedSquareId === 11 ||
-    clickedSquareId === 12 ||
-    clickedSquareId === 13 ||
-    clickedSquareId === 14 ||
-    clickedSquareId === 15 ||
-    clickedSquareId === 16 ||
-    clickedSquareId === 56 ||
-    clickedSquareId === 55 ||
-    clickedSquareId === 54 ||
-    clickedSquareId === 53 ||
-    clickedSquareId === 52 ||
-    clickedSquareId === 51 ||
-    clickedSquareId === 50 ||
-    clickedSquareId === 49
-  ) {
-    RestrictHorseBackward16step(clickedSquareId);
-  }
+  // if (
+  //   clickedSquareId === 9 ||
+  //   clickedSquareId === 10 ||
+  //   clickedSquareId === 11 ||
+  //   clickedSquareId === 12 ||
+  //   clickedSquareId === 13 ||
+  //   clickedSquareId === 14 ||
+  //   clickedSquareId === 15 ||
+  //   clickedSquareId === 16 ||
+  //   clickedSquareId === 56 ||
+  //   clickedSquareId === 55 ||
+  //   clickedSquareId === 54 ||
+  //   clickedSquareId === 53 ||
+  //   clickedSquareId === 52 ||
+  //   clickedSquareId === 51 ||
+  //   clickedSquareId === 50 ||
+  //   clickedSquareId === 49
+  // ) {
+  //   RestrictHorseBackward16step(clickedSquareId);
+  // }
 
 
-  if(  (clickedSquareId >= 1 && clickedSquareId <= 64)){
-    forward8StepLeftLeft(clickedSquareId);
-  }
+  // if(  (clickedSquareId >= 1 && clickedSquareId <= 64)){
+  //   forward8StepLeftLeft(clickedSquareId);
+  // }
 
-  if(clickedSquareId >= 1 && clickedSquareId <= 64){
-    forward8StepRightRight(clickedSquareId);
-  }
+  // if(clickedSquareId >= 1 && clickedSquareId <= 64){
+  //   forward8StepRightRight(clickedSquareId);
+  // }
 }
 
 // Add event listener to each square

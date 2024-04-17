@@ -317,6 +317,55 @@ export function DeadEndMaster(clickedSquareId) {
       .classList.add("finalBackward8Right");
   }
 
+
+
+  if  (clickedSquareId >= 51 &&  clickedSquareId <= 54) {
+    const forward8Step = clickedSquareId + 8;
+
+    const Backward16Step = clickedSquareId - 16;
+    const Backward8Step = clickedSquareId - 8;
+
+    const finalforward8Right = forward8Step + 2;
+    const finalforward8Left = forward8Step - 2;
+
+    const finalBackward8Right = Backward8Step + 2;
+    const finalBackward8Left = Backward8Step - 2;
+
+
+    const finalforward16Left = Backward16Step - 1;
+    const finalforward16Right = Backward16Step + 1;
+  
+
+    document
+      .getElementById(finalforward8Right.toString())
+      .classList.add("secondLast56Backward");
+
+      document
+      .getElementById(finalforward8Left.toString())
+      .classList.add("finalforward8Left");
+
+      document
+      .getElementById(finalBackward8Right.toString())
+      .classList.add("horseforward16Left");
+
+
+
+      document
+      .getElementById(finalBackward8Left.toString())
+      .classList.add("horseforward16Left");
+
+
+    document
+      .getElementById(finalforward16Left.toString())
+      .classList.add("horseforward16Left");
+
+    document
+      .getElementById(finalforward16Right.toString())
+      .classList.add("finalBackward8Right");
+
+  }
+
+
   if (clickedSquareId === 7) {
     const forward8Step = clickedSquareId + 8;
     const forward16Step = clickedSquareId + 16;

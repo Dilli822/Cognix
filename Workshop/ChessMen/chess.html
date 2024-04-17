@@ -122,6 +122,37 @@
         .finalforward8Left{
             background-color: aqua;
         }
+
+        .greenDiagonalDown{
+            background: green!important;
+        }
+        .queenDiagonalRight{
+            background: red!important;
+        }
+
+        .queenDiagonalDown{
+            background: purple!important;
+        }
+
+        .queenDiagonalUp{
+            background: pink!important;
+        }
+
+        .queenUp{
+            background: rgb(255, 247, 0)!important;
+        }
+
+        .queenLeft{
+            background: rgb(5, 251, 239)!important;
+        }
+
+        .sequenceTopRightDiagonal{
+            background: rgb(255, 140, 0)!important;
+        }
+
+        .sequenceDownLeftDiagonal{
+            background: rgb(0, 0, 0)!important;
+        }
     </style>
 </head>
 
@@ -130,8 +161,8 @@
         <!-- Generate 64 squares -->
     </div>
     <script src="./chess.js" type="module"></script>
-    <script src="./horse_forward.js" type="module"></script>
-    <script src="./horse_backward.js" type="module"></script>
+    <script src="./horse_main_agent.js" type="module"></script>
+    <script type="module" src="./queen_agent.js"></script>
 </body>
 
 </html>

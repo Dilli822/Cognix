@@ -1,14 +1,8 @@
-import {
-  RestrictHorseBackward8step,
-  RestrictHorseBackward16step,
-} from "./horse_backward.js";
 
 import {
-  HorseForward,
+  HorseMaster,
   HorseForwardLeftEnd,
   HorseForwardRightEnd,
-  forward8StepLeftLeft,
-  forward8StepRightRight,
 } from "./horse_forward.js";
 // Function to generate a square with a piece
 function generateSquare(id, isDark, piece) {
@@ -159,6 +153,50 @@ function handleClick(event) {
 
   });
 
+  document.querySelectorAll(".secondLast56Forward").forEach((square) => {
+    square.style.border = "";
+    square.classList.remove("secondLast56Forward");
+  });
+
+    document.querySelectorAll(".secondLast56Backward").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("secondLast56Backward");
+    });
+      
+
+  document.querySelectorAll(".backward16stepLeft").forEach((square) => {
+    square.style.border = "";
+    square.classList.remove("backward16stepLeft");
+
+  });
+
+
+  // Remove classes for elements with added classes
+document.querySelectorAll(".horseforward16Left").forEach((square) => {
+  square.classList.remove("horseforward16Left");
+});
+document.querySelectorAll(".horseforward8left").forEach((square) => {
+  square.classList.remove("horseforward8left");
+});
+document.querySelectorAll(".horseforward8right").forEach((square) => {
+  square.classList.remove("horseforward8right");
+});
+document.querySelectorAll(".finalforward16Right").forEach((square) => {
+  square.classList.remove("finalforward16Right");
+});
+document.querySelectorAll(".finalBackward16Left").forEach((square) => {
+  square.classList.remove("finalBackward16Left");
+});
+document.querySelectorAll(".finalBackward16Right").forEach((square) => {
+  square.classList.remove("finalBackward16Right");
+});
+document.querySelectorAll(".finalBackward8Left").forEach((square) => {
+  square.classList.remove("finalBackward8Left");
+});
+document.querySelectorAll(".finalBackward8Right").forEach((square) => {
+  square.classList.remove("finalBackward8Right");
+});
+
   const clickedSquare = event.target;
   const piece = clickedSquare.textContent;
   const clickedSquareId = parseInt(clickedSquare.id);
@@ -171,26 +209,6 @@ function handleClick(event) {
   piece === "♞"
     ? console.log("Dark Horse clicked!")
     : console.log("White Horse clicked!");
-  // if (
-  //   clickedSquareId === 1 ||
-  //   clickedSquareId === 2 ||
-  //   clickedSquareId === 3 ||
-  //   clickedSquareId === 4 ||
-  //   clickedSquareId === 5 ||
-  //   clickedSquareId === 6 ||
-  //   clickedSquareId === 7 ||
-  //   clickedSquareId === 8 ||
-  //   clickedSquareId === 57 ||
-  //   clickedSquareId === 58 ||
-  //   clickedSquareId === 59 ||
-  //   clickedSquareId === 60 ||
-  //   clickedSquareId === 61 ||
-  //   clickedSquareId === 62 ||
-  //   clickedSquareId === 63 ||
-  //   clickedSquareId === 64
-  // ) {
-  //   RestrictHorseBackward8step(clickedSquareId);
-  // }
   if (
     clickedSquareId === 8 ||
     clickedSquareId === 16 ||
@@ -216,56 +234,20 @@ function handleClick(event) {
   ) {
     HorseForwardLeftEnd(clickedSquareId);
   }
-  // if (
-  //   clickedSquareId === 1 ||
-  //   clickedSquareId !== 9 ||
-  //   clickedSquareId !== 17 ||
-  //   clickedSquareId !== 25 ||
-  //   clickedSquareId !== 33 ||
-  //   clickedSquareId !== 41 ||
-  //   clickedSquareId !== 49 ||
-  //   clickedSquareId !== 57 ||
-  //   clickedSquareId !== 1 ||
-  //   clickedSquareId !== 9 ||
-  //   clickedSquareId !== 17 ||
-  //   clickedSquareId !== 25 ||
-  //   clickedSquareId !== 33 ||
-  //   clickedSquareId !== 41 ||
-  //   clickedSquareId !== 49 ||
-  //   clickedSquareId !== 57
-  // ) {
-  //   HorseForward(clickedSquareId);
-  // }
 
-  // if (
-  //   clickedSquareId === 9 ||
-  //   clickedSquareId === 10 ||
-  //   clickedSquareId === 11 ||
-  //   clickedSquareId === 12 ||
-  //   clickedSquareId === 13 ||
-  //   clickedSquareId === 14 ||
-  //   clickedSquareId === 15 ||
-  //   clickedSquareId === 16 ||
-  //   clickedSquareId === 56 ||
-  //   clickedSquareId === 55 ||
-  //   clickedSquareId === 54 ||
-  //   clickedSquareId === 53 ||
-  //   clickedSquareId === 52 ||
-  //   clickedSquareId === 51 ||
-  //   clickedSquareId === 50 ||
-  //   clickedSquareId === 49
-  // ) {
-  //   RestrictHorseBackward16step(clickedSquareId);
-  // }
+  if(
+    clickedSquareId >= 11 && clickedSquareId <= 16 || 
+    clickedSquareId >= 19 &&  clickedSquareId <= 22 || 
+    clickedSquareId >= 27 &&  clickedSquareId <= 30 || 
+    clickedSquareId  >= 33 && clickedSquareId <= 38 ||
+    clickedSquareId >= 41 && clickedSquareId <= 46 ||
+    clickedSquareId === 51 
+  ){
+    HorseMaster(clickedSquareId)
+  }
 
 
-  // if(  (clickedSquareId >= 1 && clickedSquareId <= 64)){
-  //   forward8StepLeftLeft(clickedSquareId);
-  // }
 
-  // if(clickedSquareId >= 1 && clickedSquareId <= 64){
-  //   forward8StepRightRight(clickedSquareId);
-  // }
 }
 
 // Add event listener to each square

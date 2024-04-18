@@ -57,7 +57,7 @@ export function queenAgent(event) {
   });
 
   // Check if the clicked square contains a queen or king
-  if (isQueen === "♕" || isQueen === "♚") {
+  if (isQueen === "♔" || isQueen === "♚") {
     localStorage.setItem("clicked_id", clickedSquareId);
 
     // Add border to clicked square

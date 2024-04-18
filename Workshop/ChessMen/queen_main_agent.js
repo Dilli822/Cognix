@@ -6,8 +6,8 @@ export function queenAgent(event) {
   const clickedSquare = event.target;
   const clickedSquareId = parseInt(clickedSquare.id);
 
-  let horseNode = document.getElementById(clickedSquareId);
-  let isHorse = horseNode.getInnerHTML();
+  let quuenNode = document.getElementById(clickedSquareId);
+  let isQueen = quuenNode.getInnerHTML();
 
   // Get the piece on the clicked square from the pieces array
   const piece = pieces[clickedSquareId];
@@ -57,7 +57,7 @@ export function queenAgent(event) {
   });
 
   // Check if the clicked square contains a queen or king
-  if (isHorse === "♕" || isHorse === "♚") {
+  if (isQueen === "♕" || isQueen === "♚") {
     localStorage.setItem("clicked_id", clickedSquareId);
 
     // Add border to clicked square

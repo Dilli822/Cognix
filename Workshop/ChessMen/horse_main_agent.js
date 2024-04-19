@@ -4,7 +4,7 @@ import {
   HorseForwardRightEnd,
   DeadEndMaster,
   subDeadEnd,
-} from "./horse_forward.js";
+} from "./horse_agent.js";
 
 import { generateSquare, pieces, squares } from "./chess.js";
 
@@ -14,7 +14,7 @@ export function horseAgent(event) {
 
   let horseNode = document.getElementById(clickedSquareId);
   let isHorse = horseNode.getInnerHTML();
-
+ 
   if (isHorse === "♞" || isHorse === "♘") {
     document
       .querySelectorAll(".horse, .Lefthorse, .Righthorse")
@@ -110,6 +110,9 @@ export function horseAgent(event) {
     document.querySelectorAll(".finalforward8Left").forEach((square) => {
       square.classList.remove("finalforward8Left");
     });
+
+
+    
 
     const clickedSquare = event.target;
     const piece = clickedSquare.textContent;

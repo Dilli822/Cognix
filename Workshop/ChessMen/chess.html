@@ -6,6 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chessboard</title>
     <style>
+        *{
+            font-family: 'Courier New', Courier, monospace;
+        }
+    
+        section {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         .container {
             display: grid;
             grid-template-columns: repeat(8, 50px);
@@ -180,12 +192,42 @@
 </head>
 
 <body>
+
+    <section>
+
+
     <div class="container" id="chessboard">
         <!-- Generate 64 squares -->
     </div>
-    <script src="./chess.js" type="module"></script>
-    <script src="./horse_main_agent.js" type="module"></script>
-    <script type="module" src="./queen_agent.js"></script>
+</section>
+<!-- 
+    <div style="text-align: center;">
+        <h3> Black Deads: <span id="blackDead"></span> </h3>
+ 
+        <h3> White Deads:      <span id="whiteDead"></span></h3>
+    </div> -->
+
+
+    <script>
+
+//     document.addEventListener("DOMContentLoaded", function() {
+//     // Function to render data from localStorage
+//     function renderDataFromLocalStorage(id) {
+//         const data = localStorage.getItem(id);
+//         if (data) {
+//             document.getElementById(id).textContent = data;
+//         }
+//     }
+
+//     // Render data for blackDead and whiteDead
+//     renderDataFromLocalStorage("blackDead");
+//     renderDataFromLocalStorage("whiteDead");
+// });
+
+    </script>
+
+   <script src="./chess.js" type="module"></script> 
+  
 </body>
 
 </html>

@@ -1,3 +1,6 @@
+
+
+
 import { generateSquare, pieces, squares } from "./chess.js";
 
 export function pawnAgent(event) {
@@ -11,13 +14,24 @@ export function pawnAgent(event) {
   // Check if the clicked square contains a pawn
   let whiteTurn = localStorage.getItem("iwhiteTurn") === "true";
 
-  if (isPawn === "♙" && whiteTurn) {
-    // Perform actions for white pawn
-    alert("from white pawn");
-    localStorage.setItem("iwhiteTurn", "false");
-  } else if (isPawn === "♟" && !whiteTurn) {
+
+  if (isPawn === "♟") {
     // Perform actions for black pawn
-    alert("from black pawn");
-    localStorage.setItem("iwhiteTurn", "true");
+    if (!whiteTurn) {
+      alert("from black pawn");
+      alert(clickedSquareId);
+      localStorage.setItem("iwhiteTurn", "true");
+    }
   }
+
+  if (isPawn === "♙") {
+    // Perform actions for white pawn
+    if (whiteTurn) {
+      alert("from white pawn");
+      alert(clickedSquareId);
+      localStorage.setItem("iwhiteTurn", "false");
+    }
+  } 
+  
+
 }

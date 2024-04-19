@@ -59,21 +59,21 @@ export function rookMaster(clickedSquareId) {
     sequenceUp.forEach((id) => {
       const squareElement = document.getElementById(id.toString());
       if (squareElement) {
-        squareElement.classList.add("queenUp");
+        squareElement.classList.add("rookUp");
       }
     });
 
     sequenceDown.forEach((id) => {
       const squareElement = document.getElementById(id.toString());
       if (squareElement) {
-        squareElement.classList.add("queenDiagonalDown");
+        squareElement.classList.add("rookDiagonalDown");
       }
     });
 
     sequenceLeft.forEach((id) => {
       const squareElement = document.getElementById(id.toString());
       if (squareElement) {
-        squareElement.classList.add("queenLeft");
+        squareElement.classList.add("rookLeft");
       }
     });
 
@@ -81,7 +81,7 @@ export function rookMaster(clickedSquareId) {
     sequenceRight.forEach((id) => {
       const squareElement = document.getElementById(id.toString());
       if (squareElement) {
-        squareElement.classList.add("queenDiagonalRight");
+        squareElement.classList.add("rookDiagonalRight");
       }
     });
   }

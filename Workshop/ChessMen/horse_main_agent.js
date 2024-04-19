@@ -16,11 +16,15 @@ export function horseAgent(event) {
   let isHorse = horseNode.getInnerHTML();
  
   if (isHorse === "♞" || isHorse === "♘") {
-    document
-      .querySelectorAll(".horse, .Lefthorse, .Righthorse")
-      .forEach((square) => {
-        square.classList.remove("horse", "Lefthorse", "Righthorse");
-      });
+
+    const clickedSquare = event.target;
+    const piece = clickedSquare.textContent;
+    const clickedSquareId = parseInt(clickedSquare.id);
+    localStorage.setItem("clicked_id", clickedSquareId);
+ // Add border to clicked square
+ clickedSquare.style.border = "2px solid red";
+ clickedSquare.classList.add("bordered");
+
 
     // Remove border from previously clicked square
     document.querySelectorAll(".bordered").forEach((square) => {
@@ -28,99 +32,188 @@ export function horseAgent(event) {
       square.classList.remove("bordered");
     });
 
-    // Remove border from previously clicked square
-    document.querySelectorAll(".forwardLeftLefthorse").forEach((square) => {
+    document.querySelectorAll(".finalBackward8Left").forEach((square) => {
       square.style.border = "";
-      square.classList.remove("forwardLeftLefthorse");
+      square.classList.remove("finalBackward8Left");
     });
 
-    document.querySelectorAll(".forwardRightRighthorse").forEach((square) => {
+
+    document.querySelectorAll(".Lefthorse").forEach((square) => {
       square.style.border = "";
-      square.classList.remove("forwardRightRighthorse");
+      square.classList.remove("Lefthorse");
     });
+
+    
+
 
     document.querySelectorAll(".rightEndLeftLeft").forEach((square) => {
       square.style.border = "";
       square.classList.remove("rightEndLeftLeft");
     });
 
+    
+
     document.querySelectorAll(".backward8LeftLeft").forEach((square) => {
       square.style.border = "";
       square.classList.remove("backward8LeftLeft");
     });
+
+    
+
+    // 
+
+
     document.querySelectorAll(".finalBackWar16LeftLeft").forEach((square) => {
       square.style.border = "";
       square.classList.remove("finalBackWar16LeftLeft");
     });
 
-    document.querySelectorAll(".backward8RightRight").forEach((square) => {
-      square.style.border = "";
-      square.classList.remove("backward8RightRight");
-    });
+    
 
-    document.querySelectorAll(".backward16RightRight").forEach((square) => {
-      square.style.border = "";
-      square.classList.remove("backward16RightRight");
-    });
 
     document.querySelectorAll(".secondLast56Forward").forEach((square) => {
       square.style.border = "";
       square.classList.remove("secondLast56Forward");
     });
 
+    
+
     document.querySelectorAll(".secondLast56Backward").forEach((square) => {
       square.style.border = "";
       square.classList.remove("secondLast56Backward");
     });
+    
+    // 
 
     document.querySelectorAll(".backward16stepLeft").forEach((square) => {
       square.style.border = "";
       square.classList.remove("backward16stepLeft");
     });
 
-    // Remove classes for elements with added classes
-    document.querySelectorAll(".horseforward16Left").forEach((square) => {
-      square.classList.remove("horseforward16Left");
-    });
-    document.querySelectorAll(".horseforward8left").forEach((square) => {
-      square.classList.remove("horseforward8left");
-    });
-    document.querySelectorAll(".horseforward8right").forEach((square) => {
-      square.classList.remove("horseforward8right");
-    });
-    document.querySelectorAll(".finalforward16Right").forEach((square) => {
-      square.classList.remove("finalforward16Right");
-    });
-    document.querySelectorAll(".finalBackward16Left").forEach((square) => {
-      square.classList.remove("finalBackward16Left");
-    });
-    document.querySelectorAll(".finalBackward16Right").forEach((square) => {
-      square.classList.remove("finalBackward16Right");
-    });
-    document.querySelectorAll(".finalBackward8Left").forEach((square) => {
-      square.classList.remove("finalBackward8Left");
-    });
-    document.querySelectorAll(".finalBackward8Right").forEach((square) => {
-      square.classList.remove("finalBackward8Right");
-    });
-    document.querySelectorAll(".finalForward8Left").forEach((square) => {
-      square.classList.remove("finalForward8Left");
-    });
+    
 
-    document.querySelectorAll(".finalforward8Left").forEach((square) => {
-      square.classList.remove("finalforward8Left");
-    });
 
+    document.querySelectorAll(".horse8step").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("horse8step");
+    });
 
     
 
-    const clickedSquare = event.target;
-    const piece = clickedSquare.textContent;
-    const clickedSquareId = parseInt(clickedSquare.id);
-    localStorage.setItem("clicked_id", clickedSquareId);
-    // Add border to clicked square
-    clickedSquare.style.border = "2px solid red";
-    clickedSquare.classList.add("bordered");
+    document.querySelectorAll(".forwardLeftLefthorse").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("forwardLeftLefthorse");
+    });
+
+    // 
+
+    document.querySelectorAll(".horses").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("horses");
+    });
+
+    
+
+
+    document.querySelectorAll(".Righthorse").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("Righthorse");
+    });
+
+    
+
+    document.querySelectorAll(".backward8RightRight").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("backward8RightRight");
+    });
+
+    // 
+
+
+
+    document.querySelectorAll(".backward16RightRight").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("backward16RightRight");
+    });
+
+    
+
+
+    document.querySelectorAll(".finalforward8Left").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("finalforward8Left");
+    });
+
+    
+
+    document.querySelectorAll(".finalBackward8Right").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("finalBackward8Right");
+    });
+
+    //
+
+
+    document.querySelectorAll(".finalforward16Right").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("finalforward16Right");
+    });
+
+    
+
+
+    document.querySelectorAll(".finalBackward16Left").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("finalBackward16Left");
+    });
+
+    
+
+    document.querySelectorAll(".finalBackward16Right").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("finalBackward16Right");
+    });
+
+    
+
+    //
+
+    document.querySelectorAll(".finalBackward8Left").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("finalBackward8Left");
+    });
+
+    
+
+
+    document.querySelectorAll(".horseforward16Left").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("horseforward16Left");
+    });
+
+    
+
+    document.querySelectorAll(".horseforward8left").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("horseforward8left");
+    });
+
+    
+
+
+    document.querySelectorAll(".horseforward8right").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("horseforward8right");
+    });
+
+    
+
+    document.querySelectorAll(".finalForward8Left").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("finalForward8Left");
+    });
+
+   
 
     // Check if the piece is a white or black horse
 

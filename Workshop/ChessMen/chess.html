@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chessboard</title>
     <style>
-        *{
+        * {
             font-family: 'Courier New', Courier, monospace;
         }
-    
+
         section {
             height: 100%;
             margin: 0;
@@ -46,136 +46,8 @@
             background-color: gray;
         }
 
-        .horse {
-            background-color: rgba(255, 0, 0, 0);
-        }
+        /**/
 
-        .Lefthorse {
-            background-color: aqua;
-        }
-
-        .Righthorse {
-            background-color: chartreuse;
-        }
-
-        .horse8step {}
-
-        .forwardLeftLefthorse {
-
-            background-color: rgb(0, 145, 255);
-        }
-
-        .forwardRightRighthorse {
-            background-color: rgb(255, 0, 43);
-        }
-
-        .rightEndLeftLeft {
-            background-color: blue;
-        }
-
-        .backward8LeftLeft {
-            background-color: rgb(255, 0, 85);
-        }
-
-        .finalBackWar16LeftLeft {
-            background-color: rebeccapurple;
-        }
-
-        .backward8RightRight {
-            background-color: violet;
-        }
-
-        .backward16RightRight {
-            background-color: aqua;
-        }
-
-        .secondLast56Forward {
-            background-color: purple;
-        }
-
-        .secondLast56Backward {
-            background-color: goldenrod;
-        }
-
-        .backward16stepLeft {
-            background-color: tomato;
-        }
-
-        .horseEndLef8step {
-            background-color: burlywood;
-        }
-
-        .horseforward16Left {
-            background-color: red;
-        }
-
-        .horseforward8left {
-            background-color: blue;
-        }
-
-        .horseforward8right {
-            background-color: pink;
-        }
-
-        .finalforward16Right {
-            background-color: black;
-        }
-
-        .finalBackward16Right {
-            background-color: green;
-        }
-
-        .finalBackward16Left {
-            background-color: purple;
-        }
-
-        .finalBackward8Right {
-            background-color: rgb(255, 106, 0);
-        }
-
-        .finalBackward8Left {
-            background-color: rgb(0, 187, 255);
-        }
-
-        .finalForward8Left {
-            background-color: black;
-        }
-
-        .finalforward8Left {
-            background-color: aqua;
-        }
-
-        .greenDiagonalDown {
-            background: green !important;
-        }
-
-        .queenDiagonalRight {
-            background: red !important;
-        }
-
-        .queenDiagonalDown {
-            background: purple !important;
-        }
-
-        .queenDiagonalUp {
-            background: rgb(255, 95, 121) !important;
-        }
-
-        .queenUp {
-            background: rgb(255, 247, 0) !important;
-        }
-
-        .queenLeft {
-            background: rgb(5, 251, 239) !important;
-        }
-
-        .sequenceTopRightDiagonal {
-            background: rgb(255, 140, 0) !important;
-        }
-
-        .sequenceDownLeftDiagonal {
-            background: rgb(0, 0, 0) !important;
-        }
 
         .greenKingMove {
             background: greenyellow !important;
@@ -185,8 +57,56 @@
             background: greenyellow !important;
         }
 
-        .highlightedDiagonalPawn{
-            background: red!important;
+        .rookUp,
+        .rookDiagonalDown,
+        .rookLeft,
+        .rookDiagonalRight {
+            background-color: rgb(114, 223, 114) !important;
+        }
+
+        .bishopDiagonalDown,
+        .bishopDiagonalUp,
+        .bishopTopRightDiagonal,
+        .bishopDownLeftDiagonal {
+            background-color: aqua !important;
+        }
+
+        .queenDiagonalRight,
+        .queenDiagonalDown,
+        .queenDown,
+        .queenDiagonalUp,
+        .queenUp,
+        .queenLeft,
+        .queenTopRightDiagonal,
+        .queenDownLeftDiagonal {
+            background-color: rgb(166, 0, 255) !important;
+        }
+
+        .horse,
+        .Lefthorse,
+        .rightEndLeftLeft,
+        .backward8LeftLeft,
+        .finalBackWar16LeftLeft,
+        .secondLast56Forward,
+        .secondLast56Backward,
+        .backward16stepLeft,
+        .horse8step,
+        .forwardLeftLefthorse,
+        .horses,
+        .Righthorse,
+        .backward8RightRight,
+        .backward16RightRight,
+        .finalforward8Left,
+        .finalBackward8Right,
+        .finalforward16Right,
+        .finalBackward16Left,
+        .finalBackward16Right,
+        .finalBackward8Left,
+        .horseforward16Left,
+        .horseforward8left,
+        .horseforward8right,
+        .finalForward8Left {
+            background-color: orange !important;
         }
     </style>
 </head>
@@ -196,11 +116,11 @@
     <section>
 
 
-    <div class="container" id="chessboard">
-        <!-- Generate 64 squares -->
-    </div>
-</section>
-<!-- 
+        <div class="container" id="chessboard">
+            <!-- Generate 64 squares -->
+        </div>
+    </section>
+    <!-- 
     <div style="text-align: center;">
         <h3> Black Deads: <span id="blackDead"></span> </h3>
  
@@ -210,24 +130,24 @@
 
     <script>
 
-//     document.addEventListener("DOMContentLoaded", function() {
-//     // Function to render data from localStorage
-//     function renderDataFromLocalStorage(id) {
-//         const data = localStorage.getItem(id);
-//         if (data) {
-//             document.getElementById(id).textContent = data;
-//         }
-//     }
+        //     document.addEventListener("DOMContentLoaded", function() {
+        //     // Function to render data from localStorage
+        //     function renderDataFromLocalStorage(id) {
+        //         const data = localStorage.getItem(id);
+        //         if (data) {
+        //             document.getElementById(id).textContent = data;
+        //         }
+        //     }
 
-//     // Render data for blackDead and whiteDead
-//     renderDataFromLocalStorage("blackDead");
-//     renderDataFromLocalStorage("whiteDead");
-// });
+        //     // Render data for blackDead and whiteDead
+        //     renderDataFromLocalStorage("blackDead");
+        //     renderDataFromLocalStorage("whiteDead");
+        // });
 
     </script>
 
-   <script src="./chess.js" type="module"></script> 
-  
+    <script src="./chess.js" type="module"></script>
+
 </body>
 
 </html>

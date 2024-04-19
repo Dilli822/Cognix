@@ -119,14 +119,14 @@ export function queenMaster(clickedSquareId) {
     sequenceDiagonalDown.forEach((id) => {
       const squareElement = document.getElementById(id.toString());
       if (squareElement) {
-        squareElement.classList.add("greenDiagonalDown");
+        squareElement.classList.add("queenDiagonalDown");
       }
     });
 
     sequenceDown.forEach((id) => {
       const squareElement = document.getElementById(id.toString());
       if (squareElement) {
-        squareElement.classList.add("queenDiagonalDown");
+        squareElement.classList.add("queenDown");
       }
     });
 
@@ -154,7 +154,7 @@ export function queenMaster(clickedSquareId) {
     sequenceTopRightDiagonal.forEach((id) => {
       const squareElement = document.getElementById(id.toString());
       if (squareElement) {
-        squareElement.classList.add("sequenceTopRightDiagonal");
+        squareElement.classList.add("queenTopRightDiagonal");
       }
     });
 
@@ -185,7 +185,7 @@ export function queenMaster(clickedSquareId) {
     sequenceDownLeftDiagonal.forEach((id) => {
       const squareElement = document.getElementById(id.toString());
       if (squareElement) {
-        squareElement.classList.add("sequenceDownLeftDiagonal");
+        squareElement.classList.add("queenDownLeftDiagonal");
       }
     });
 

@@ -14,96 +14,96 @@ export function generateSquare(id, isDark, piece) {
   document.getElementById("chessboard").appendChild(square);
 }
 
-// export const pieces = [
-//   "♜", "♞", "♝", "♛", "♚", "♝", "♞", "♜",
-//   "♟", "♟", "♟", "♟", "♟", "♟", "♟", "♟",
-//   "", "", "", "", "", "", "", "",
-//   "", "", "", "", "", "", "", "",
-//   "", "", "", "", "", "", "", "",
-//   "", "", "", "", "", "", "", "",
-//   "♙", "♙", "♙", "♙", "♙", "♙", "♙", "♙",
-//   "♖", "♘", "♗", "♕", "♔", "♗", "♘", "♖"
-// ];
-
-// export const pieces = [
-//   "♞", "♞", "♞", "♞", "♞", "♞", "♞", "♞",
-//   "♞", "♞", "♞", "♞", "♞", "♞", "♞", "♞",
-//   "♞", "♞", "♞", "♞", "♞", "♞", "♞", "♞",
-//   "♞", "♞", "♞", "♞", "♞", "♞", "♞", "♞",
-//   "♞", "♞", "♞", "♞", "♞", "♞", "♞", "♞",
-//   "♞", "♞", "♞", "♞", "♞", "♞", "♞", "♞",
-//   "♞", "♞", "♞", "♞", "♞", "♞", "♞", "♞",
-//   "♞", "♞", "♞", "♞", "♞", "♞", "♞", "♞"
-// ];
-
 export const pieces = [
-  "♜",
-  "♞",
-  "♝",
-  "♛",
-  "♚",
-  "♝",
-  "♞",
-  "♜",
-  "♟",
-  "♟",
-  "♟",
-  "♟",
-  "♟",
-  "♟",
-  "♟",
-  "♟",
-
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-
-  "♙",
-  "♙",
-  "♙",
-  "♙",
-  "♙",
-  "♙",
-  "♙",
-  "♙",
-  "♖",
-  "♘",
-  "♗",
-  "♕",
-  "♔",
-  "♗",
-  "♘",
-  "♖",
+  "♜", "♞", "♝", "♛", "♚", "♝", "♞", "♜",
+  "♟", "♟", "♟", "♟", "♟", "♟", "♟", "♟",
+  "", "", "", "", "", "", "", "",
+  "", "", "", "", "", "", "", "",
+  "", "", "", "", "", "", "", "",
+  "", "", "", "", "", "", "", "",
+  "♙", "♙", "♙", "♙", "♙", "♙", "♙", "♙",
+  "♖", "♘", "♗", "♕", "♔", "♗", "♘", "♖"
 ];
+
+// export const pieces = [
+//  "♞", "♘", "♘", "♞", "♘", "♞", "♞", "♘",
+// "♞", "♘", "♘", "♞", "♘", "♞", "♞", "♘",
+// "♞", "♘", "♘", "♞", "♘", "♞", "♞", "♘",
+// "♞", "♘", "♘", "♞", "♘", "♞", "♞", "♘",
+//   "♞", "♘", "♘", "♞", "♘", "♞", "♞", "♘",
+//   "♞", "♘", "♘", "♞", "♘", "♞", "♞", "♘",
+//   "♞", "♘", "♘", "♞", "♘", "♞", "♞", "♘",
+//   "♞", "♘", "♘", "♞", "♘", "♞", "♞", "♘"
+// ];
+
+// export const pieces = [
+//   "♜",
+//   "♞",
+//   "♝",
+//   "♛",
+//   "♚",
+//   "♝",
+//   "♞",
+//   "♜",
+//   "♟",
+//   "♟",
+//   "♟",
+//   "♟",
+//   "♟",
+//   "♟",
+//   "♟",
+//   "♟",
+
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+//   "",
+
+//   "♙",
+//   "♙",
+//   "♙",
+//   "♙",
+//   "♙",
+//   "♙",
+//   "♙",
+//   "♙",
+//   "♖",
+//   "♘",
+//   "♗",
+//   "♕",
+//   "♔",
+//   "♗",
+//   "♘",
+//   "♖",
+// ];
 
 // export const pieces = [
 //   "♗", "♗", "♝", "♗",  "♗", "♝", "♗", "♝",
@@ -176,28 +176,28 @@ for (let row = 0; row < 8; row++) {
 }
 
 // Initialize localStorage
-localStorage.setItem("blackTurn", "false");
-localStorage.setItem("whiteTurn", "true");
+localStorage.setItem("initial_blackTurn", "false");
+localStorage.setItem("initial_whiteTurn", "true");
 
-let whiteTurn = localStorage.getItem("whiteTurn");
-let blackTurn = localStorage.getItem("blackTurn");
+let initial_whiteTurn = localStorage.getItem("initial_whiteTurn");
+let initial_blackTurn = localStorage.getItem("initial_blackTurn");
 
 // Function to handle click events
 export function handleClick(event) {
   if (
-    localStorage.getItem("blackTurn") !== "false" ||
-    localStorage.getItem("whiteTurn") !== "false"
+    localStorage.getItem("initial_blackTurn") !== "false" ||
+    localStorage.getItem("initial_whiteTurn") !== "false"
   ) {
     const clickedSquare = event.target;
     const isPawn = clickedSquare.textContent;
 
-    if (isPawn === "♟" && localStorage.getItem("blackTurn") === "false") {
+    if (isPawn === "♟" && localStorage.getItem("initial_blackTurn") === "false") {
       console.log("black turn is not enabled");
       console.log("black turn not allowed");
       return;
     }
 
-    if (isPawn === "♙" && localStorage.getItem("whiteTurn") === "true") {
+    if (isPawn === "♙" && localStorage.getItem("initial_whiteTurn") === "true") {
       console.log("white turn  allowed");
       console.log("white pawn clicked");
       const forwardPawn = clickedSquare.id + 8;
@@ -208,11 +208,11 @@ export function handleClick(event) {
       console.log(forward16Pawn);
       console.log(forwardPawn);
 
-      localStorage.setItem("blackTurn", "true");
-      localStorage.setItem("whiteTurn", "false");
+      localStorage.setItem("initial_blackTurn", "true");
+      localStorage.setItem("initial_whiteTurn", "false");
     }
 
-    if (isPawn === "♟" && localStorage.getItem("blackTurn") === "true") {
+    if (isPawn === "♟" && localStorage.getItem("initial_blackTurn") === "true") {
       alert("black turn  allowed");
       const forwardPawn = parseInt(clickedSquare.id) + 8;
       const forward16Pawn = parseInt(clickedSquare.id) + 16;
@@ -220,15 +220,15 @@ export function handleClick(event) {
       console.log(forward16Pawn);
       console.log(forwardPawn);
 
-      localStorage.setItem("blackTurn", "false");
-      localStorage.setItem("whiteTurn", "false");
+      localStorage.setItem("initial_blackTurn", "false");
+      localStorage.setItem("initial_whiteTurn", "false");
     }
   }
 
-  whiteTurn = localStorage.getItem("whiteTurn");
-  blackTurn = localStorage.getItem("blackTurn");
+  initial_whiteTurn = localStorage.getItem("initial_whiteTurn");
+  initial_blackTurn = localStorage.getItem("initial_blackTurn");
 
-  if (blackTurn === "false" && whiteTurn === "false") {
+  if (initial_blackTurn === "false" && initial_whiteTurn === "false") {
     console.log("GAME IS STARTED!");
     pawnAgent(event);
     rookAgent(event);

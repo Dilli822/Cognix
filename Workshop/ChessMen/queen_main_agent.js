@@ -19,42 +19,48 @@ export function queenAgent(event) {
     square.classList.remove("bordered");
   });
 
-  document.querySelectorAll(".bordered").forEach((square) => {
-    square.style.border = "";
-    square.classList.remove("bordered");
-  });
 
-  document.querySelectorAll(".greenDiagonalDown").forEach((square) => {
-    square.classList.remove("greenDiagonalDown");
-  });
+    document.querySelectorAll(".queenDiagonalRight").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("queenDiagonalRight");
+    });
 
-  document.querySelectorAll(".queenDiagonalRight").forEach((square) => {
-    square.classList.remove("queenDiagonalRight");
-  });
+    document.querySelectorAll(".queenDiagonalDown").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("queenDiagonalDown");
+    });
 
-  document.querySelectorAll(".queenDiagonalDown").forEach((square) => {
-    square.classList.remove("queenDiagonalDown");
-  });
+    document.querySelectorAll(".queenDown").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("queenDown");
+    });
 
-  document.querySelectorAll(".queenDiagonalUp").forEach((square) => {
-    square.classList.remove("queenDiagonalUp");
-  });
+    document.querySelectorAll(".queenDiagonalUp").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("queenDiagonalUp");
+    });
 
-  document.querySelectorAll(".queenUp").forEach((square) => {
-    square.classList.remove("queenUp");
-  });
 
-  document.querySelectorAll(".queenLeft").forEach((square) => {
-    square.classList.remove("queenLeft");
-  });
+    document.querySelectorAll(".queenUp").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("queenUp");
+    });
 
-  document.querySelectorAll(".sequenceTopRightDiagonal").forEach((square) => {
-    square.classList.remove("sequenceTopRightDiagonal");
-  });
+    document.querySelectorAll(".queenLeft").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("queenLeft");
+    });
 
-  document.querySelectorAll(".sequenceDownLeftDiagonal").forEach((square) => {
-    square.classList.remove("sequenceDownLeftDiagonal");
-  });
+    document.querySelectorAll(".queenTopRightDiagonal").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("queenTopRightDiagonal");
+    });
+
+    document.querySelectorAll(".queenDownLeftDiagonal").forEach((square) => {
+      square.style.border = "";
+      square.classList.remove("queenDownLeftDiagonal");
+    });
+
 
   // Check if the clicked square contains a queen or king
   if (isQueen === "♔" || isQueen === "♚") {

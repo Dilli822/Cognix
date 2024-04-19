@@ -97,28 +97,28 @@ export function bishopMaster(clickedSquareId) {
       sequenceDiagonalDown.forEach((id) => {
         const squareElement = document.getElementById(id.toString());
         if (squareElement) {
-          squareElement.classList.add("greenDiagonalDown");
+          squareElement.classList.add("bishopDiagonalDown");
         }
       });
   
       sequenceDiagonalUp.forEach((id) => {
         const squareElement = document.getElementById(id.toString());
         if (squareElement) {
-          squareElement.classList.add("queenDiagonalUp");
+          squareElement.classList.add("bishopDiagonalUp");
         }
       });
   
       sequenceTopRightDiagonal.forEach((id) => {
         const squareElement = document.getElementById(id.toString());
         if (squareElement) {
-          squareElement.classList.add("sequenceTopRightDiagonal");
+          squareElement.classList.add("bishopTopRightDiagonal");
         }
       });
   
       sequenceDownLeftDiagonal.forEach((id) => {
         const squareElement = document.getElementById(id.toString());
         if (squareElement) {
-          squareElement.classList.add("sequenceDownLeftDiagonal");
+          squareElement.classList.add("bishopDownLeftDiagonal");
         }
       });
     }
@@ -173,7 +173,7 @@ export function bishopMaster(clickedSquareId) {
       sequenceDiagonalUp.forEach((id) => {
         const squareElement = document.getElementById(id.toString());
         if (squareElement) {
-          squareElement.classList.add("queenDiagonalUp");
+          squareElement.classList.add("bishopDiagonalUp");
         }
       });
   
@@ -181,7 +181,7 @@ export function bishopMaster(clickedSquareId) {
       sequenceDownLeftDiagonal.forEach((id) => {
         const squareElement = document.getElementById(id.toString());
         if (squareElement) {
-          squareElement.classList.add("sequenceDownLeftDiagonal");
+          squareElement.classList.add("bishopDownLeftDiagonal");
         }
       });
     }

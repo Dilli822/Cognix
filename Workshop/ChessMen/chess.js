@@ -318,7 +318,8 @@ let oldChessboardLayout = [];
 let newChessboardLayout = [];
 
 // Function to print the current layout and save to localStorage
-function printLayout() {
+
+export function printLayout() {
     const chessboard = document.getElementById("chessboard");
     const squares = chessboard.querySelectorAll(".square");
     let layout = [];

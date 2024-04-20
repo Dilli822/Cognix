@@ -1,4 +1,4 @@
-import { generateSquare, pieces, squares } from "./chess.js";
+import { generateSquare, pieces, squares, printLayout } from "./chess.js";
 
 export function pawnAgent(event) {
   const clickedSquare = event.target;
@@ -150,20 +150,51 @@ export function pawnAgent(event) {
           "eliminatedBlacks",
           JSON.stringify(eliminatedPawns)
         );
-        
+
+        // Check for layout change
+        let oldChess = localStorage.getItem("newChessboardLayout");
+
+        // Update the layout
+        printLayout();
+
+        if (oldChess !== localStorage.getItem("newChessboardLayout")) {
+            alert("Chessboard layout has changed!");
+            validator = true;
+        }
+
+
+        if (oldChess === localStorage.getItem("newChessboardLayout")) {
+          alert("Chessboard layout has changed!");
+          validator = false;
+      }
+
+
+
         alert("Pawn moved and eliminated pawn stored!");
       });
 
-      
-
-      localStorage.setItem("iwhiteTurn", "false");
-      let a = localStorage.getItem("iwhiteTurn");
-      document.getElementById("turn").innerHTML = a;
-  
-      if (a === "false") {
-        document.getElementById("turn").innerHTML =
-          "Black Turn: True <br> White Turn: False";
+      if(validator === true){
+        localStorage.setItem("iwhiteTurn", "false");
+        let a = localStorage.getItem("iwhiteTurn");
+        document.getElementById("turn").innerHTML = a;
+    
+        if (a === "false") {
+          document.getElementById("turn").innerHTML =
+            "Black Turn: True <br> White Turn: False";
+        }
       }
+
+      if(validator === false){
+        localStorage.setItem("iwhiteTurn", "true");
+        let a = localStorage.getItem("iwhiteTurn");
+        document.getElementById("turn").innerHTML = a;
+    
+        if (a === "false") {
+          document.getElementById("turn").innerHTML =
+            "Black Turn: False <br> White Turn: True";
+        }
+      }
+
     }
 
 

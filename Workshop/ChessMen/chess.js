@@ -9,7 +9,7 @@ import { pawnAgent } from "./pawn_agent.js";
 
 // Initialize localStorage
 localStorage.setItem("initial_blackTurn", false);
-localStorage.setItem("initial_whiteTurn", true);
+localStorage.setItem("initial_whiteTurn", false);
 
 let initial_whiteTurn = localStorage.getItem("initial_whiteTurn");
 let initial_blackTurn = localStorage.getItem("initial_blackTurn");
@@ -109,15 +109,25 @@ export function generateSquare(id, isDark, piece) {
 
 
 export const pieces = [
-  "♟", "♟", "♟", "♟", "♟", "♟", "♟", "♟",
-  // "♙", "♙", "♙", "♙", "♙", "♙", "♙", "♙",
-  // "♟", "♟", "♟", "♟", "♟", "♟", "♟", "♟",
-  "♙", "♙", "♙", "♙", "♙", "♙", "♙", "♙",
+  "", "", "", "", "", "", "", "",
 
-  "♟", "♟", "♟", "♟", "♟", "♟", "♟", "♟",
+  "♟", "♟", "♟", "♟", "♟", "♟", "♟", "",
   // "♙", "♙", "♙", "♙", "♙", "♙", "♙", "♙",
   // "♟", "♟", "♟", "♟", "♟", "♟", "♟", "♟",
+  // "♙", "♙", "♙", "♙", "♙", "♙", "♙", "♙",
+
+  // "♟", "♟", "♟", "♟", "♟", "♟", "♟", "♟",
+  // // "♙", "♙", "♙", "♙", "♙", "♙", "♙", "♙",
+  "", "", "", "", "", "", "", "",
+  "", "", "", "", "", "", "", "",
+
+
+  // "♟", "♟", "♟", "♟", "♟", "♟", "♟", "♟",
+  "", "", "", "", "", "", "", "",
+  "", "", "", "", "", "", "", "",
+
   "♙", "♙", "♙", "♙", "♙", "♙", "♙", "♙",
+  "", "", "", "", "", "", "", "",
 ];
 
 for (let row = 0; row < 8; row++) {
@@ -288,6 +298,9 @@ export function handleClick(event) {
     queenAgent(event);
     kingAgent(event);
 
+    // Call printLayout to print the current layout after each move
+    printLayout();
+
   }
 }
 
@@ -296,4 +309,66 @@ export const squares = document.querySelectorAll(".square");
 squares.forEach((square) => {
   square.addEventListener("click", handleClick);
 
+
 });
+
+
+// Initialize old and new chessboard layouts
+let oldChessboardLayout = [];
+let newChessboardLayout = [];
+
+// Function to print the current layout and save to localStorage
+function printLayout() {
+    const chessboard = document.getElementById("chessboard");
+    const squares = chessboard.querySelectorAll(".square");
+    let layout = [];
+    let row = [];
+
+    // Iterate through each square to build the layout
+    squares.forEach((square) => {
+        const piece = square.textContent || " ";
+        row.push(`"${piece}"`);
+
+        // Check if it's the end of a row
+        if ((square.id - 1) % 8 === 7) {
+            layout.push(`[${row.join(', ')}]`);
+            row = [];
+        }
+    });
+
+    // Save old layout
+    oldChessboardLayout.push(newChessboardLayout.join(',\n'));
+
+    // Update new layout
+    newChessboardLayout = layout;
+
+    // Store layouts in localStorage
+    localStorage.setItem("oldChessboardLayout", JSON.stringify(oldChessboardLayout));
+    localStorage.setItem("newChessboardLayout", JSON.stringify(newChessboardLayout));
+
+    // Log old and new layouts
+    console.log(`Old Chessboard Layout ${oldChessboardLayout.length}:`);
+    console.log(oldChessboardLayout[oldChessboardLayout.length - 1]);
+
+    console.log(`New Chessboard Layout ${oldChessboardLayout.length}:`);
+    console.log(newChessboardLayout.join(',\n'));
+}
+
+// Create a new observer to track changes in the chessboard
+const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        // Check if nodes are added or removed from the chessboard
+        if (mutation.addedNodes.length || mutation.removedNodes.length) {
+            printLayout();
+        }
+    });
+});
+
+// Configuration for the observer
+const config = {
+    childList: true, // Listen for changes to child elements
+    subtree: true   // Listen for changes to the whole subtree
+};
+
+// Start observing the chessboard container
+observer.observe(document.getElementById("chessboard"), config);

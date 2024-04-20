@@ -198,6 +198,11 @@ export function bishopMaster(clickedSquareId) {
     }
 
     localStorage.setItem("iwhiteTurn", "false");
+    let a  =   localStorage.getItem("iwhiteTurn");
+    document.getElementById("turn").innerHTML = a;
+    if(a === "false"){
+     document.getElementById("turn").innerHTML = "<p> Black Turn: True <br> White Turn: False </p>" ;
+    }
   }
 
 
@@ -387,6 +392,13 @@ export function bishopMaster(clickedSquareId) {
  
     }
     localStorage.setItem("iwhiteTurn", "true");
+
+    let a  =   localStorage.getItem("iwhiteTurn");
+    document.getElementById("turn").innerHTML = a;
+    if(a === "true"){
+     document.getElementById("turn").innerHTML = "<p> Black Turn: False <br> White Turn: True </p>" ;
+    }
+
   }
 
 

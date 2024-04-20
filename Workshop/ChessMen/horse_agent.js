@@ -103,6 +103,12 @@ export function HorseForwardRightEnd(clickedSquareId) {
       
     }
     localStorage.setItem("iwhiteTurn", "false");
+    let a  =   localStorage.getItem("iwhiteTurn");
+    document.getElementById("turn").innerHTML = a;
+    if(a === "false"){
+     document.getElementById("turn").innerHTML = "Black Turn: True <br> White Turn: False" ;
+    }
+
   }
 
 
@@ -193,6 +199,11 @@ export function HorseForwardRightEnd(clickedSquareId) {
       
     }
     localStorage.setItem("iwhiteTurn", "true");
+    let a  =   localStorage.getItem("iwhiteTurn");
+    document.getElementById("turn").innerHTML = a;
+    if(a === "true"){
+     document.getElementById("turn").innerHTML = "Black Turn: False <br> White Turn: True" ;
+    }
   }
 
 
@@ -318,10 +329,16 @@ export function HorseForwardLeftEnd(clickedSquareId, miscellaneous) {
 
   localStorage.setItem("iwhiteTurn", "false");
 
+  let a  =   localStorage.getItem("iwhiteTurn");
+  document.getElementById("turn").innerHTML = a;
+  if(a === "false"){
+   document.getElementById("turn").innerHTML = "Black Turn: True <br> White Turn: False" ;
+  }
+
 }
 
 
-if (whiteTurn && isHorse === "♞") {
+if (!whiteTurn && isHorse === "♞") {
 
   if (
     clickedSquareId === 1 ||
@@ -430,6 +447,12 @@ if (whiteTurn && isHorse === "♞") {
     );
   }
   localStorage.setItem("iwhiteTurn", "true");
+
+  let a  =   localStorage.getItem("iwhiteTurn");
+  document.getElementById("turn").innerHTML = a;
+  if(a === "true"){
+   document.getElementById("turn").innerHTML = "Black Turn: False <br> White Turn: True" ;
+  }
 }
 
 
@@ -440,6 +463,15 @@ if (whiteTurn && isHorse === "♞") {
 
 
 export function HorseMaster(clickedSquareId) {
+
+  let whiteTurn = localStorage.getItem("iwhiteTurn") === "true";
+
+  let horseNode = document.getElementById(clickedSquareId);
+  let isHorse = horseNode.innerHTML;
+
+
+  if (whiteTurn && isHorse === "♘") {
+
   const forward8Step = clickedSquareId + 8;
   const forward16Step = clickedSquareId + 16;
 
@@ -502,10 +534,103 @@ export function HorseMaster(clickedSquareId) {
       .getElementById(finalBackward8Right.toString())
       .classList.add("finalBackward8Right")
   );
+  localStorage.setItem("iwhiteTurn", "false");
+
+  let a  =   localStorage.getItem("iwhiteTurn");
+  document.getElementById("turn").innerHTML = a;
+  if(a === "false"){
+   document.getElementById("turn").innerHTML = "Black Turn: True <br> White Turn: False" ;
+  }
+
+  }
+
+
+  if (!whiteTurn && isHorse === "♞") {
+
+  const forward8Step = clickedSquareId + 8;
+  const forward16Step = clickedSquareId + 16;
+
+  const finalforward8Left = forward8Step - 2;
+  const finalforward8Right = forward8Step + 2;
+
+  const finalforward16Left = forward16Step - 1;
+  const finalforward16Right = forward16Step + 1;
+
+  const finalBackward8 = clickedSquareId - 8;
+  const finalBackward16 = clickedSquareId - 16;
+
+  const finalBackward8Left = finalBackward8 - 2;
+  const finalBackward8Right = finalBackward8 + 2;
+
+  const finalBackward16Left = finalBackward16 - 1;
+  const finalBackward16Right = finalBackward16 + 1;
+
+  if (
+    document
+      .getElementById(finalforward16Left.toString())
+      .classList.add("horseforward16Left")
+  );
+  if (
+    document
+      .getElementById(finalforward8Left.toString())
+      .classList.add("horseforward8left")
+  );
+
+  if (
+    document
+      .getElementById(finalforward8Right.toString())
+      .classList.add("horseforward8right")
+  );
+  if (
+    document
+      .getElementById(finalforward16Right.toString())
+      .classList.add("finalforward16Right")
+  );
+  if (
+    document
+      .getElementById(finalBackward16Left.toString())
+      .classList.add("finalBackward16Left")
+  );
+
+  if (
+    document
+      .getElementById(finalBackward16Right.toString())
+      .classList.add("finalBackward16Right")
+  );
+
+  if (
+    document
+      .getElementById(finalBackward8Left.toString())
+      .classList.add("finalBackward8Left")
+  );
+
+  if (
+    document
+      .getElementById(finalBackward8Right.toString())
+      .classList.add("finalBackward8Right")
+  );
+
+  localStorage.setItem("iwhiteTurn", "true");
+
+  let a  =   localStorage.getItem("iwhiteTurn");
+  document.getElementById("turn").innerHTML = a;
+  if(a === "true"){
+   document.getElementById("turn").innerHTML = "Black Turn: False <br> White Turn: True" ;
+  }
+}
 }
 
 
 export function DeadEndMaster(clickedSquareId) {
+
+
+  let whiteTurn = localStorage.getItem("iwhiteTurn") === "true";
+
+  let horseNode = document.getElementById(clickedSquareId);
+  let isHorse = horseNode.innerHTML;
+
+
+  if (whiteTurn && isHorse === "♘") {
 
   if (clickedSquareId == 2) {
     const forward8Step = clickedSquareId + 8;
@@ -745,6 +870,267 @@ export function DeadEndMaster(clickedSquareId) {
       .classList.add("finalBackward8Right");
   
   }
+  localStorage.setItem("iwhiteTurn", "false");
+
+  let a  =   localStorage.getItem("iwhiteTurn");
+  document.getElementById("turn").innerHTML = a;
+  if(a === "false"){
+   document.getElementById("turn").innerHTML = "Black Turn: True <br> White Turn: False" ;
+  }
+}
+
+
+if (!whiteTurn && isHorse === "♞") {
+
+  if (clickedSquareId == 2) {
+    const forward8Step = clickedSquareId + 8;
+    const forward16Step = clickedSquareId + 16;
+
+    const finalforward8Right = forward8Step + 2;
+
+    const finalforward16Left = forward16Step - 1;
+    const finalforward16Right = forward16Step + 1;
+
+    document
+      .getElementById(finalforward8Right.toString())
+      .classList.add("secondLast56Backward");
+
+    document
+      .getElementById(finalforward16Left.toString())
+      .classList.add("horseforward16Left");
+
+    document
+      .getElementById(finalforward16Right.toString())
+      .classList.add("finalBackward8Right");
+  }
+
+  if (clickedSquareId >= 3 && clickedSquareId <= 6) {
+    const forward8Step = clickedSquareId + 8;
+    const forward16Step = clickedSquareId + 16;
+
+    const finalforward8Right = forward8Step + 2;
+    const finalforward8Left = forward8Step - 2;
+
+    const finalforward16Left = forward16Step - 1;
+    const finalforward16Right = forward16Step + 1;
+
+    document
+      .getElementById(finalforward8Right.toString())
+      .classList.add("secondLast56Backward");
+
+    document
+      .getElementById(finalforward16Left.toString())
+      .classList.add("horseforward16Left");
+
+    document
+      .getElementById(finalforward16Right.toString())
+      .classList.add("finalBackward8Right");
+
+    document
+      .getElementById(finalforward8Left.toString())
+      .classList.add("finalBackward8Right");
+  }
+
+
+
+  if  (clickedSquareId >= 51 &&  clickedSquareId <= 54) {
+    const forward8Step = clickedSquareId + 8;
+
+    const Backward16Step = clickedSquareId - 16;
+    const Backward8Step = clickedSquareId - 8;
+
+    const finalforward8Right = forward8Step + 2;
+    const finalforward8Left = forward8Step - 2;
+
+    const finalBackward8Right = Backward8Step + 2;
+    const finalBackward8Left = Backward8Step - 2;
+
+
+    const finalforward16Left = Backward16Step - 1;
+    const finalforward16Right = Backward16Step + 1;
+  
+
+    document
+      .getElementById(finalforward8Right.toString())
+      .classList.add("secondLast56Backward");
+
+      document
+      .getElementById(finalforward8Left.toString())
+      .classList.add("finalforward8Left");
+
+      document
+      .getElementById(finalBackward8Right.toString())
+      .classList.add("horseforward16Left");
+
+
+
+      document
+      .getElementById(finalBackward8Left.toString())
+      .classList.add("horseforward16Left");
+
+
+    document
+      .getElementById(finalforward16Left.toString())
+      .classList.add("horseforward16Left");
+
+    document
+      .getElementById(finalforward16Right.toString())
+      .classList.add("finalBackward8Right");
+
+  }
+
+
+  if (clickedSquareId === 7) {
+    const forward8Step = clickedSquareId + 8;
+    const forward16Step = clickedSquareId + 16;
+
+    const finalforward8Left = forward8Step - 2;
+
+    const finalforward16Left = forward16Step - 1;
+    const finalforward16Right = forward16Step + 1;
+
+    document
+      .getElementById(finalforward16Left.toString())
+      .classList.add("horseforward16Left");
+
+    document
+      .getElementById(finalforward16Right.toString())
+      .classList.add("finalBackward8Right");
+
+    document
+      .getElementById(finalforward8Left.toString())
+      .classList.add("finalBackward8Right");
+  }
+
+  if (clickedSquareId === 58) {
+    const forward8Step = clickedSquareId - 8;
+    const forward16Step = clickedSquareId - 16;
+
+    const finalforward8Right = forward8Step + 2;
+
+    const finalforward16Left = forward16Step + 1;
+    const finalforward16Right = forward16Step - 1;
+
+    document
+      .getElementById(finalforward8Right.toString())
+      .classList.add("secondLast56Backward");
+
+    document
+      .getElementById(finalforward16Left.toString())
+      .classList.add("horseforward16Left");
+
+    document
+      .getElementById(finalforward16Right.toString())
+      .classList.add("finalBackward8Right");
+  }
+
+  if (clickedSquareId === 63) {
+    const forward8Step = clickedSquareId - 8;
+    const forward16Step = clickedSquareId - 16;
+
+    const finalforward8Right = forward8Step - 2;
+
+    const finalforward16Left = forward16Step + 1;
+    const finalforward16Right = forward16Step - 1;
+
+    document
+      .getElementById(finalforward8Right.toString())
+      .classList.add("secondLast56Backward");
+
+    document
+      .getElementById(finalforward16Left.toString())
+      .classList.add("horseforward16Left");
+
+    document
+      .getElementById(finalforward16Right.toString())
+      .classList.add("finalBackward8Right");
+  }
+
+  if (clickedSquareId >= 59 && clickedSquareId <= 62) {
+    const forward8Step = clickedSquareId - 8;
+    const forward16Step = clickedSquareId - 16;
+
+    const finalforward8Right = forward8Step - 2;
+    const finalforward8Left = forward8Step + 2;
+
+    const finalforward16Left = forward16Step + 1;
+    const finalforward16Right = forward16Step - 1;
+
+    document
+      .getElementById(finalforward8Right.toString())
+      .classList.add("secondLast56Backward");
+
+    document
+      .getElementById(finalforward16Left.toString())
+      .classList.add("horseforward16Left");
+
+    document
+      .getElementById(finalforward16Right.toString())
+      .classList.add("finalBackward8Right");
+
+    document
+      .getElementById(finalforward8Left.toString())
+      .classList.add("finalBackward8Right");
+  }
+
+
+
+
+
+
+  if (clickedSquareId >= 11 && clickedSquareId <= 14) {
+    const forward8Step = clickedSquareId + 8;
+    const forward16Step = clickedSquareId + 16;
+    const backward8Step = clickedSquareId - 8;
+
+    const finalforward8Right = forward8Step + 2;
+    const finalBackward8Right = backward8Step + 2;
+    const finalBackward8Left = backward8Step - 2;
+    const finalForward8Left = forward8Step - 2;
+
+
+    const finalforward16Left = forward16Step - 1;
+    const finalforward16Right = forward16Step + 1;
+
+    document
+    .getElementById(finalBackward8Left.toString())
+    .classList.add("finalBackward8Left");
+
+
+    document
+    .getElementById(finalForward8Left.toString())
+    .classList.add("finalForward8Left");
+
+
+    
+    document
+      .getElementById(finalforward16Left.toString())
+      .classList.add("finalBackward8Right");
+
+    document
+      .getElementById(finalforward16Right.toString())
+      .classList.add("horseforward16Left");
+
+    document
+      .getElementById(finalforward8Right.toString())
+      .classList.add("finalBackward8Right");
+
+    document
+      .getElementById(finalBackward8Right.toString())
+      .classList.add("finalBackward8Right");
+  
+  }
+  localStorage.setItem("iwhiteTurn", "true");
+
+  let a  =   localStorage.getItem("iwhiteTurn");
+  document.getElementById("turn").innerHTML = a;
+  if(a === "true"){
+   document.getElementById("turn").innerHTML = "Black Turn: False <br> White Turn: True" ;
+  }
+
+  
+}
+
 
   
 
@@ -754,6 +1140,9 @@ export function DeadEndMaster(clickedSquareId) {
 
 
 export function subDeadEnd(clickedSquareId){
+
+  if (whiteTurn && isHorse === "♘") {
+
   if (clickedSquareId === 10) {
     const forward8Step = clickedSquareId + 8;
     const forward16Step = clickedSquareId + 16;
@@ -989,6 +1378,266 @@ export function subDeadEnd(clickedSquareId){
       
 }
 
+localStorage.setItem("iwhiteTurn", "false");
 
+localStorage.setItem("iwhiteTurn", "false");
+
+let a  =   localStorage.getItem("iwhiteTurn");
+document.getElementById("turn").innerHTML = a;
+if(a === "false"){
+ document.getElementById("turn").innerHTML = "Black Turn: True <br> White Turn: False" ;
+}
+
+  }
+
+
+  if (!whiteTurn && isHorse === "♞") {
+
+    if (clickedSquareId === 10) {
+      const forward8Step = clickedSquareId + 8;
+      const forward16Step = clickedSquareId + 16;
+      const backward8Step = clickedSquareId - 8;
+  
+      const finalforward8Right = forward8Step + 2;
+      const finalBackward8Right = backward8Step + 2;
+  
+      const finalforward16Left = forward16Step - 1;
+      const finalforward16Right = forward16Step + 1;
+  
+      document
+        .getElementById(finalforward16Left.toString())
+        .classList.add("finalBackward8Right");
+  
+      document
+        .getElementById(finalforward16Right.toString())
+        .classList.add("horseforward16Left");
+  
+      document
+        .getElementById(finalforward8Right.toString())
+        .classList.add("finalBackward8Right");
+  
+      document
+        .getElementById(finalBackward8Right.toString())
+        .classList.add("finalBackward8Right");
+    
+    }
+  
+    if (clickedSquareId === 15) {
+      const forward8Step = clickedSquareId + 8;
+      const forward16Step = clickedSquareId + 16;
+      const backward8Step = clickedSquareId - 8;
+  
+      const finalBackward8Left = backward8Step - 2;
+  
+      const finalForwardd8Left = forward8Step - 2;
+  
+      const finalforward16Left = forward16Step - 1;
+      const finalforward16Right = forward16Step + 1;
+  
+      document
+        .getElementById(finalforward16Left.toString())
+        .classList.add("finalBackward8Right");
+  
+      document
+        .getElementById(finalforward16Right.toString())
+        .classList.add("horseforward16Left");
+  
+      document
+        .getElementById(finalBackward8Left.toString())
+        .classList.add("finalforward8Left");
+  
+      document
+        .getElementById(finalForwardd8Left.toString())
+        .classList.add("finalBackward8Right");
+    
+    }
+  
+  
+  
+  
+    if (clickedSquareId === 50) {
+      const forward8Step = clickedSquareId - 8;
+      const forward16Step = clickedSquareId - 16;
+      const backward8Step = clickedSquareId + 8;
+  
+      const finalforward8Right = forward8Step - 2;
+      const finalforward8Left = forward8Step + 2;
+      const finalBackward8Right = backward8Step + 2;
+  
+      const finalforward16Left = forward16Step + 1;
+      const finalforward16Right = forward16Step - 1;
+  
+      document
+        .getElementById(finalBackward8Right.toString())
+        .classList.add("finalBackward8Right");
+  
+      document
+        .getElementById(finalforward16Left.toString())
+        .classList.add("horseforward16Left");
+  
+      document
+        .getElementById(finalforward16Right.toString())
+        .classList.add("finalBackward8Right");
+  
+      document
+        .getElementById(finalforward8Left.toString())
+        .classList.add("finalBackward8Right");
+    }
+  
+    if (clickedSquareId === 55) {
+      const forward8Step = clickedSquareId - 8;
+      const forward16Step = clickedSquareId - 16;
+      const backward8Step = clickedSquareId + 8;
+  
+      const finalBackward8Left = backward8Step - 2;
+  
+      const finalForwardd8Left = forward8Step - 2;
+  
+      const finalforward16Left = forward16Step + 1;
+      const finalforward16Right = forward16Step - 1;
+  
+      document
+        .getElementById(finalforward16Left.toString())
+        .classList.add("finalBackward8Right");
+  
+      document
+        .getElementById(finalforward16Right.toString())
+        .classList.add("horseforward16Left");
+  
+      document
+        .getElementById(finalBackward8Left.toString())
+        .classList.add("finalforward8Left");
+  
+      document
+        .getElementById(finalForwardd8Left.toString())
+        .classList.add("finalBackward8Right");
+    
+    }
+  
+  
+    if( clickedSquareId === 18 || 
+        clickedSquareId === 26 || clickedSquareId === 34 || 
+        clickedSquareId === 42
+      
+      ){
+  
+        const forward8Step = clickedSquareId + 8;
+  
+        const forward16Step = clickedSquareId + 16;
+  
+        const backward8Step = clickedSquareId - 8;
+        const backward16Step = clickedSquareId - 16;
+    
+        const finalforward8Right = forward8Step + 2;
+  
+        const finalBackward8Right = backward8Step + 2;
+  
+    
+    
+        const finalforward16Left = forward16Step - 1;
+        const finalforward16Right = forward16Step + 1;
+  
+        const finalBackward16Left = backward16Step + 1;
+  
+        const finalBackward16Right = backward16Step - 1;
+    
+   
+        document
+        .getElementById(finalBackward16Left.toString())
+        .classList.add("finalBackward8Left");
+    
+    
+        document
+        .getElementById(finalBackward16Right.toString())
+        .classList.add("finalForward8Left");
+    
+  
+        document
+          .getElementById(finalforward16Left.toString())
+          .classList.add("finalBackward8Right");
+    
+        document
+          .getElementById(finalforward16Right.toString())
+          .classList.add("horseforward16Left");
+    
+        document
+          .getElementById(finalforward8Right.toString())
+          .classList.add("finalBackward8Right");
+    
+        document
+          .getElementById(finalBackward8Right.toString())
+          .classList.add("finalBackward8Right");
+          
+    }
+  
+  
+  
+  
+    if( clickedSquareId === 23 || 
+      clickedSquareId === 31 || clickedSquareId === 39 || 
+      clickedSquareId === 47
+    
+    ){
+  
+      const forward8Step = clickedSquareId + 8;
+  
+      const forward16Step = clickedSquareId + 16;
+  
+      const backward8Step = clickedSquareId - 8;
+      const backward16Step = clickedSquareId - 16;
+  
+      const finalforward8Left = forward8Step - 2;
+  
+      const finalBackward8Left = backward8Step - 2;
+  
+  
+  
+      const finalforward16Left = forward16Step - 1;
+      const finalforward16Right = forward16Step + 1;
+  
+      const finalBackward16Left = backward16Step + 1;
+  
+      const finalBackward16Right = backward16Step - 1;
+  
+  
+      document
+      .getElementById(finalBackward16Left.toString())
+      .classList.add("finalBackward8Left");
+  
+  
+      document
+      .getElementById(finalBackward16Right.toString())
+      .classList.add("finalForward8Left");
+  
+  
+      document
+        .getElementById(finalforward16Left.toString())
+        .classList.add("finalBackward8Right");
+  
+      document
+        .getElementById(finalforward16Right.toString())
+        .classList.add("horseforward16Left");
+  
+      document
+        .getElementById(finalforward8Left.toString())
+        .classList.add("finalBackward8Right");
+  
+      document
+        .getElementById(finalBackward8Left.toString())
+        .classList.add("finalBackward8Right");
+        
+  }
+  
+  localStorage.setItem("iwhiteTurn", "true");
+
+  let a  =   localStorage.getItem("iwhiteTurn");
+  document.getElementById("turn").innerHTML = a;
+  if(a === "true"){
+   document.getElementById("turn").innerHTML = "Black Turn: False <br> White Turn: True" ;
+  }
+
+  
+    }
+  
 
 }

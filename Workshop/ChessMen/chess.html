@@ -4,10 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chessboard</title>
+ 
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <title>Chessboard
+    </title>
     <style>
         * {
             font-family: 'Courier New', Courier, monospace;
+            
         }
 
         section {
@@ -16,6 +20,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            cursor: pointer;
         }
 
         .container {
@@ -112,18 +117,25 @@
         .pawn8step,.forward16Pawn,.highlightedPawn{
             background-color: greenyellow!important;
         }
+        p{
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
-
+    <br><br>
     <section>
 
 
         <div class="container" id="chessboard">
             <!-- Generate 64 squares -->
         </div>
+
+
     </section>
+
+    <p>  <span id="turn"></span></p>
     <!-- 
     <div style="text-align: center;">
         <h3> Black Deads: <span id="blackDead"></span> </h3>
@@ -138,6 +150,7 @@
         //         localStorage.clear()
     
         // });
+
 
     </script>
 

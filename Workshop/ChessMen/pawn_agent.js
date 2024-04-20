@@ -29,7 +29,7 @@ export function pawnAgent(event) {
     if (whiteTurn) {
 
 
-      alert("from white pawn");
+      console.log("from white pawn");
       let forward8Pawn = clickedSquareId - 8;
       let forward8DiagonalLeft = clickedSquareId - 8;
       let finalForward8DiagonalLeft = forward8DiagonalLeft - 1;
@@ -48,6 +48,14 @@ export function pawnAgent(event) {
 
 
       localStorage.setItem("iwhiteTurn", "false");
+      let a  =   localStorage.getItem("iwhiteTurn");
+      document.getElementById("turn").innerHTML = a;
+
+
+
+      if(a === "false"){
+       document.getElementById("turn").innerHTML = "Black Turn: True <br> White Turn: False" ;
+      }
     }
   } 
 
@@ -56,10 +64,8 @@ export function pawnAgent(event) {
 
     // Perform actions for black pawn
     if (!whiteTurn) {
-  
-  
 
-      alert("from black pawn");
+      console.log("from black pawn");
       // alert(clickedSquareId);
       let forward8Pawn = clickedSquareId + 8;
       let forward8DiagonalLeft = clickedSquareId + 8;
@@ -76,6 +82,10 @@ export function pawnAgent(event) {
 
       console.log("black forward---> " + forward8Pawn)
       localStorage.setItem("iwhiteTurn", "true");
+       let a  =   localStorage.getItem("iwhiteTurn");
+       if(a === "true"){
+        document.getElementById("turn").innerHTML = "Black Turn: False <br> White Turn: True" ;
+       }
     }
   }
 

@@ -11,7 +11,7 @@ export function rookMaster(clickedSquareId) {
 
 
   if (whiteTurn && isRook === "♖") {
-    alert("white turn")
+    console.log("white turn")
   if (clickedSquareId) {
     const sequenceLeft = [];
     const sequenceUp = [];
@@ -95,12 +95,17 @@ export function rookMaster(clickedSquareId) {
     });
   }
   localStorage.setItem("iwhiteTurn", "false");
+  let a  =   localStorage.getItem("iwhiteTurn");
+  document.getElementById("turn").innerHTML = a;
+  if(a === "false"){
+   document.getElementById("turn").innerHTML = "<p> Black Turn: True <br> White Turn: False </p>" ;
+  }
 }
 
 
 
 if (!whiteTurn && isRook === "♜") {
-  alert("black turn")
+  console.log("black turn")
   if (clickedSquareId) {
     const sequenceLeft = [];
     const sequenceUp = [];
@@ -185,6 +190,11 @@ if (!whiteTurn && isRook === "♜") {
   }
 
   localStorage.setItem("iwhiteTurn", "true");
+  let a  =   localStorage.getItem("iwhiteTurn");
+  document.getElementById("turn").innerHTML = a;
+  if(a === "true"){
+   document.getElementById("turn").innerHTML = "<p> Black Turn: False <br> White Turn: True </p>" ;
+  }
 }
 
 

@@ -1,3 +1,4 @@
+
 export function HorseForwardRightEnd(clickedSquareId) {
   const forward16Step = clickedSquareId + 16;
   const forward15StepLeft = clickedSquareId + 15;
@@ -8,91 +9,206 @@ export function HorseForwardRightEnd(clickedSquareId) {
   const finalBackward8StepLeftLeft = Bakward8StepLeftLeft - 2;
   const backward16Step = clickedSquareId - 16;
   const finalBackWar16LeftLeft = backward16Step - 1;
-  if (
-    clickedSquareId === 8 ||
-    clickedSquareId === 16 ||
-    clickedSquareId === 24 ||
-    clickedSquareId === 32 ||
-    clickedSquareId === 40 ||
-    clickedSquareId === 48
-  ) {
-    console.log("Right side cannot be calculated");
-    if (
-      document.getElementById(forward16Step.toString()).classList.add("horse")
-    );
-    if (
-      document
-        .getElementById(forward15StepLeft.toString())
-        .classList.add("Lefthorse")
-    );
+
+  let whiteTurn = localStorage.getItem("iwhiteTurn") === "true";
+
+  let horseNode = document.getElementById(clickedSquareId);
+  let isHorse = horseNode.innerHTML;
+
+
+  if (whiteTurn && isHorse === "♘") {
 
     if (
-      document
-        .getElementById(finalforward8StepLeftLeft.toString())
-        .classList.add("rightEndLeftLeft")
-    );
-    if (
-      document
-        .getElementById(finalBackward8StepLeftLeft.toString())
-        .classList.add("backward8LeftLeft")
-    );
-    if (
-      document
-        .getElementById(finalBackWar16LeftLeft.toString())
-        .classList.add("finalBackWar16LeftLeft")
-    );
+      clickedSquareId === 8 ||
+      clickedSquareId === 16 ||
+      clickedSquareId === 24 ||
+      clickedSquareId === 32 ||
+      clickedSquareId === 40 ||
+      clickedSquareId === 48
+    ) {
+      console.log("Right side cannot be calculated");
+      if (
+        document.getElementById(forward16Step.toString()).classList.add("horse")
+      );
+      if (
+        document
+          .getElementById(forward15StepLeft.toString())
+          .classList.add("Lefthorse")
+      );
+  
+      if (
+        document
+          .getElementById(finalforward8StepLeftLeft.toString())
+          .classList.add("rightEndLeftLeft")
+      );
+      if (
+        document
+          .getElementById(finalBackward8StepLeftLeft.toString())
+          .classList.add("backward8LeftLeft")
+      );
+      if (
+        document
+          .getElementById(finalBackWar16LeftLeft.toString())
+          .classList.add("finalBackWar16LeftLeft")
+      );
+    }
+  
+    if (clickedSquareId === 56) {
+      const forward8Step = clickedSquareId + 8;
+      const backward8Step = clickedSquareId - 8;
+      const forward8stepLeftLeft = forward8Step - 2;
+      const backward8stepLeftLeft = backward8Step - 2;
+  
+      const backward16Step = clickedSquareId - 16;
+      const backward16stepLeft = backward16Step - 1;
+  
+      if (
+        document
+          .getElementById(forward8stepLeftLeft.toString())
+          .classList.add("secondLast56Forward")
+      );
+      if (
+        document
+          .getElementById(backward8stepLeftLeft.toString())
+          .classList.add("secondLast56Backward")
+      );
+      if (
+        document
+          .getElementById(backward16stepLeft.toString())
+          .classList.add("backward16stepLeft")
+      );
+    }
+  
+    if (clickedSquareId === 64) {
+      const forward8Step = clickedSquareId + 8;
+      const backward8Step = clickedSquareId - 8;
+  
+      const forward8stepLeftLeft = forward8Step - 2;
+      const backward8stepLeftLeft = backward8Step - 2;
+  
+      const backward16Step = clickedSquareId - 16;
+      const backward16stepLeft = backward16Step - 1;
+  
+      if (
+        document
+          .getElementById(backward8stepLeftLeft.toString())
+          .classList.add("secondLast56Forward")
+      );
+      if (
+        document
+          .getElementById(backward16stepLeft.toString())
+          .classList.add("secondLast56Backward")
+      );
+  
+      
+    }
+    localStorage.setItem("iwhiteTurn", "false");
   }
 
-  if (clickedSquareId === 56) {
-    const forward8Step = clickedSquareId + 8;
-    const backward8Step = clickedSquareId - 8;
-    const forward8stepLeftLeft = forward8Step - 2;
-    const backward8stepLeftLeft = backward8Step - 2;
 
-    const backward16Step = clickedSquareId - 16;
-    const backward16stepLeft = backward16Step - 1;
+  if (!whiteTurn && isHorse === "♞") {
 
     if (
-      document
-        .getElementById(forward8stepLeftLeft.toString())
-        .classList.add("secondLast56Forward")
-    );
-    if (
-      document
-        .getElementById(backward8stepLeftLeft.toString())
-        .classList.add("secondLast56Backward")
-    );
-    if (
-      document
-        .getElementById(backward16stepLeft.toString())
-        .classList.add("backward16stepLeft")
-    );
+      clickedSquareId === 8 ||
+      clickedSquareId === 16 ||
+      clickedSquareId === 24 ||
+      clickedSquareId === 32 ||
+      clickedSquareId === 40 ||
+      clickedSquareId === 48
+    ) {
+      console.log("Right side cannot be calculated");
+      if (
+        document.getElementById(forward16Step.toString()).classList.add("horse")
+      );
+      if (
+        document
+          .getElementById(forward15StepLeft.toString())
+          .classList.add("Lefthorse")
+      );
+  
+      if (
+        document
+          .getElementById(finalforward8StepLeftLeft.toString())
+          .classList.add("rightEndLeftLeft")
+      );
+      if (
+        document
+          .getElementById(finalBackward8StepLeftLeft.toString())
+          .classList.add("backward8LeftLeft")
+      );
+      if (
+        document
+          .getElementById(finalBackWar16LeftLeft.toString())
+          .classList.add("finalBackWar16LeftLeft")
+      );
+    }
+  
+    if (clickedSquareId === 56) {
+      const forward8Step = clickedSquareId + 8;
+      const backward8Step = clickedSquareId - 8;
+      const forward8stepLeftLeft = forward8Step - 2;
+      const backward8stepLeftLeft = backward8Step - 2;
+  
+      const backward16Step = clickedSquareId - 16;
+      const backward16stepLeft = backward16Step - 1;
+  
+      if (
+        document
+          .getElementById(forward8stepLeftLeft.toString())
+          .classList.add("secondLast56Forward")
+      );
+      if (
+        document
+          .getElementById(backward8stepLeftLeft.toString())
+          .classList.add("secondLast56Backward")
+      );
+      if (
+        document
+          .getElementById(backward16stepLeft.toString())
+          .classList.add("backward16stepLeft")
+      );
+    }
+  
+    if (clickedSquareId === 64) {
+      const forward8Step = clickedSquareId + 8;
+      const backward8Step = clickedSquareId - 8;
+  
+      const forward8stepLeftLeft = forward8Step - 2;
+      const backward8stepLeftLeft = backward8Step - 2;
+  
+      const backward16Step = clickedSquareId - 16;
+      const backward16stepLeft = backward16Step - 1;
+  
+      if (
+        document
+          .getElementById(backward8stepLeftLeft.toString())
+          .classList.add("secondLast56Forward")
+      );
+      if (
+        document
+          .getElementById(backward16stepLeft.toString())
+          .classList.add("secondLast56Backward")
+      );
+  
+      
+    }
+    localStorage.setItem("iwhiteTurn", "true");
   }
 
-  if (clickedSquareId === 64) {
-    const forward8Step = clickedSquareId + 8;
-    const backward8Step = clickedSquareId - 8;
 
-    const forward8stepLeftLeft = forward8Step - 2;
-    const backward8stepLeftLeft = backward8Step - 2;
-
-    const backward16Step = clickedSquareId - 16;
-    const backward16stepLeft = backward16Step - 1;
-
-    if (
-      document
-        .getElementById(backward8stepLeftLeft.toString())
-        .classList.add("secondLast56Forward")
-    );
-    if (
-      document
-        .getElementById(backward16stepLeft.toString())
-        .classList.add("secondLast56Backward")
-    );
-  }
+  
 }
 
 export function HorseForwardLeftEnd(clickedSquareId, miscellaneous) {
+
+  let whiteTurn = localStorage.getItem("iwhiteTurn") === "true";
+
+  let horseNode = document.getElementById(clickedSquareId);
+  let isHorse = horseNode.innerHTML;
+
+
+  if (whiteTurn && isHorse === "♘") {
+
   if (
     clickedSquareId === 1 ||
     clickedSquareId === 9 ||
@@ -199,7 +315,129 @@ export function HorseForwardLeftEnd(clickedSquareId, miscellaneous) {
         .classList.add("secondLast56Backward")
     );
   }
+
+  localStorage.setItem("iwhiteTurn", "false");
+
 }
+
+
+if (whiteTurn && isHorse === "♞") {
+
+  if (
+    clickedSquareId === 1 ||
+    clickedSquareId === 9 ||
+    clickedSquareId === 17 ||
+    clickedSquareId === 25 ||
+    clickedSquareId === 33 ||
+    clickedSquareId === 41
+  ) {
+    console.log("Left side cannot be calculated");
+    const forward16Step = clickedSquareId + 16;
+    const backwar17StepRight = clickedSquareId + 17;
+    const forward15StepLeft = clickedSquareId + 0;
+    const backward8 = clickedSquareId - 8;
+    const backward8RightRight = backward8 + 2;
+    const backward16 = clickedSquareId - 17;
+
+    const backward16RightRight = backward16 + 2;
+
+    const forward8Step = clickedSquareId + 8;
+    const forward8int =
+      parseInt(forward8Step.toString().match(/\d+/)?.[0], 10) || null;
+    let backwar8StepLeftLeft;
+    backwar8StepLeftLeft = forward8int + 2;
+
+    if (
+      document
+        .getElementById(forward8Step.toString())
+        .classList.add("horse8step")
+    );
+
+    if (
+      document
+        .getElementById(backwar8StepLeftLeft?.toString())
+        .classList.add("forwardLeftLefthorse")
+    );
+
+    if (
+      document.getElementById(forward16Step.toString()).classList.add("horses")
+    );
+
+    if (
+      document
+        .getElementById(backwar17StepRight.toString())
+        .classList.add("Righthorse")
+    );
+    document.getElementById(forward15StepLeft.toString());
+
+    if (
+      document
+        .getElementById(backward8RightRight.toString())
+        .classList.add("backward8RightRight")
+    );
+
+    if (
+      document
+        .getElementById(backward16RightRight.toString())
+        .classList.add("backward16RightRight")
+    );
+  }
+
+  if (clickedSquareId === 49) {
+    const forward8Step = clickedSquareId + 8;
+    const backward8Step = clickedSquareId - 8;
+    const forward8stepLeftLeft = forward8Step + 2;
+    const backward8stepLeftLeft = backward8Step + 2;
+
+    const backward16Step = clickedSquareId - 16;
+    const backward16stepLeft = backward16Step + 1;
+
+    if (
+      document
+        .getElementById(forward8stepLeftLeft.toString())
+        .classList.add("secondLast56Forward")
+    );
+    if (
+      document
+        .getElementById(backward8stepLeftLeft.toString())
+        .classList.add("secondLast56Backward")
+    );
+    if (
+      document
+        .getElementById(backward16stepLeft.toString())
+        .classList.add("backward16stepLeft")
+    );
+  }
+  if (clickedSquareId === 57) {
+    const forward8Step = clickedSquareId + 8;
+    const backward8Step = clickedSquareId - 8;
+
+    const forward8stepLeftLeft = forward8Step + 2;
+    const backward8stepLeftLeft = backward8Step + 2;
+
+    const backward16Step = clickedSquareId - 16;
+    const backward16stepLeft = backward16Step + 1;
+
+    if (
+      document
+        .getElementById(backward8stepLeftLeft.toString())
+        .classList.add("secondLast56Forward")
+    );
+    if (
+      document
+        .getElementById(backward16stepLeft.toString())
+        .classList.add("secondLast56Backward")
+    );
+  }
+  localStorage.setItem("iwhiteTurn", "true");
+}
+
+
+
+
+}
+
+
 
 export function HorseMaster(clickedSquareId) {
   const forward8Step = clickedSquareId + 8;
@@ -265,6 +503,7 @@ export function HorseMaster(clickedSquareId) {
       .classList.add("finalBackward8Right")
   );
 }
+
 
 export function DeadEndMaster(clickedSquareId) {
 
@@ -507,8 +746,11 @@ export function DeadEndMaster(clickedSquareId) {
   
   }
 
+  
+
 
 }
+
 
 
 export function subDeadEnd(clickedSquareId){

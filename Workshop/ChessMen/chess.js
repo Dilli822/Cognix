@@ -9,7 +9,7 @@ import { pawnAgent } from "./pawn_agent.js";
 
 // Initialize localStorage
 localStorage.setItem("initial_blackTurn", false);
-localStorage.setItem("initial_whiteTurn", false);
+localStorage.setItem("initial_whiteTurn", true);
 
 let initial_whiteTurn = localStorage.getItem("initial_whiteTurn");
 let initial_blackTurn = localStorage.getItem("initial_blackTurn");

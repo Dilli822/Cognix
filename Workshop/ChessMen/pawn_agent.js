@@ -1,6 +1,4 @@
 
-
-
 import { generateSquare, pieces, squares } from "./chess.js";
 
 export function pawnAgent(event) {

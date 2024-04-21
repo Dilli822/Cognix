@@ -118,13 +118,14 @@ export const pieces = [
 
   // "♟", "♟", "♟", "♟", "♟", "♟", "♟", "♟",
   // // "♙", "♙", "♙", "♙", "♙", "♙", "♙", "♙",
-  "", "", "", "", "", "", "", "",
-  "", "", "", "", "", "", "", "",
+
+  "", "", "♙", "♟", "", "", "", "",
+  "", "♙", "", "", "", "", "", "",
 
 
   // "♟", "♟", "♟", "♟", "♟", "♟", "♟", "♟",
-  "", "", "", "", "", "", "", "",
-  "♙", "", "♙", "♟", "", "", "", "",
+  "♟", "", "", "", "", "", "", "",
+  "♙", "♟", "♙", "", "", "", "", "",
 
   "♙", "♙", "♙", "♙", "♙", "♙", "♙", "♙",
   "", "", "", "", "", "", "", "",
@@ -279,16 +280,12 @@ export function handleClick(event) {
   }
 
 
-
-
   initial_whiteTurn = localStorage.getItem("initial_whiteTurn");
   initial_blackTurn = localStorage.getItem("initial_blackTurn");
 
 
-
   if (initial_blackTurn === "false" && initial_whiteTurn === "false") {
 
-  
     console.log("GAME IS STARTED!");
     
     pawnAgent(event);
@@ -308,8 +305,6 @@ export function handleClick(event) {
 export const squares = document.querySelectorAll(".square");
 squares.forEach((square) => {
   square.addEventListener("click", handleClick);
-
-
 });
 
 

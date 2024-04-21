@@ -8,7 +8,11 @@ export function pawnAgent(event) {
   let pawnNode = document.getElementById(clickedSquareId);
   let isPawn = pawnNode.innerHTML;
 
+  let initialLength;
+  let newLength;
 
+  console.log("initial length at first " + initialLength);
+  console.log("new length at first " + newLength);
 
   // Check if the clicked square contains a pawn
   let whiteTurn = localStorage.getItem("iwhiteTurn") === "true";
@@ -36,8 +40,6 @@ export function pawnAgent(event) {
 
       // alert(typeof(forward8Pawn))
 
-      console.log("white forward---> " + forward8Pawn);
-
       document
         .getElementById(forward8Pawn.toString())
         .classList.add("highlightedPawn");
@@ -50,7 +52,7 @@ export function pawnAgent(event) {
       // Add event listeners
 
       // Check conditions
-      if ((
+      if (
         document.getElementById(finalForward8DiagonalLeft.toString())
           .textContent === "♟" ||
         document.getElementById(finalForward8DiagonalLeft.toString())
@@ -62,9 +64,9 @@ export function pawnAgent(event) {
         document.getElementById(finalForward8DiagonalLeft.toString())
           .textContent === "♚" ||
         document.getElementById(finalForward8DiagonalLeft.toString())
-          .textContent === "♛")
+          .textContent === "♛"
       ) {
-        alert("no one or opponent is at the diagonal side left");
+        console.log("enemies at the left side");
 
         // Get the DOM elements
         let pawnDiagonalLeftElement = document.getElementById(
@@ -80,62 +82,14 @@ export function pawnAgent(event) {
           originalPawnPlace.innerHTML = "";
           pawnDiagonalLeftElement.innerHTML = "♙";
 
-          // Get the eliminated pawn from localStorage
-          let eliminatedPawns =
-            JSON.parse(localStorage.getItem("eliminatedBlacks")) || [];
-        
-     
+          // Check for layout change
+          var oldChess = localStorage.getItem("newChessboardLayout");
 
-                             // Get the initial length of eliminatedPawns
-var initialLength = eliminatedPawns.length;
-alert(initialLength)
+          // Update the layout on the chessboard
+          printLayout();
 
-// Push the eliminated pawn to the array
-     // Push the eliminated pawn to the array
-     eliminatedPawns.push(pawnDiagonalLeftContent);
-// Get the length after pushing the new pawn
-var newLength = eliminatedPawns.length;
-
-
-
-          // Store the updated eliminatedPawns array back to localStorage
-          localStorage.setItem(
-            "eliminatedBlacks",
-            JSON.stringify(eliminatedPawns)
-          );
-
-                  // Check for layout change
-        let oldChess = localStorage.getItem("newChessboardLayout");
-
-        // Update the layout
-        printLayout();
-
-        if (oldChess !== localStorage.getItem("newChessboardLayout")) {
-            alert("Chessboard layout has changed!");
-
-
-            localStorage.setItem("iwhiteTurn", "false");
-            let a = localStorage.getItem("iwhiteTurn");
-            document.getElementById("turn").innerHTML = a;
-        
-            if (a === "false") {
-              document.getElementById("turn").innerHTML =
-                "Black Turn: True <br> White Turn: False";
-            }
-        }
-
-        // Compare the lengths and alert if they are different
-if (newLength !== initialLength && newLength >0 ) {
-  alert("xxxxx KILLINGS LEFT XXXXX!");
-
-  localStorage.setItem("iwhiteTurn", "true");
-}
-
-
-          alert("Pawn moved and eliminated pawn stored!");
+          var newChess = localStorage.getItem("newChessboardLayout");
         });
-
-
       }
 
       if (
@@ -152,8 +106,7 @@ if (newLength !== initialLength && newLength >0 ) {
         document.getElementById(forward8Pawn.toString()).textContent !== "♖" &&
         document.getElementById(forward8Pawn.toString()).textContent !== "♗" &&
         document.getElementById(forward8Pawn.toString()).textContent !== "♕"
-    ) { 
-        alert("no one or opponent is at the diagonal FORWARD");
+      ) {
         let originalPawnPlace = document.getElementById(
           clickedSquareId.toString()
         );
@@ -162,71 +115,67 @@ if (newLength !== initialLength && newLength >0 ) {
         );
 
         pawnDiagonalForwardElement.addEventListener("click", function () {
-          // Set the innerHTML of the DOM element
-
+          // Clear the original pawn place and set the diagonal pawn to "♙"
           originalPawnPlace.innerHTML = "";
           pawnDiagonalForwardElement.innerHTML = "♙";
 
+          // Get the current and previous chessboard layouts from localStorage
+          let oldChess = localStorage.getItem("newChessboardLayout");
+
+          // Update the layout on the chessboard
+          printLayout();
+
+          let newChess = localStorage.getItem("newChessboardLayout");
+
+          // Check if the layout has changed
+          if (oldChess === newChess) {
+            alert("No layout change, something went wrong!");
+            return; // Exit the function if no layout change
+          }
+
+          // Get the eliminated pawns from localStorage
           let eliminatedPawns =
-          JSON.parse(localStorage.getItem("eliminatedBlacks")) || [];
+            JSON.parse(localStorage.getItem("eliminatedBlacks")) || [];
 
+          // Count the number of black pawns in the new chess layout
+          let blackPawnCount = (newChess.match(/♟/g) || []).length;
 
-                    // Get the initial length of eliminatedPawns
-let initialLength = eliminatedPawns.length;
-alert(initialLength)
+          // If eliminatedPawns length is greater than blackPawnCount, balance it
+          if (eliminatedPawns.length > blackPawnCount) {
+            // Calculate the excess eliminated pawns
+            let excessEliminated = eliminatedPawns.length - blackPawnCount;
 
-// Push the eliminated pawn to the array
- // Push the eliminated pawn to the array
- eliminatedPawns.push(pawnDiagonalForwardElement);
+            // Remove excess eliminated pawns from the beginning of the array
+            eliminatedPawns.splice(0, excessEliminated);
 
-// Get the length after pushing the new pawn
-let newLength = eliminatedPawns.length;
+            // Save the balanced eliminatedPawns array back to localStorage
+            localStorage.setItem(
+              "eliminatedBlacks",
+              JSON.stringify(eliminatedPawns)
+            );
+          }
 
+          // Push the eliminated pawn to the eliminatedPawns array
+          eliminatedPawns.push(originalPawnPlace.innerHTML);
 
-// Compare the lengths and alert if they are different
-if (newLength !== initialLength) {
-  alert("xxxxx KILLINGS XXXXX AT FORWAR!");
-}
+          // Save the updated eliminatedPawns array back to localStorage
+          localStorage.setItem(
+            "eliminatedBlacks",
+            JSON.stringify(eliminatedPawns)
+          );
 
-
-
-       
-
-        // Store the updated eliminatedPawns array back to localStorage
-        localStorage.setItem(
-          "eliminatedBlacks",
-          JSON.stringify(eliminatedPawns)
-        );
-
-        // Check for layout change
-        let oldChess = localStorage.getItem("newChessboardLayout");
-
-        // Update the layout
-        printLayout();
-
-        if (oldChess !== localStorage.getItem("newChessboardLayout")) {
-            alert("Chessboard layout has changed!");
-
-
+          // Check if the layout change indicates it's white's turn
+          if (oldChess !== newChess) {
+            alert("Pawn moved and layout changed, it's black's turn.");
             localStorage.setItem("iwhiteTurn", "false");
-            let a = localStorage.getItem("iwhiteTurn");
-            document.getElementById("turn").innerHTML = a;
-        
-            if (a === "false") {
-              document.getElementById("turn").innerHTML =
-                "Black Turn: True <br> White Turn: False";
-            }
-        }
-        alert("Pawn moved and eliminated pawn stored!");
-      });
-
-     
-
-       }
-
+          } else {
+            alert("Pawn moved but layout didn't change, something went wrong!");
+            localStorage.setItem("iwhiteTurn", "true");
+          }
+        });
+      }
 
       if (
-         (
         document.getElementById(finalForward8DiagonalRight.toString())
           .textContent === "♟" ||
         document.getElementById(finalForward8DiagonalRight.toString())
@@ -239,10 +188,7 @@ if (newLength !== initialLength) {
           .textContent === "♚" ||
         document.getElementById(finalForward8DiagonalRight.toString())
           .textContent === "♛"
-          )
       ) {
-
-
         alert("no one or opponent is at the diagonal side right");
 
         let pawnDiagonalRightElement = document.getElementById(
@@ -254,103 +200,352 @@ if (newLength !== initialLength) {
 
         let pawnDiagonalRightContent = pawnDiagonalRightElement.innerHTML;
         pawnDiagonalRightElement.addEventListener("click", function () {
-          // Set the innerHTML of the DOM element
-
+          // Clear the original pawn place and set the diagonal pawn to "♙"
           originalPawnPlace.innerHTML = "";
-          pawnDiagonalRightElement.innerHTML = "♙";
+          pawnDiagonalRightElement.innerHTML = "♟";
+
+          // Get the current and previous chessboard layouts from localStorage
+          let oldChess = localStorage.getItem("newChessboardLayout");
+
+          // Update the layout on the chessboard
+          printLayout();
+
+          let newChess = localStorage.getItem("newChessboardLayout");
+
+          // Check if the layout has changed
+          if (oldChess === newChess) {
+            alert("No layout change, something went wrong!");
+            return; // Exit the function if no layout change
+          }
+
+          // Get the eliminated pawns from localStorage
           let eliminatedPawns =
-          JSON.parse(localStorage.getItem("eliminatedBlacks")) || [];
-  
-  
+            JSON.parse(localStorage.getItem("eliminatedBlacks")) || [];
 
+          // Count the number of black pawns in the new chess layout
+          let blackPawnCount = (newChess.match(/♟/g) || []).length;
 
+          // If eliminatedPawns length is greater than blackPawnCount, balance it
+          if (eliminatedPawns.length > blackPawnCount) {
+            // Calculate the excess eliminated pawns
+            let excessEliminated = eliminatedPawns.length - blackPawnCount;
 
-                    // Get the initial length of eliminatedPawns
-                    let initialLength = eliminatedPawns.length;
-                    alert(initialLength)
-                    
-                    // Push the eliminated pawn to the array
-                     // Push the eliminated pawn to the array
-                     eliminatedPawns.push(pawnDiagonalRightElement);
-                    
-                    // Get the length after pushing the new pawn
-                    let newLength = eliminatedPawns.length;
-                    
-                    
-                    // Compare the lengths and alert if they are different
-                    if (newLength !== initialLength) {
-                      alert("xxxxx KILLINGS XXXXX AT RIGHT!");
-                    }
-                    
+            // Remove excess eliminated pawns from the beginning of the array
+            eliminatedPawns.splice(0, excessEliminated);
 
-        
-        // Check for layout change
-        let oldChess = localStorage.getItem("newChessboardLayout");
+            // Save the balanced eliminatedPawns array back to localStorage
+            localStorage.setItem(
+              "eliminatedBlacks",
+              JSON.stringify(eliminatedPawns)
+            );
+          }
 
-        // Update the layout
-        printLayout();
+          // Push the eliminated pawn to the eliminatedPawns array
+          eliminatedPawns.push(originalPawnPlace.innerHTML);
 
-        if (oldChess !== localStorage.getItem("newChessboardLayout")) {
-            alert("Chessboard layout has changed!");
+          // Save the updated eliminatedPawns array back to localStorage
+          localStorage.setItem(
+            "eliminatedBlacks",
+            JSON.stringify(eliminatedPawns)
+          );
 
-
+          // Check if the layout change indicates it's white's turn
+          if (oldChess !== newChess) {
+            alert("Pawn moved and layout changed, it's black's turn.");
             localStorage.setItem("iwhiteTurn", "false");
-            let a = localStorage.getItem("iwhiteTurn");
-            document.getElementById("turn").innerHTML = a;
-        
-            if (a === "false") {
-              document.getElementById("turn").innerHTML =
-                "Black Turn: True <br> White Turn: False";
-            }
-        }
-
-          alert("character move to the right side ");
+          } else {
+            alert("Pawn moved but layout didn't change, something went wrong!");
+            localStorage.setItem("iwhiteTurn", "true");
+          }
         });
-
       }
     }
-
-            // Compare the lengths and alert if they are different
-            if (newLength !== initialLength && newLength > 0 ) {
-              alert("xxxxx KILLINGS XXXXX!");
-            
-              localStorage.setItem("iwhiteTurn", "true");
-            }
-
-
-
   }
 
-  if (isPawn === "♟") {
-    // Add border to clicked square
+  
 
-    // Perform actions for black pawn
+
+  if (isPawn === "♟") {
+    // Perform actions for white pawn
     if (!whiteTurn) {
-      console.log("from black pawn");
-      // alert(clickedSquareId);
+      console.log("from white pawn");
       let forward8Pawn = clickedSquareId + 8;
       let forward8DiagonalLeft = clickedSquareId + 8;
       let finalForward8DiagonalLeft = forward8DiagonalLeft - 1;
       let forward8DiagonalRight = clickedSquareId + 8;
       let finalForward8DiagonalRight = forward8DiagonalRight + 1;
 
+      // alert(typeof(forward8Pawn))
+
       document
         .getElementById(forward8Pawn.toString())
         .classList.add("highlightedPawn");
       document
         .getElementById(finalForward8DiagonalLeft.toString())
-        .classList.add("highlightedPawn");
+        .classList.add("highlightedPawnLeft");
       document
         .getElementById(finalForward8DiagonalRight.toString())
-        .classList.add("highlightedPawn");
+        .classList.add("highlightedPawnRight");
+      // Add event listeners
 
-      console.log("black forward---> " + forward8Pawn);
-      localStorage.setItem("iwhiteTurn", "true");
-      let a = localStorage.getItem("iwhiteTurn");
-      if (a === "true") {
-        document.getElementById("turn").innerHTML =
-          "Black Turn: False <br> White Turn: True";
+      // Check conditions
+      if (
+        document.getElementById(finalForward8DiagonalLeft.toString())
+          .textContent === "♙" ||
+        document.getElementById(finalForward8DiagonalLeft.toString())
+          .textContent === "♖" ||
+        document.getElementById(finalForward8DiagonalLeft.toString())
+          .textContent === "♘" ||
+        document.getElementById(finalForward8DiagonalLeft.toString())
+          .textContent === "♗" ||
+        document.getElementById(finalForward8DiagonalLeft.toString())
+          .textContent === "♔" ||
+        document.getElementById(finalForward8DiagonalLeft.toString())
+          .textContent === "♕"
+      ) {
+        console.log("enemies at the left side");
+
+        // Get the DOM elements
+        let pawnDiagonalLeftElement = document.getElementById(
+          finalForward8DiagonalLeft.toString()
+        );
+        let originalPawnPlace = document.getElementById(
+          clickedSquareId.toString()
+        );
+        let pawnDiagonalLeftContent = pawnDiagonalLeftElement.innerHTML;
+        // Add event listener to the DOM element
+        
+
+        pawnDiagonalLeftElement.addEventListener("click", function () {
+          // Clear the original pawn place and set the diagonal pawn to "♙"
+          originalPawnPlace.innerHTML = "";
+          pawnDiagonalLeftElement.innerHTML = "♟";
+
+          // Get the current and previous chessboard layouts from localStorage
+          let oldChess = localStorage.getItem("newChessboardLayout");
+
+          // Update the layout on the chessboard
+          printLayout();
+
+          let newChess = localStorage.getItem("newChessboardLayout");
+
+          // Check if the layout has changed
+          if (oldChess === newChess) {
+            alert("No layout change, something went wrong!");
+            return; // Exit the function if no layout change
+          }
+
+          // Get the eliminated pawns from localStorage
+          let eliminatedPawns =
+            JSON.parse(localStorage.getItem("eliminatedWhites")) || [];
+
+          // Count the number of black pawns in the new chess layout
+          let blackPawnCount = (newChess.match(/♙/g) || []).length;
+
+          // If eliminatedPawns length is greater than blackPawnCount, balance it
+          if (eliminatedPawns.length > blackPawnCount) {
+            // Calculate the excess eliminated pawns
+            let excessEliminated = eliminatedPawns.length - blackPawnCount;
+
+            // Remove excess eliminated pawns from the beginning of the array
+            eliminatedPawns.splice(0, excessEliminated);
+
+            // Save the balanced eliminatedPawns array back to localStorage
+            localStorage.setItem(
+              "eliminatedWhites",
+              JSON.stringify(eliminatedPawns)
+            );
+          }
+
+          // Push the eliminated pawn to the eliminatedPawns array
+          eliminatedPawns.push(originalPawnPlace.innerHTML);
+
+          // Save the updated eliminatedPawns array back to localStorage
+          localStorage.setItem(
+            "eliminatedWhites",
+            JSON.stringify(eliminatedPawns)
+          );
+
+          // Check if the layout change indicates it's white's turn
+          if (oldChess !== newChess) {
+            alert("Pawn moved and layout changed, it's black's turn.");
+            localStorage.setItem("iwhiteTurn", "false");
+          } else {
+            alert("Pawn moved but layout didn't change, something went wrong!");
+            localStorage.setItem("iwhiteTurn", "true");
+          }
+        });
+      }
+
+      if (
+        document.getElementById(forward8Pawn.toString()).textContent === "" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♟" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♜" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♞" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♝" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♚" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♛" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♙" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♔" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♘" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♖" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♗" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♕"
+      ) {
+        let originalPawnPlace = document.getElementById(
+          clickedSquareId.toString()
+        );
+        let pawnDiagonalForwardElement = document.getElementById(
+          forward8Pawn.toString()
+        );
+
+        pawnDiagonalForwardElement.addEventListener("click", function () {
+          // Clear the original pawn place and set the diagonal pawn to "♙"
+          originalPawnPlace.innerHTML = "";
+          pawnDiagonalForwardElement.innerHTML = "♟";
+
+          // Get the current and previous chessboard layouts from localStorage
+          let oldChess = localStorage.getItem("newChessboardLayout");
+
+          // Update the layout on the chessboard
+          printLayout();
+
+          let newChess = localStorage.getItem("newChessboardLayout");
+
+          // Check if the layout has changed
+          if (oldChess === newChess) {
+            alert("No layout change, something went wrong!");
+            return; // Exit the function if no layout change
+          }
+
+          // Get the eliminated pawns from localStorage
+          let eliminatedPawns =
+            JSON.parse(localStorage.getItem("eliminatedWhites")) || [];
+
+          // Count the number of black pawns in the new chess layout
+          let blackPawnCount = (newChess.match(/♙/g) || []).length;
+
+          // If eliminatedPawns length is greater than blackPawnCount, balance it
+          if (eliminatedPawns.length > blackPawnCount) {
+            // Calculate the excess eliminated pawns
+            let excessEliminated = eliminatedPawns.length - blackPawnCount;
+
+            // Remove excess eliminated pawns from the beginning of the array
+            eliminatedPawns.splice(0, excessEliminated);
+
+            // Save the balanced eliminatedPawns array back to localStorage
+            localStorage.setItem(
+              "eliminatedWhites",
+              JSON.stringify(eliminatedPawns)
+            );
+          }
+
+          // Push the eliminated pawn to the eliminatedPawns array
+          eliminatedPawns.push(originalPawnPlace.innerHTML);
+
+          // Save the updated eliminatedPawns array back to localStorage
+          localStorage.setItem(
+            "eliminatedWhites",
+            JSON.stringify(eliminatedPawns)
+          );
+
+          // Check if the layout change indicates it's white's turn
+          if (oldChess !== newChess) {
+            alert("Pawn moved and layout changed, it's white's turn.");
+            localStorage.setItem("iwhiteTurn", "true");
+          } else {
+            alert("Pawn moved but layout didn't change, something went wrong!");
+            localStorage.setItem("iwhiteTurn", "false");
+          }
+        });
+      }
+
+      if (
+        document.getElementById(finalForward8DiagonalRight.toString())
+          .textContent === "♙" ||
+        document.getElementById(finalForward8DiagonalRight.toString())
+          .textContent === "♖" ||
+        document.getElementById(finalForward8DiagonalRight.toString())
+          .textContent === "♘" ||
+        document.getElementById(finalForward8DiagonalRight.toString())
+          .textContent === "♗" ||
+        document.getElementById(finalForward8DiagonalRight.toString())
+          .textContent === "♔" ||
+        document.getElementById(finalForward8DiagonalRight.toString())
+          .textContent === "♕"
+      ) {
+        alert("no one or opponent is at the diagonal side right");
+
+        let pawnDiagonalRightElement = document.getElementById(
+          finalForward8DiagonalRight.toString()
+        );
+        let originalPawnPlace = document.getElementById(
+          clickedSquareId.toString()
+        );
+
+        let pawnDiagonalRightContent = pawnDiagonalRightElement.innerHTML;
+
+        pawnDiagonalRightElement.addEventListener("click", function () {
+          // Clear the original pawn place and set the diagonal pawn to "♙"
+          originalPawnPlace.innerHTML = "";
+          pawnDiagonalRightElement.innerHTML = "♟";
+
+          // Get the current and previous chessboard layouts from localStorage
+          let oldChess = localStorage.getItem("newChessboardLayout");
+
+          // Update the layout on the chessboard
+          printLayout();
+
+          let newChess = localStorage.getItem("newChessboardLayout");
+
+          // Check if the layout has changed
+          if (oldChess === newChess) {
+            alert("No layout change, something went wrong!");
+            return; // Exit the function if no layout change
+          }
+
+          // Get the eliminated pawns from localStorage
+          let eliminatedPawns =
+            JSON.parse(localStorage.getItem("eliminatedWhites")) || [];
+
+          // Count the number of black pawns in the new chess layout
+          let blackPawnCount = (newChess.match(/♙/g) || []).length;
+
+          // If eliminatedPawns length is greater than blackPawnCount, balance it
+          if (eliminatedPawns.length > blackPawnCount) {
+            // Calculate the excess eliminated pawns
+            let excessEliminated = eliminatedPawns.length - blackPawnCount;
+
+            // Remove excess eliminated pawns from the beginning of the array
+            eliminatedPawns.splice(0, excessEliminated);
+
+            // Save the balanced eliminatedPawns array back to localStorage
+            localStorage.setItem(
+              "eliminatedWhites",
+              JSON.stringify(eliminatedPawns)
+            );
+          }
+
+          // Push the eliminated pawn to the eliminatedPawns array
+          eliminatedPawns.push(originalPawnPlace.innerHTML);
+
+          // Save the updated eliminatedPawns array back to localStorage
+          localStorage.setItem(
+            "eliminatedWhites",
+            JSON.stringify(eliminatedPawns)
+          );
+
+          // Check if the layout change indicates it's white's turn
+          if (oldChess !== newChess) {
+            alert("Pawn moved and layout changed, it's white's turn.");
+            localStorage.setItem("iwhiteTurn", "true");
+          } else {
+            alert("Pawn moved but layout didn't change, something went wrong!");
+            localStorage.setItem("iwhiteTurn", "false");
+          }
+        });
       }
     }
   }
+
 }

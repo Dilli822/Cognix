@@ -8,7 +8,7 @@ export function pawnAgent(event) {
   let pawnNode = document.getElementById(clickedSquareId);
   let isPawn = pawnNode.innerHTML;
 
-  let validator;
+
 
   // Check if the clicked square contains a pawn
   let whiteTurn = localStorage.getItem("iwhiteTurn") === "true";
@@ -50,9 +50,7 @@ export function pawnAgent(event) {
       // Add event listeners
 
       // Check conditions
-      if (
-        document.getElementById(finalForward8DiagonalLeft.toString())
-          .textContent === "" && (
+      if ((
         document.getElementById(finalForward8DiagonalLeft.toString())
           .textContent === "♟" ||
         document.getElementById(finalForward8DiagonalLeft.toString())
@@ -94,24 +92,37 @@ export function pawnAgent(event) {
             "eliminatedBlacks",
             JSON.stringify(eliminatedPawns)
           );
+
+                  // Check for layout change
+        let oldChess = localStorage.getItem("newChessboardLayout");
+
+        // Update the layout
+        printLayout();
+
+        if (oldChess !== localStorage.getItem("newChessboardLayout")) {
+            alert("Chessboard layout has changed!");
+
+
+            localStorage.setItem("iwhiteTurn", "false");
+            let a = localStorage.getItem("iwhiteTurn");
+            document.getElementById("turn").innerHTML = a;
+        
+            if (a === "false") {
+              document.getElementById("turn").innerHTML =
+                "Black Turn: True <br> White Turn: False";
+            }
+        }
+
           alert("Pawn moved and eliminated pawn stored!");
         });
 
-        localStorage.setItem("iwhiteTurn", "false");
-        let a = localStorage.getItem("iwhiteTurn");
-        document.getElementById("turn").innerHTML = a;
-    
-        if (a === "false") {
-          document.getElementById("turn").innerHTML =
-            "Black Turn: True <br> White Turn: False";
-        }
+
       }
 
       if (
         document.getElementById(forward8Pawn.toString())
           .textContent === "" ||
-        document.getElementById(forward8Pawn.toString())
-          .textContent === "" ||
+
         document.getElementById(forward8Pawn.toString())
           .textContent === "♟" ||
         document.getElementById(forward8Pawn.toString())
@@ -159,50 +170,27 @@ export function pawnAgent(event) {
 
         if (oldChess !== localStorage.getItem("newChessboardLayout")) {
             alert("Chessboard layout has changed!");
-            validator = true;
+
+
+            localStorage.setItem("iwhiteTurn", "false");
+            let a = localStorage.getItem("iwhiteTurn");
+            document.getElementById("turn").innerHTML = a;
+        
+            if (a === "false") {
+              document.getElementById("turn").innerHTML =
+                "Black Turn: True <br> White Turn: False";
+            }
         }
-
-
-        if (oldChess === localStorage.getItem("newChessboardLayout")) {
-          alert("Chessboard layout has changed!");
-          validator = false;
-      }
-
-
-
         alert("Pawn moved and eliminated pawn stored!");
       });
 
-      if(validator === true){
-        localStorage.setItem("iwhiteTurn", "false");
-        let a = localStorage.getItem("iwhiteTurn");
-        document.getElementById("turn").innerHTML = a;
-    
-        if (a === "false") {
-          document.getElementById("turn").innerHTML =
-            "Black Turn: True <br> White Turn: False";
-        }
-      }
+     
 
-      if(validator === false){
-        localStorage.setItem("iwhiteTurn", "true");
-        let a = localStorage.getItem("iwhiteTurn");
-        document.getElementById("turn").innerHTML = a;
-    
-        if (a === "false") {
-          document.getElementById("turn").innerHTML =
-            "Black Turn: False <br> White Turn: True";
-        }
-      }
-
-    }
+       }
 
 
       if (
-        document.getElementById(finalForward8DiagonalRight.toString())
-          .textContent === "" && (
-        document.getElementById(finalForward8DiagonalRight.toString())
-          .textContent === "" ||
+         (
         document.getElementById(finalForward8DiagonalRight.toString())
           .textContent === "♟" ||
         document.getElementById(finalForward8DiagonalRight.toString())
@@ -218,18 +206,17 @@ export function pawnAgent(event) {
           )
       ) {
 
-        let finalForward8DiagonalRightElement = document.getElementById(
-          forward8Pawn.toString()
-        );
 
         alert("no one or opponent is at the diagonal side right");
+
+        let pawnDiagonalRightElement = document.getElementById(
+          finalForward8DiagonalRight.toString()
+        );
         let originalPawnPlace = document.getElementById(
           clickedSquareId.toString()
         );
-        let pawnDiagonalRightElement = document.getElementById(
-          finalForward8DiagonalRightElement.toString()
-        );
 
+        let pawnDiagonalRightContent = pawnDiagonalRightElement.innerHTML;
         pawnDiagonalRightElement.addEventListener("click", function () {
           // Set the innerHTML of the DOM element
 
@@ -239,21 +226,29 @@ export function pawnAgent(event) {
           JSON.parse(localStorage.getItem("eliminatedBlacks")) || [];
   
         // Push the eliminated pawn to the array
-        eliminatedPawns.push(finalForward8DiagonalRightElement);
+        eliminatedPawns.push(pawnDiagonalRightContent);
+        // Check for layout change
+        let oldChess = localStorage.getItem("newChessboardLayout");
 
-          alert();
-        });
+        // Update the layout
+        printLayout();
 
-        if(validator){
-          localStorage.setItem("iwhiteTurn", "false");
-          let a = localStorage.getItem("iwhiteTurn");
-          document.getElementById("turn").innerHTML = a;
-      
-          if (a === "false") {
-            document.getElementById("turn").innerHTML =
-              "Black Turn: True <br> White Turn: False";
-          }
+        if (oldChess !== localStorage.getItem("newChessboardLayout")) {
+            alert("Chessboard layout has changed!");
+
+
+            localStorage.setItem("iwhiteTurn", "false");
+            let a = localStorage.getItem("iwhiteTurn");
+            document.getElementById("turn").innerHTML = a;
+        
+            if (a === "false") {
+              document.getElementById("turn").innerHTML =
+                "Black Turn: True <br> White Turn: False";
+            }
         }
+
+          alert("character move to the right side ");
+        });
 
       }
     }

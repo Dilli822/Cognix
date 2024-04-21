@@ -83,9 +83,20 @@ export function pawnAgent(event) {
           // Get the eliminated pawn from localStorage
           let eliminatedPawns =
             JSON.parse(localStorage.getItem("eliminatedBlacks")) || [];
+        
+     
 
-          // Push the eliminated pawn to the array
-          eliminatedPawns.push(pawnDiagonalLeftContent);
+                             // Get the initial length of eliminatedPawns
+var initialLength = eliminatedPawns.length;
+alert(initialLength)
+
+// Push the eliminated pawn to the array
+     // Push the eliminated pawn to the array
+     eliminatedPawns.push(pawnDiagonalLeftContent);
+// Get the length after pushing the new pawn
+var newLength = eliminatedPawns.length;
+
+
 
           // Store the updated eliminatedPawns array back to localStorage
           localStorage.setItem(
@@ -113,6 +124,14 @@ export function pawnAgent(event) {
             }
         }
 
+        // Compare the lengths and alert if they are different
+if (newLength !== initialLength && newLength >0 ) {
+  alert("xxxxx KILLINGS LEFT XXXXX!");
+
+  localStorage.setItem("iwhiteTurn", "true");
+}
+
+
           alert("Pawn moved and eliminated pawn stored!");
         });
 
@@ -120,23 +139,21 @@ export function pawnAgent(event) {
       }
 
       if (
-        document.getElementById(forward8Pawn.toString())
-          .textContent === "" ||
-
-        document.getElementById(forward8Pawn.toString())
-          .textContent === "♟" ||
-        document.getElementById(forward8Pawn.toString())
-          .textContent === "♜" ||
-        document.getElementById(forward8Pawn.toString())
-          .textContent === "♞" ||
-        document.getElementById(forward8Pawn.toString())
-          .textContent === "♝" ||
-        document.getElementById(forward8Pawn.toString())
-          .textContent === "♚" ||
-        document.getElementById(forward8Pawn.toString())
-          .textContent === "♛"
-      ) {
-        alert("no one or opponent is at the diagonal side right");
+        document.getElementById(forward8Pawn.toString()).textContent === "" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♟" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♜" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♞" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♝" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♚" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♛" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♙" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♔" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♘" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♖" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♗" &&
+        document.getElementById(forward8Pawn.toString()).textContent !== "♕"
+    ) { 
+        alert("no one or opponent is at the diagonal FORWARD");
         let originalPawnPlace = document.getElementById(
           clickedSquareId.toString()
         );
@@ -153,8 +170,27 @@ export function pawnAgent(event) {
           let eliminatedPawns =
           JSON.parse(localStorage.getItem("eliminatedBlacks")) || [];
 
-        // Push the eliminated pawn to the array
-        eliminatedPawns.push(pawnDiagonalForwardElement);
+
+                    // Get the initial length of eliminatedPawns
+let initialLength = eliminatedPawns.length;
+alert(initialLength)
+
+// Push the eliminated pawn to the array
+ // Push the eliminated pawn to the array
+ eliminatedPawns.push(pawnDiagonalForwardElement);
+
+// Get the length after pushing the new pawn
+let newLength = eliminatedPawns.length;
+
+
+// Compare the lengths and alert if they are different
+if (newLength !== initialLength) {
+  alert("xxxxx KILLINGS XXXXX AT FORWAR!");
+}
+
+
+
+       
 
         // Store the updated eliminatedPawns array back to localStorage
         localStorage.setItem(
@@ -225,8 +261,29 @@ export function pawnAgent(event) {
           let eliminatedPawns =
           JSON.parse(localStorage.getItem("eliminatedBlacks")) || [];
   
-        // Push the eliminated pawn to the array
-        eliminatedPawns.push(pawnDiagonalRightContent);
+  
+
+
+
+                    // Get the initial length of eliminatedPawns
+                    let initialLength = eliminatedPawns.length;
+                    alert(initialLength)
+                    
+                    // Push the eliminated pawn to the array
+                     // Push the eliminated pawn to the array
+                     eliminatedPawns.push(pawnDiagonalRightElement);
+                    
+                    // Get the length after pushing the new pawn
+                    let newLength = eliminatedPawns.length;
+                    
+                    
+                    // Compare the lengths and alert if they are different
+                    if (newLength !== initialLength) {
+                      alert("xxxxx KILLINGS XXXXX AT RIGHT!");
+                    }
+                    
+
+        
         // Check for layout change
         let oldChess = localStorage.getItem("newChessboardLayout");
 
@@ -252,6 +309,15 @@ export function pawnAgent(event) {
 
       }
     }
+
+            // Compare the lengths and alert if they are different
+            if (newLength !== initialLength && newLength > 0 ) {
+              alert("xxxxx KILLINGS XXXXX!");
+            
+              localStorage.setItem("iwhiteTurn", "true");
+            }
+
+
 
   }
 

@@ -262,9 +262,6 @@ export function pawnAgent(event) {
     }
   }
 
-  
-
-
   if (isPawn === "♟") {
     // Perform actions for white pawn
     if (!whiteTurn) {

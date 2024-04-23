@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Maze</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <h2 class="text-center">Simple Maze</h2>
+
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <div class="maze">
+                    <!-- Start -->
+
+                    <div class="cell "></div>
+                    <div class="cell"></div>
+                    <div class="cell "></div>
+                    <div class="cell wall"></div>
+
+                    <div class="cell "></div>
+                    <div class="cell  "></div>
+                    <div class="cell  start current">X</div>
+                    <div class="cell "></div>
+                    <div class="cell wall"></div>
+
+
+
+                    <!-- Middle rows -->
+   
+
+                    <!-- End -->
+                    <div class="cell "></div>
+                    <div class="cell "></div>
+                    <div class="cell "></div>
+                    <div class="cell "></div>
+                    <div class="cell wall"></div>
+                    <div class="cell "></div> 
+                    <div class="cell end"></div>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .maze {
+            display: grid;
+            grid-template-columns: repeat(4, 50px);
+            grid-gap: 2px;
+        }
+
+        .cell {
+            width: 50px;
+            height: 50px;
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+        }
+
+        .start {
+            background-color: green;
+        }
+
+        .end {
+            background-color: red;
+        }
+
+        .wall {
+            background-color: black;
+        }
+    </style>
+
+    <script>
+
+// Initialize arrays
+
+const cellIds = [];
+const classNames = [];
+const cellContents = [];
+let startIndex;
+let endIndex;
+
+// Function to update cell arrays
+function updateCellArrays() {
+    // Get all maze cells
+    const cells = document.querySelectorAll('.maze .cell');
+
+    // Clear existing arrays
+    cellIds.length = 0;
+    classNames.length = 0;
+    cellContents.length = 0;
+
+    cells.forEach((cell, index) => {
+        const id = (index + 1).toString();
+        const className = cell.classList.value;
+        let content = '';
+
+        // Assign content based on class
+        if (className.includes('start')) {
+            content = 'start';
+        } else if (className.includes('end')) {
+            content = 'end';
+        } else if (className.includes('wall')) {
+            content = 'wall';
+        } else {
+            content = '';
+        }
+
+        cellIds.push(id);
+        classNames.push(className);
+        cellContents.push(content);
+    });
+
+    console.log('Cell IDs:', cellIds);
+    console.log('Class Names:', classNames);
+    console.log('Cell Contents:', cellContents);
+
+     startIndex = cellContents.indexOf('start');
+     endIndex = cellContents.indexOf('end');
+
+    console.log('Start Index:', startIndex);
+    console.log('End Index:', endIndex);
+}
+
+
+
+// Configuration for the observer
+const config = { childList: true, subtree: true };
+
+// Create a new observer instance
+const observer = new MutationObserver(updateCellArrays);
+
+// Observe changes to the maze element
+const mazeElement = document.querySelector('.maze');
+observer.observe(mazeElement, config);
+
+// Initial update
+updateCellArrays();
+
+
+// Define maze dimensions
+let rows = 4;
+let cols = 4;
+
+// Count the number of paths from (0, 0) to (rows - 1, cols - 1)
+const paths = countPaths(rows, cols);
+console.log("Number of possible paths:", paths);
+
+const mazeCells = document.querySelectorAll('.maze .cell');
+const totalCells = mazeCells.length;
+
+console.log("Total number of cells:", totalCells);
+
+let currentPosition = Array.from(mazeCells).findIndex(cell => cell.classList.contains('start') && cell.classList.contains('current')); // Starting position for "X"
+let direction = 'left'; // Initial direction
+let directionChanges = 0; // Counter for direction changes due to walls
+let wallPositions = []; // Array to store positions where the agent encountered a wall
+
+
+
+
+function countPaths(m, n) {
+    // Initialize the grid with zeros
+    const dp = new Array(m).fill(0).map(() => new Array(n).fill(0));
+
+    // Set the starting point to 1
+    dp[0][0] = 1;
+
+    // Traverse the grid
+    for (let i = 0; i < m; i++) {
+        for (let j = 0; j < n; j++) {
+            // Move right
+            if (j + 1 < n) {
+                dp[i][j + 1] += dp[i][j];
+            }
+            // Move down
+            if (i + 1 < m) {
+                dp[i + 1][j] += dp[i][j];
+            }
+        }
+    }
+
+    // Return the number of paths to reach the end
+    return dp[m - 1][n - 1];
+}
+
+
+function moveRight(){
+ 
+}
+
+
+function moveLeft() {
+    // Calculate the next position for left move
+    const nextPosition = startIndex - 1;
+
+    // Check if nextPosition is within bounds and not a wall
+    if (nextPosition >= 0 && nextPosition % cols !== cols - 1 && !mazeCells[nextPosition].classList.contains('wall')) {
+        console.log('Left move is available.');
+
+        // Update the current position and UI
+        updatePosition(nextPosition);
+    } else {
+        console.log('Left move is not available.');
+        alert('Left move is not available!');
+    }
+}
+
+
+moveLeft()
+
+function down(){
+
+}
+
+function up(){
+
+}
+
+function updatePosition(nextPosition) {
+    // Remove 'current' class from the current position
+    mazeCells[startIndex].classList.remove('current');
+    mazeCells[startIndex].textContent = ''; // Clear the 'X' content
+
+    // Add 'current' class to the new position
+    mazeCells[nextPosition].classList.add('current');
+    mazeCells[nextPosition].textContent = 'X'; // Set 'X' content to indicate the agent's position
+
+    // Update currentPosition
+    currentPosition = nextPosition;
+
+    // Update startIndex
+    startIndex = nextPosition;
+}
+
+
+
+
+    </script>
+
+</body>
+
+</html>

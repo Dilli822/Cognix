@@ -1,0 +1,95 @@
+
+
+
+
+
+
+[
+{
+    "name": "Aakash",
+    "age": 20,
+    "city": "itahari"
+}
+]
+,
+
+[
+{
+    "name": "John",
+    "address": {
+        "city": "New York",
+        "zipCode": "10001"
+    }
+}
+]
+,
+// JSON Array
+[
+    {
+        "name": "John",
+        "age": 30
+    },
+    {
+        "name": "Jane",
+        "age": 25
+    },
+    {
+        "name": "Doe",
+        "age": 40
+    }
+]
+
+,
+
+[
+    {
+        "name": "John",
+        "address": {
+            "city": "New York",
+            "zipCode": "10001"
+        }
+    },
+    {
+        "name": "Jane",
+        "address": {
+            "city": "Los Angeles",
+            "zipCode": "90001"
+        }
+    }
+]
+
+,
+
+[
+{
+    "person": {
+        "name": "John",
+        "age": 30,
+        "isStudent": false
+    },
+    "friends": [
+        {
+            "name": "Jane",
+            "age": 25
+        },
+        {
+            "name": "Doe",
+            "age": 40
+        }
+    ],
+    "favorites": {
+        "colors": ["red", "blue", "green"],
+        "movies": [
+            {
+                "title": "Inception",
+                "year": 2010
+            },
+            {
+                "title": "Interstellar",
+                "year": 2014
+            }
+        ]
+    }
+}
+]
+

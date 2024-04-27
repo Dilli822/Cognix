@@ -1,5 +1,4 @@
 
-
 // comments in js is done by either
 /***  or with double // forward slash and multi line comments are /*** */
 
@@ -67,6 +66,35 @@ let obj = {
 for (let key in obj) {
   console.log("Key: " + key + ", Value: " + obj[key]);
 }
+
+const meaningsArray = [
+    ["Noun", "the 1st letter of the Roman alphabet", ["Letter", "Letter of the alphabet", "Alphabetic character"], []],
+    ["Noun", "the blood group whose red cells carry the A antigen", ["Blood group", "Blood type"], []]
+];
+
+const meanings = [];
+
+// Iterate over each element in the array
+for (const meaning of meaningsArray) {
+    // Extract parts of speech and definition
+    const partOfSpeech = meaning[0];
+    const definition = meaning[1];
+    
+    // Extract synonyms
+    const synonyms = meaning[2];
+    
+    // Extract antonyms (which is an empty array)
+    const antonyms = meaning[3];
+    
+    // Construct a string representation
+    const meaningString = `${partOfSpeech}: ${definition}. Synonyms: ${synonyms.join(", ")}.`;
+    
+    // Push the string representation into the meanings array
+    meanings.push(meaningString);
+}
+
+// Output the extracted details
+console.log(meanings);
 
 // DOM MANIPULATION
 // document.getElementById("height_weight").innerText = height_weight;
@@ -233,4 +261,4 @@ function hello(){
     }
     ]
     
-    
+// https://www.w3schools.com/js/js_callback.asp

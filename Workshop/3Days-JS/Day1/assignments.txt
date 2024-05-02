@@ -1,0 +1,5 @@
+1. Create your own json or js objects to create your own profile card in html with personal details
+2. Create a Todo list using localstorage 
+3. Create Counter app using function concept in js
+4. Create an array or objects and use looping concept to render the data on the html 
+5. Create a user login and signup, password reset form that collects the username , email and password with event listener or handler

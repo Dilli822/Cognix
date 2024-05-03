@@ -30,11 +30,13 @@ console.log("Full name is " + fullname);
 const height_weight = `my height is ${height} my age is ${age}`;
 console.log(height_weight);
 
+console.log("--------- array in js ---------")
 // array in js
 let array = ["string", false, 0.234, 4566, null, undefined];
 console.log(array);
 console.log(array[0]);
 
+console.log("--------- For loop ---------")
 // for loop
 for (i = 0; i < array.length; i++) {
   console.log(i);
@@ -43,8 +45,9 @@ for (i = 0; i < array.length; i++) {
 
 // while loop
 var i = 0;
+console.log("--------- while loop ---------")
 while (i < array.length) {
-  console.log("whilte loop --> " + array[i]);
+  console.log("while loop --> " + array[i]);
   i++;
 }
 
@@ -57,51 +60,51 @@ let obj = {
   passout: undefined,
 };
 
+const example_json = [
+    {
+        name: "hello",
+        age: 25,
+        weight: 64.45,
+        height: 5.5
+    }
+    // ,
+    // {
+    //     name: "knight",
+    //     age: 22,
+    //     weight: 60.45,
+    //     height: 6.5
+    // }
+]
+
+console.log(example_json);
+console.log("--------- For each loop ---------")
+
 // for each loop
-// obj.forEach(function(item, index){
-//     console.log("for each key" + index + "and value is " + item)
-// })
+Object.keys(obj).forEach(function(key) {
+    console.log("Key: " + key + ", Value: " + obj[key]);
+});
+
+
+console.log("-------- For in loop ---------")
 
 // for in loop gives
-for (let key in obj) {
-  console.log("Key: " + key + ", Value: " + obj[key]);
-}
+// for (let key in obj) {
+//   console.log("Key: " + key + ", Value: " + obj[key]);
+// }
 
-const meaningsArray = [
-    ["Noun", "the 1st letter of the Roman alphabet", ["Letter", "Letter of the alphabet", "Alphabetic character"], []],
-    ["Noun", "the blood group whose red cells carry the A antigen", ["Blood group", "Blood type"], []]
-];
+example_json.forEach(function(obj) {
+    for (let key in obj) {
+        console.log("Key: " + key + ", Value: " + obj[key]);
+    }
+});
 
-const meanings = [];
-
-// Iterate over each element in the array
-for (const meaning of meaningsArray) {
-    // Extract parts of speech and definition
-    const partOfSpeech = meaning[0];
-    const definition = meaning[1];
-    
-    // Extract synonyms
-    const synonyms = meaning[2];
-    
-    // Extract antonyms (which is an empty array)
-    const antonyms = meaning[3];
-    
-    // Construct a string representation
-    const meaningString = `${partOfSpeech}: ${definition}. Synonyms: ${synonyms.join(", ")}.`;
-    
-    // Push the string representation into the meanings array
-    meanings.push(meaningString);
-}
-
-// Output the extracted details
-console.log(meanings);
 
 // DOM MANIPULATION
 // document.getElementById("height_weight").innerText = height_weight;
 var elements = document.getElementsByClassName("username");
 elements[0].innerHTML = "  <div>  <h2> Hello I am Dilli Hang Rai </div> ";
 
-document.getElementById("copyright").innerHTML = "<h1> SDFSDF </h1>";
+document.getElementById("copyright").innerHTML = "<h1> COPYRIGHT </h1>";
 
 
 // Array of fruit names
@@ -117,18 +120,6 @@ fruits.forEach((fruit) => {
   ul.appendChild(li);
 });
 
-
-
-const example_json = [
-    {
-        name: "hello",
-        age: 25,
-        weight: 64.45,
-        height: 5.5
-    }
-]
-
-console.log(example_json);
 
 // try and catch - method
 try {
@@ -192,73 +183,108 @@ function hello(){
     ]
     
     // JSON Array
-    [
-        {
-            "name": "John",
-            "age": 30
-        },
-        {
-            "name": "Jane",
-            "age": 25
-        },
-        {
-            "name": "Doe",
-            "age": 40
-        }
-    ]
+    // [
+    //     {
+    //         "name": "John",
+    //         "age": 30
+    //     },
+    //     {
+    //         "name": "Jane",
+    //         "age": 25
+    //     },
+    //     {
+    //         "name": "Doe",
+    //         "age": 40
+    //     }
+    // ]
     
     
-    // JSON Array of Objects with Nested Objects
-    [
-        {
-            "name": "John",
-            "address": {
-                "city": "New York",
-                "zipCode": "10001"
-            }
-        },
-        {
-            "name": "Jane",
-            "address": {
-                "city": "Los Angeles",
-                "zipCode": "90001"
-            }
-        }
-    ]
+    // // JSON Array of Objects with Nested Objects
+    // [
+    //     {
+    //         "name": "John",
+    //         "address": {
+    //             "city": "New York",
+    //             "zipCode": "10001"
+    //         }
+    //     },
+    //     {
+    //         "name": "Jane",
+    //         "address": {
+    //             "city": "Los Angeles",
+    //             "zipCode": "90001"
+    //         }
+    //     }
+    // ]
     
-    // Advanced JSON with Arrays and Mixed Types and it is customizable
+    // // Advanced JSON with Arrays and Mixed Types and it is customizable
     
-    [
-    {
-        "person": {
-            "name": "John",
-            "age": 30,
-            "isStudent": false
-        },
-        "friends": [
-            {
-                "name": "Jane",
-                "age": 25
-            },
-            {
-                "name": "Doe",
-                "age": 40
-            }
+    // [
+    // {
+    //     "person": {
+    //         "name": "John",
+    //         "age": 30,
+    //         "isStudent": false
+    //     },
+    //     "friends": [
+    //         {
+    //             "name": "Jane",
+    //             "age": 25
+    //         },
+    //         {
+    //             "name": "Doe",
+    //             "age": 40
+    //         }
+    //     ],
+    //     "favorites": {
+    //         "colors": ["red", "blue", "green"],
+    //         "movies": [
+    //             {
+    //                 "title": "Inception",
+    //                 "year": 2010
+    //             },
+    //             {
+    //                 "title": "Interstellar",
+    //                 "year": 2014
+    //             }
+    //         ]
+    //     }
+    // }
+    // ]
+    
+    // USE OF --> FOR OF LOOP
+    console.log("-------- For of loop -----------");
+    const meaningsArray = [
+        [
+            "Noun", 
+            "the 1st letter of the Roman alphabet", 
+            ["Letter", "Letter of the alphabet", "Alphabetic character"], 
+            []
         ],
-        "favorites": {
-            "colors": ["red", "blue", "green"],
-            "movies": [
-                {
-                    "title": "Inception",
-                    "year": 2010
-                },
-                {
-                    "title": "Interstellar",
-                    "year": 2014
-                }
-            ]
-        }
-    }
-    ]
+        ["Noun", "the blood group whose red cells carry the A antigen", ["Blood group", "Blood type"], []]
+    ];
     
-// https://www.w3schools.com/js/js_callback.asp
+    const meanings = [];
+    
+    // Iterate over each element in the array
+    for (const meaning of meaningsArray) {
+        // Extract parts of speech and definition
+        const partOfSpeech = meaning[0];
+        const definition = meaning[1];
+        
+        // Extract synonyms
+        const synonyms = meaning[2];
+        
+        // Extract antonyms (which is an empty array)
+        const antonyms = meaning[3];
+        
+        // Construct a string representation
+        const meaningString = `${partOfSpeech}: ${definition}. Synonyms: ${synonyms.join(", ")}.`;
+        
+        // Push the string representation into the meanings array
+        meanings.push(meaningString);
+    }
+    
+    // Output the extracted details
+    console.log(meanings);
+    

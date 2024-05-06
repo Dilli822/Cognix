@@ -10,7 +10,7 @@ var varaible3;
 
 // Data types
 let age = 22;
-let height = 5.6;
+let height = 565;
 let name = "dilli Hang Rai";
 let isChristaine = false;
 let isHealthy = true;
@@ -24,6 +24,7 @@ const fullname = firstname + middlename + lastname;
 
 console.log("Full name is " + fullname);
 
+
 // template literals
 // It is also known as a template string.
 // It helps to concatenate strings with variables or expressions without the need for string concatenation
@@ -33,6 +34,7 @@ console.log(height_weight);
 console.log("--------- array in js ---------")
 // array in js
 let array = ["string", false, 0.234, 4566, null, undefined];
+
 console.log(array);
 console.log(array[0]);
 
@@ -51,6 +53,7 @@ while (i < array.length) {
   i++;
 }
 
+
 let obj = {
   name: "dilli",
   age: 25,
@@ -59,6 +62,9 @@ let obj = {
   bike: null,
   passout: undefined,
 };
+
+console.log(obj.age)
+console.log(obj.bike);
 
 const example_json = [
     {
@@ -84,7 +90,6 @@ Object.keys(obj).forEach(function(key) {
     console.log("Key: " + key + ", Value: " + obj[key]);
 });
 
-
 console.log("-------- For in loop ---------")
 
 // for in loop gives
@@ -92,12 +97,14 @@ console.log("-------- For in loop ---------")
 //   console.log("Key: " + key + ", Value: " + obj[key]);
 // }
 
+let nsdame = "prashant";
+document.getElementById("u").innerHTML = nsdame;
+
 example_json.forEach(function(obj) {
     for (let key in obj) {
         console.log("Key: " + key + ", Value: " + obj[key]);
     }
 });
-
 
 // DOM MANIPULATION
 // document.getElementById("height_weight").innerText = height_weight;
@@ -105,7 +112,6 @@ var elements = document.getElementsByClassName("username");
 elements[0].innerHTML = "  <div>  <h2> Hello I am Dilli Hang Rai </div> ";
 
 document.getElementById("copyright").innerHTML = "<h1> COPYRIGHT </h1>";
-
 
 // Array of fruit names
 const fruits = ["Apple", "Banana", "Cherry", "Date", "Fig", "Grape", "Kiwi", "Lemon", "Mango", "Orange"];
@@ -135,6 +141,7 @@ try {
 function hello(){
     alert("Hello i am hello")
 }
+
 // event listener
     // Get the input element
     const inputElement = document.getElementById('textInput');
@@ -151,8 +158,8 @@ function hello(){
       
     });
 
-    // Load saved text from localStorage on page load
-    function save() {
+// Load saved text from localStorage on page load
+function save() {
         localStorage.setItem('savedText', inputValue);
         const savedText = localStorage.getItem('savedText');
         
@@ -160,8 +167,11 @@ function hello(){
             console.log('Loaded from localStorage:', savedText);
             inputElement.value = ""; // Set input value to the saved text
         }
-    };
+};
 
+const b =  localStorage.getItem("savedText");
+
+document.getElementById("n").innerHTML =  b;
 // Simple JSON Format
 [
     {
@@ -183,39 +193,39 @@ function hello(){
     ]
     
     // JSON Array
-    // [
-    //     {
-    //         "name": "John",
-    //         "age": 30
-    //     },
-    //     {
-    //         "name": "Jane",
-    //         "age": 25
-    //     },
-    //     {
-    //         "name": "Doe",
-    //         "age": 40
-    //     }
-    // ]
+    [
+        {
+            "name": "John",
+            "age": 30
+        },
+        {
+            "name": "Jane",
+            "age": 25
+        },
+        {
+            "name": "Doe",
+            "age": 40
+        }
+    ]
     
     
     // // JSON Array of Objects with Nested Objects
-    // [
-    //     {
-    //         "name": "John",
-    //         "address": {
-    //             "city": "New York",
-    //             "zipCode": "10001"
-    //         }
-    //     },
-    //     {
-    //         "name": "Jane",
-    //         "address": {
-    //             "city": "Los Angeles",
-    //             "zipCode": "90001"
-    //         }
-    //     }
-    // ]
+    [
+        {
+            "name": "John",
+            "address": {
+                "city": "New York",
+                "zipCode": "10001"
+            }
+        },
+        {
+            "name": "Jane",
+            "address": {
+                "city": "Los Angeles",
+                "zipCode": "90001"
+            }
+        }
+    ]
     
     // // Advanced JSON with Arrays and Mixed Types and it is customizable
     
@@ -265,6 +275,8 @@ function hello(){
     ];
     
     const meanings = [];
+
+    console.log(meaningsArray[0])
     
     // Iterate over each element in the array
     for (const meaning of meaningsArray) {
@@ -286,5 +298,13 @@ function hello(){
     }
     
     // Output the extracted details
-    console.log(meanings);
+    console.log("meanings " + meanings);
     
+
+    // Check your browser console.
+    // const meaningsArray = [
+    //     ["Noun", "the 1st letter of the Roman alphabet", ["Letter", "Letter of the alphabet", "Alphabetic character"], []],
+    //     ["Noun", "the blood group whose red cells carry the A antigen", ["Blood group", "Blood type"], []]
+    // ];
+    // VM22:1 Uncaught SyntaxError: Identifier 'meaningsArray' has already been declared
+    // meaningsArray[1] + meaningsArray[0]

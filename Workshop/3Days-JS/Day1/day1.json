@@ -1,13 +1,8 @@
-[
-{
+[{
     "name": "Aakash",
     "age": 20,
     "city": "itahari"
-}
-]
-,
-
-[
+},
 {
     "name": "John",
     "address": {
@@ -16,8 +11,7 @@
     }
 }
 ]
-,
-// JSON Array
+
 [
     {
         "name": "John",

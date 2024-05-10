@@ -6,21 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Maze</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-        
         .maze {
             display: grid;
-            grid-template-columns: repeat(5, 50px);
+            grid-template-columns: repeat(5, 100px);
             grid-gap: 2px;
             text-align: center;
         }
 
         .cell {
-            width: 50px;
-            height: 50px;
+            width: 100px;
+            height: 100px;
             background-color: #f1f1f1;
             border: 1px solid #ccc;
         }
@@ -36,34 +34,44 @@
         .wall {
             background-color: black;
         }
-    </style>
 
+        @media (max-width: 767px) {
+            .maze {
+                grid-template-columns: repeat(5, 80px);
+                grid-gap: 1px;
+
+            }
+
+            .cell {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
     <div class="container mt-5">
-        <h2 class="text-center">Simple Maze</h2>
-
         <div class="row justify-content-center">
-            <div class="col-4">
+            <div class="col-12 col-md-6">
+                <h3>Simple Maze Game <br>
+                    AI Agent Finding End of the Maze </h3>
                 <div class="maze">
                     <!-- Start -->
-
-        
                     <div class="cell     "></div>
                     <div class="cell "></div>
                     <div class="cell wall"></div>
                     <div class="cell "></div>
-                    <div class="cell start current"></div>
-
+                    <div class="cell start current">
+                        <img src="./683083.webp" alt="" style="width: 50px;">
+                    </div>
 
                     <div class="cell "></div>
                     <div class="cell wall"></div>
                     <div class="cell "></div>
                     <div class="cell  "></div>
                     <div class="cell "></div>
-
 
                     <div class="cell wall"></div>
                     <div class="cell "></div>
@@ -77,16 +85,23 @@
                     <div class="cell "></div>
                     <div class="cell end"></div>
                 </div>
-                Status:<h6 id="finalStatus"> Agent is inside the Maze </h6>
+                <br>
+                <div>
+                    <h4> Status:<span id="finalStatus"> Agent is inside the Maze </span></h4>
+                </div>
+                <div class="col">
+                    <button class="btn btn-outline-success" onclick="    move()">
+                        Start Game
+                    </button>
+                    <button class="btn btn-outline-danger" onclick="window.location.reload()">
+                        Reset Game
+                    </button>
+                </div>
             </div>
         </div>
-
-
     </div>
 
     <script>
-
-
 
         const mazeCells = document.querySelectorAll('.maze .cell');
         const totalCells = mazeCells.length;
@@ -97,7 +112,6 @@
         let direction = 'right'; // Initial direction
         let directionChanges = 0; // Counter for direction changes due to walls
         let wallPositions = []; // Array to store positions where the agent encountered a wall
-
 
         let movablepaths = []; // Define movablepaths globally
 
@@ -157,7 +171,7 @@
 
             // Add 'current' class and "X" content to the next position
             mazeCells[nextPosition].classList.add('current');
-            mazeCells[nextPosition].textContent = 'X';
+            mazeCells[nextPosition].innerHTML = '<img src="./683083.webp" style="width: 50px;" /> ';
 
             // Update current position
             currentPosition = nextPosition;
@@ -196,7 +210,7 @@
             // Base case: check if we've reached the end of the maze
             if (nextPosition >= mazeCells.length || nextPosition < 0) {
                 console.log('End of maze reached!');
-                document.getElementById("finalStatus").innerHTML = "Agent is Out of the maze ✅"
+                document.getElementById("finalStatus").innerHTML = "<h3> Agent is Out of the maze ✅ </h3>"
                 return;
             }
 
@@ -218,10 +232,7 @@
                 setTimeout(move, 500);
             }
         }
-
-        move(); // Start the movement
-
-
+        // Start the movement
     </script>
 
 </body>
